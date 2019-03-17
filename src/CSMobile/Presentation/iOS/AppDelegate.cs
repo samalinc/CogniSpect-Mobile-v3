@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using CSMobile.Presentation.Views;
 using Foundation;
 using UIKit;
 
-namespace CSMobile.iOS
+namespace CSMobile.Presentation.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 

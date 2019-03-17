@@ -9,9 +9,9 @@
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CSMobile.Specific.iOS</RootNamespace>
+    <RootNamespace>CSMobile.Presentation.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>CSMobile.Specific.iOS</AssemblyName>
+    <AssemblyName>CSMobile.Presentation.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
@@ -129,7 +129,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\Presentation\Views\CSMobile.Presentation.Views.csproj">
+    <ProjectReference Include="..\Views\CSMobile.Presentation.Views.csproj">
       <Project>{85F8530D-F6C4-4BE2-9D5D-4D679035BF87}</Project>
       <Name>CSMobile.Presentation.Views</Name>
     </ProjectReference>

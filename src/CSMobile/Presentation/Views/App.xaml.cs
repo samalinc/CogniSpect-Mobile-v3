@@ -1,8 +1,6 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
 
-namespace CSMobile
+namespace CSMobile.Presentation.Views
 {
     public partial class App : Application
     {

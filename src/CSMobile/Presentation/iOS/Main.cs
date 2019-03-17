@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using UIKit;
 
-using Foundation;
-using UIKit;
-
-namespace CSMobile.iOS
+namespace CSMobile.Presentation.iOS
 {
     public class Application
     {
