@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Xamarin.Forms;
 
-namespace CSMobile.Presentation.Views
+namespace CSMobile.Presentation.Views.Pages
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer

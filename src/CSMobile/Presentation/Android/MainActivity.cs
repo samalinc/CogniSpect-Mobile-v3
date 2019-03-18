@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using CSMobile.Presentation.Views;
+using CSMobile.Presentation.Views.Pages;
 
 namespace CSMobile.Presentation.Droid
 {

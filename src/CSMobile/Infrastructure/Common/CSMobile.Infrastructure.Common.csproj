@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>CSMobile.Infrastucture.Services</AssemblyName>
-    <RootNamespace>CSMobile.Infrastucture.Services</RootNamespace>
   </PropertyGroup>
 
 </Project>
