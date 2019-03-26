@@ -124,12 +124,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.220655" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Views\CSMobile.Presentation.Views.csproj">
+    <ProjectReference Include="..\..\Presentation\Views\CSMobile.Presentation.Views.csproj">
       <Project>{85F8530D-F6C4-4BE2-9D5D-4D679035BF87}</Project>
       <Name>CSMobile.Presentation.Views</Name>
     </ProjectReference>

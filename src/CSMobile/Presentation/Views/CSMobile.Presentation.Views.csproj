@@ -12,20 +12,42 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.1" />
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.220655" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="App.xaml">
+    <None Update="AuthenticationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="MainPage.xaml">
+    <None Update="ProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <None Update="TestsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\AuthenticationPage.xaml.cs">
+      <DependentUpon>AuthenticationPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\ProfilePage.xaml.cs">
+      <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\TestsPage.xaml.cs">
+      <DependentUpon>TestsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ViewModels\CSMobile.Presentation.ViewModels.csproj" />
   </ItemGroup>
+
 </Project>

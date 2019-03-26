@@ -1,17 +1,19 @@
-using CSMobile.Presentation.ViewModels;
+using CommonServiceLocator;
+using GalaSoft.MvvmLight;
 using Xamarin.Forms;
 
 namespace CSMobile.Presentation.Views.Pages
 {
-    public class ViewPage<TViewModel> : ContentPage where TViewModel : IViewModel
+    public class ViewPage<TViewModel> : ContentPage where TViewModel : ViewModelBase
     {
-        private readonly IViewModel _viewModel;
+        protected readonly TViewModel ViewModel;
 
-        public ViewPage(TViewModel viewModel)
+        public ViewPage()
         {
-            _viewModel = viewModel;
-
-            BindingContext = viewModel;
+            ViewModel = DesignMode.IsDesignModeEnabled 
+                ? default 
+                : ServiceLocator.Current.GetInstance<TViewModel>();
+            BindingContext = ViewModel;
         }
     }
 }
