@@ -5,12 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Security\CSMobile.Infrastructure.Security.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Services\CSMobile.Infrastructure.Services.csproj" />
     <ProjectReference Include="..\Models\CSMobile.Domain.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.1" />
   </ItemGroup>
 
 </Project>

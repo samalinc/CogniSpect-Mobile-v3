@@ -1,19 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Autofac;
 using CommonServiceLocator;
 
-namespace CSMobile.Infrastructure.Services
+namespace CSMobile.Infrastructure.Common.Contexts
 {
     public class AutofacServiceLocator : IServiceLocator
     {
-        private readonly IContainer _container;
+        private readonly ApplicationContext _context;
 
-        public AutofacServiceLocator(Action<ContainerBuilder> builder)
+        private ILifetimeScope Container => _context.UserSession?.Scope ?? _context.Container;
+
+        public AutofacServiceLocator(ApplicationContext context)
         {
-            var containerBuilder = new ContainerBuilder();
-            builder(containerBuilder);
-            _container = containerBuilder.Build();
+            _context = context;
         }
 
         public object GetService(Type serviceType)
@@ -23,14 +24,14 @@ namespace CSMobile.Infrastructure.Services
 
         public object GetInstance(Type serviceType)
         {
-            return _container.Resolve(serviceType);
+            return Container.Resolve(serviceType);
         }
 
         public object GetInstance(Type serviceType, string key)
         {
             try
             {
-                return _container.ResolveKeyed(key, serviceType);
+                return Container.ResolveKeyed(key, serviceType);
             }
             catch (Exception ex)
             {

@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSMobile.Infrastructure.Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSMobile.Infrastructure.Common", "CSMobile\Infrastructure\Common\CSMobile.Infrastructure.Common.csproj", "{4D0B1BF5-BA53-4B7E-8A4C-5D158F52CDF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSMobile.Infrastructure.Security", "CSMobile\Infrastructure\Security\CSMobile.Infrastructure.Security.csproj", "{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,18 @@ Global
 		{F734C488-A0D8-47B5-95EE-8F12E234F862}.Release|iPhone.Build.0 = Release|Any CPU
 		{F734C488-A0D8-47B5-95EE-8F12E234F862}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{F734C488-A0D8-47B5-95EE-8F12E234F862}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Release|iPhone.Build.0 = Release|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +193,7 @@ Global
 		{7BBEBAF4-F66E-4D1D-9469-6AE196103634} = {7FF7A0C5-3075-4B4E-8996-2D33512D3FEC}
 		{85F8530D-F6C4-4BE2-9D5D-4D679035BF87} = {7FF7A0C5-3075-4B4E-8996-2D33512D3FEC}
 		{F734C488-A0D8-47B5-95EE-8F12E234F862} = {A3C1EAF9-128A-469C-BF6D-DCB869F70F35}
+		{99C9CD1C-C80F-4830-8EBE-D145CF7B8167} = {E0F70FEB-F3D3-4F3F-867C-90D3B215B299}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {95BFDAF6-47BA-4273-9F92-918E62388C06}

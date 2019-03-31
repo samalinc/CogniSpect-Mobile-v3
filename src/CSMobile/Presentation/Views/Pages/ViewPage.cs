@@ -11,7 +11,7 @@ namespace CSMobile.Presentation.Views.Pages
         public ViewPage()
         {
             ViewModel = DesignMode.IsDesignModeEnabled 
-                ? default 
+                ? default(TViewModel)
                 : ServiceLocator.Current.GetInstance<TViewModel>();
             BindingContext = ViewModel;
         }

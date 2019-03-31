@@ -64,12 +64,19 @@ namespace CSMobile.Presentation.Views
             }
         }
 
+        public async Task GoToRoot()
+        {
+            if (CurrentNavigationPage.NavigationProxy.NavigationStack.Count > 0)
+            {
+                await CurrentNavigationPage.PopToRootAsync();                
+            }
+        }
+
         public async Task GoBack()
         {
-            var navigationStack = CurrentNavigationPage.Navigation;
-            if (navigationStack.NavigationStack.Count > 1)
+            if (CurrentNavigationPage.Navigation.NavigationStack.Count > 1)
             {
-                await CurrentNavigationPage.PopAsync();
+                await CurrentNavigationPage.Navigation.PopAsync();
                 return;
             }
 

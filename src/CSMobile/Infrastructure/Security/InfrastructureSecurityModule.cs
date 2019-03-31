@@ -1,15 +1,15 @@
 using Autofac;
 
-namespace CSMobile.Domain.Services
+namespace CSMobile.Infrastructure.Security
 {
-    public class DomainServicesModule : Module
+    public class InfrastructureSecurityModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
             builder
                 .RegisterAssemblyTypes(ThisAssembly)
                 .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
+                .SingleInstance();
         }
     }
 }

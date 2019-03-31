@@ -5,13 +5,13 @@ using CSMobile.Infrastructure.Common.Extensions;
 
 namespace CSMobile.Application.ViewModels
 {
-    public class ApplicationViewModelsModule : Module
+    public class PresentationViewModelsModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .AsSelf()
-                .SingleInstance();
+                .InstancePerLifetimeScope();
         }
     }
 }

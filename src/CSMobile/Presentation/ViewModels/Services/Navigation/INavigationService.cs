@@ -1,11 +1,13 @@
 using System;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace CSMobile.Application.ViewModels.Services.Navigation
 {
     public interface INavigationService
     {
+        Task GoToRoot();
         Type CurrentPageViewModel { get; }
         void Configure<TViewModel, TViewPage>() where TViewModel : ViewModelBase;
         Task GoBack();

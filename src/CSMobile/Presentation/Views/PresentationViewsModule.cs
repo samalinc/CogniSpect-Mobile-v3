@@ -1,4 +1,3 @@
-using System.Linq;
 using Autofac;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Presentation.Views.Pages;
@@ -12,17 +11,13 @@ namespace CSMobile.Presentation.Views
             builder
                 .RegisterAssemblyTypes(ThisAssembly)
                 .AsImplementedInterfaces()
-                .SingleInstance();
+                .InstancePerLifetimeScope();
             
             builder
-                .RegisterGeneric(typeof(ViewPage<>))
-                .AsSelf()
-                .SingleInstance();
-            
-            builder
-                .RegisterSingleAsSelf<AuthenticationPage>()
-                .RegisterSingleAsSelf<ProfilePage>()
-                .RegisterSingleAsSelf<TestsPage>()
+                .RegisterScopedAsSelf<AuthenticationPage>()
+                .RegisterScopedAsSelf<ProfilePage>()
+                .RegisterScopedAsSelf<TestsPage>()
+                .RegisterSingleAsImplementedInterfaces<UserContextService>()
                 .RegisterSingleAsImplementedInterfaces<NavigationService>();
         }
     }
