@@ -2,12 +2,14 @@
 using Autofac;
 using CommonServiceLocator;
 using CSMobile.Application.ViewModels;
-using CSMobile.Application.ViewModels.Authentication;
-using CSMobile.Application.ViewModels.Profile;
-using CSMobile.Application.ViewModels.Services.Navigation;
-using CSMobile.Application.ViewModels.Tests;
+using CSMobile.Application.ViewModels.Navigation;
+using CSMobile.Application.ViewModels.Profiles;
+using CSMobile.Application.ViewModels.ViewModels;
+using CSMobile.Application.ViewModels.ViewModels.Tests;
+using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Domain.Services;
 using CSMobile.Infrastructure.Common.Contexts;
+using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Security;
 using CSMobile.Infrastructure.Services;
 using CSMobile.Presentation.Views.Pages;
@@ -17,7 +19,7 @@ namespace CSMobile.Presentation.Views
     public class App : Xamarin.Forms.Application
     {
         public static ApplicationContext Context { get; private set; }
-        private readonly INavigationService _navigationService; 
+        private readonly INavigationService _navigationService;
 
         public App()
         {
@@ -50,6 +52,9 @@ namespace CSMobile.Presentation.Views
         {
             return new ApplicationContext(
                 ConfigureContainer(builder => builder
+                    .RegisterAutomapper(cfg => cfg
+                        .RegisterProfile<TestsProfile>()
+                    )
                     .RegisterModule<PresentationViewsModule>()
                     .RegisterModule<PresentationViewModelsModule>()
                     .RegisterModule<DomainServicesModule>()
@@ -69,8 +74,10 @@ namespace CSMobile.Presentation.Views
         {
             _navigationService.Configure<AuthenticationViewModel, AuthenticationPage>();
             _navigationService.Configure<ProfileViewModel, ProfilePage>();
-            _navigationService.Configure<TestsViewModel, TestsPage>();
-            
+            _navigationService.Configure<TestItemsViewModel, TestItemsPage>();
+            _navigationService.Configure<TestViewModel, TestPage>();
+            _navigationService.Configure<StatisticsPageViewModel, StatisticsPage>();
+
             MainPage = ((NavigationService) _navigationService).SetRootPage<ProfileViewModel>();
         }
     }

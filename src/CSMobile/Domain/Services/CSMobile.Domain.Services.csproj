@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Models\CSMobile.Domain.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tests\Questions" />
+  </ItemGroup>
+
 </Project>

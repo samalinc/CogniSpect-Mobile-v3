@@ -30,6 +30,9 @@
     <Compile Update="Pages\AuthenticationPage.xaml.cs">
       <DependentUpon>AuthenticationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -39,8 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Pages\TestsPage.xaml.cs">
-      <DependentUpon>TestsPage.xaml</DependentUpon>
+    <Compile Update="Pages\TestItemsPage.xaml.cs">
+      <DependentUpon>TestItemsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

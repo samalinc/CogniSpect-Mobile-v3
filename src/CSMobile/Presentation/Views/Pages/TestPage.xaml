@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<local:TestsPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+<local:TestPageBase xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
-             x:Class="CSMobile.Presentation.Views.Pages.TestsPage">
+             x:Class="CSMobile.Presentation.Views.Pages.TestPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
+            <Label Text="{Binding Name}"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
-</local:TestsPageBase>
+</local:TestPageBase>

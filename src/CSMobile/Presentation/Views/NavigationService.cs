@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CommonServiceLocator;
-using CSMobile.Application.ViewModels.Services.Navigation;
+using CSMobile.Application.ViewModels.Navigation;
+using CSMobile.Application.ViewModels.ViewModels;
 using GalaSoft.MvvmLight;
 using Xamarin.Forms;
 
@@ -19,7 +20,7 @@ namespace CSMobile.Presentation.Views
 
         private NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
 
-        public void Configure<TViewModel, TViewPage>() where TViewModel : ViewModelBase
+        public void Configure<TViewModel, TViewPage>() where TViewModel : BasePageViewModel
         {
             lock (_sync)
             {
@@ -35,7 +36,7 @@ namespace CSMobile.Presentation.Views
             }
         }
 
-        public Page SetRootPage<TViewModel>() where TViewModel : ViewModelBase
+        public Page SetRootPage<TViewModel>() where TViewModel : BasePageViewModel
         {
             var rootPage = GetPage(typeof(TViewModel));
             _navigationPageStack.Clear();
@@ -90,12 +91,12 @@ namespace CSMobile.Presentation.Views
             await CurrentNavigationPage.PopAsync();
         }
 
-        public async Task NavigateModalAsync<TViewModel>(bool animated = true) where TViewModel : ViewModelBase
+        public async Task NavigateModalAsync<TViewModel>(bool animated = true) where TViewModel : BasePageViewModel
         {
             await NavigateModalAsync<TViewModel>(null, animated);
         }
 
-        public async Task NavigateModalAsync<TViewModel>(object parameter, bool animated = true) where TViewModel : ViewModelBase
+        public async Task NavigateModalAsync<TViewModel>(object parameter, bool animated = true) where TViewModel : BasePageViewModel
         {
             var page = GetPage(typeof(TViewModel), parameter);
             NavigationPage.SetHasNavigationBar(page, false);
@@ -104,12 +105,12 @@ namespace CSMobile.Presentation.Views
             _navigationPageStack.Push(modalNavigationPage);
         }
 
-        public async Task NavigateAsync<TViewModel>(bool animated = true) where TViewModel : ViewModelBase
+        public async Task NavigateAsync<TViewModel>(bool animated = true) where TViewModel : BasePageViewModel
         {
             await NavigateAsync<TViewModel>(null, animated);
         }
 
-        public async Task NavigateAsync<TViewModel>(object parameter, bool animated = true) where TViewModel : ViewModelBase
+        public async Task NavigateAsync<TViewModel>(object parameter, bool animated = true) where TViewModel : BasePageViewModel
         {
             var page = GetPage(typeof(TViewModel), parameter);
             await CurrentNavigationPage.Navigation.PushAsync(page, animated);

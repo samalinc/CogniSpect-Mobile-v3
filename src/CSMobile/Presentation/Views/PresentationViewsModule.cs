@@ -9,14 +9,12 @@ namespace CSMobile.Presentation.Views
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterAssemblyTypes(ThisAssembly)
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
-            
-            builder
                 .RegisterScopedAsSelf<AuthenticationPage>()
                 .RegisterScopedAsSelf<ProfilePage>()
-                .RegisterScopedAsSelf<TestsPage>()
+                .RegisterScopedAsSelf<TestItemsPage>()
+                .RegisterScopedAsSelf<TestPage>()
+                .RegisterScopedAsSelf<StatisticsPage>()
+                .RegisterSingleAsImplementedInterfaces<AppSafeInjectionResolver>()
                 .RegisterSingleAsImplementedInterfaces<UserContextService>()
                 .RegisterSingleAsImplementedInterfaces<NavigationService>();
         }

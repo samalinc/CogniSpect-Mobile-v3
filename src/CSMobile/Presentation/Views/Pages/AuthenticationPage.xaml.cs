@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using CSMobile.Application.ViewModels.Authentication;
+using CSMobile.Application.ViewModels.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

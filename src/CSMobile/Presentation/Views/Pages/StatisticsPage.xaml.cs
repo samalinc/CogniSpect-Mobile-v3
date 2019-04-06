@@ -1,16 +1,14 @@
-using System.ComponentModel;
 using CSMobile.Application.ViewModels.ViewModels;
 using Xamarin.Forms.Xaml;
 
 namespace CSMobile.Presentation.Views.Pages
 {
-    public class ProfilePageBase : ViewPage<ProfileViewModel> { }
- 
-    [DesignTimeVisible(true)]
+    public class StatisticsPageBase : ViewPage<StatisticsPageViewModel> { }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProfilePage : ProfilePageBase
+    public partial class StatisticsPage : StatisticsPageBase
     {
-        public ProfilePage()
+        public StatisticsPage()
         {
             InitializeComponent();
         }

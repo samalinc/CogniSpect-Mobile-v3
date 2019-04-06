@@ -16,7 +16,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Services" />
+      <Compile Update="ViewModels\AuthenticationViewModel.Props.cs">
+        <DependentUpon>AuthenticationViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="ViewModels\Tests\TestViewModel.Props.cs">
+        <DependentUpon>TestViewModel.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

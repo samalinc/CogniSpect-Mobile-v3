@@ -1,6 +1,7 @@
 using Autofac;
-using CSMobile.Application.ViewModels.Authentication;
-using CSMobile.Application.ViewModels.Profile;
+using CSMobile.Application.ViewModels.ViewModels;
+using CSMobile.Application.ViewModels.ViewModels.Tests;
+using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Infrastructure.Common.Extensions;
 
 namespace CSMobile.Application.ViewModels
@@ -9,9 +10,14 @@ namespace CSMobile.Application.ViewModels
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                .AsSelf()
-                .InstancePerLifetimeScope();
+            builder
+                .RegisterScopedAsSelf<AuthenticationViewModel>()
+                .RegisterScopedAsSelf<ProfileViewModel>()
+                .RegisterScopedAsSelf<TestItemsViewModel>()
+                .RegisterScopedAsSelf<TestViewModel>()
+                .RegisterPerDependencyAsSelf<TestListItemViewModel>()
+                .RegisterPerDependencyAsSelf<QuestionViewModel>()
+                .RegisterPerDependencyAsSelf<AnswerViewModel>();
         }
     }
 }
