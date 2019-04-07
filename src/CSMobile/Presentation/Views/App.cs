@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Autofac;
 using CommonServiceLocator;
 using CSMobile.Application.ViewModels;
@@ -18,24 +19,25 @@ namespace CSMobile.Presentation.Views
 {
     public class App : Xamarin.Forms.Application
     {
-        public static ApplicationContext Context { get; private set; }
         private readonly INavigationService _navigationService;
+        private readonly IServiceLocator _serviceLocator;
+        
+        public static App Instance { get; private set; }
+        public ApplicationContext Context { get; private set; }
 
         public App()
         {
             Context = BuildApplication();
-            var locator = new AutofacServiceLocator(Context);
-            ServiceLocator.SetLocatorProvider(() => locator);
+            _serviceLocator = new AutofacServiceLocator(Context);
+            ServiceLocator.SetLocatorProvider(() => _serviceLocator);
             _navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
             ConfigureNavigation();
+            Instance = this;
         }
 
         protected override void OnStart()
         {
-            if (!Context.IsUserAuthenticated)
-            {
-                _navigationService.NavigateAsync<AuthenticationViewModel>();
-            }
+            // Handle when your app starts
         }
 
         protected override void OnSleep()
@@ -76,9 +78,9 @@ namespace CSMobile.Presentation.Views
             _navigationService.Configure<ProfileViewModel, ProfilePage>();
             _navigationService.Configure<TestItemsViewModel, TestItemsPage>();
             _navigationService.Configure<TestViewModel, TestPage>();
-            _navigationService.Configure<StatisticsPageViewModel, StatisticsPage>();
+            _navigationService.Configure<StatisticsViewModel, StatisticsPage>();
 
-            MainPage = ((NavigationService) _navigationService).SetRootPage<ProfileViewModel>();
+            MainPage = ((NavigationService) _navigationService).SetRootPage<AuthenticationViewModel>();
         }
     }
 }

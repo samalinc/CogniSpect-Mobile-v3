@@ -5,14 +5,21 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
 {
     public partial class TestViewModel
     {
-        private QuestionViewModel _currentQuestion;
-        private bool _isLastQuestion;
-        private bool _isFirstQuestion;
         private string _name;
+        private QuestionViewModel _currentQuestion;
+        private bool _isPreviousButtonVisible;
+        private bool _isNextButtonVisible;
+        private bool _isCompleteButtonVisible;
         
         public IList<QuestionViewModel> Questions { get; set; }
         
         public Guid Id { get; set; }
+                
+        public string Name
+        {
+            get => _name;
+            set => Set(nameof(Name), ref _name, value);
+        }
         
         public QuestionViewModel CurrentQuestion
         {
@@ -20,22 +27,22 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
             set => Set(nameof(CurrentQuestion), ref _currentQuestion, value);
         }
         
-        public bool IsLastQuestion
+        public bool IsPreviousButtonVisible
         {
-            get => _isLastQuestion;
-            set => Set(nameof(IsLastQuestion), ref _isLastQuestion, value);
+            get => _isPreviousButtonVisible;
+            set => Set(nameof(IsPreviousButtonVisible), ref _isPreviousButtonVisible, value);
         }
         
-        public bool IsFirstQuestion
+        public bool IsNextButtonVisible
         {
-            get => _isLastQuestion;
-            set => Set(nameof(IsFirstQuestion), ref _isFirstQuestion, value);
+            get => _isNextButtonVisible;
+            set => Set(nameof(IsNextButtonVisible), ref _isNextButtonVisible, value);
         }
         
-        public string Name
+        public bool IsCompleteButtonVisible
         {
-            get => _name;
-            set => Set(nameof(Name), ref _name, value);
+            get => _isCompleteButtonVisible;
+            set => Set(nameof(IsCompleteButtonVisible), ref _isCompleteButtonVisible, value);
         }
     }
 }

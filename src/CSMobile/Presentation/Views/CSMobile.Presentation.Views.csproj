@@ -24,6 +24,9 @@
     <None Update="TestsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <None Update="StatisticsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -33,15 +36,9 @@
     <Compile Update="Pages\TestPage.xaml.cs">
       <DependentUpon>TestPage.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Pages\TestItemsPage.xaml.cs">
       <DependentUpon>TestItemsPage.xaml</DependentUpon>
     </Compile>

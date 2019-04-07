@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using CommonServiceLocator;
 using CSMobile.Application.ViewModels.Navigation;
 using CSMobile.Application.ViewModels.ViewModels;
-using GalaSoft.MvvmLight;
 using Xamarin.Forms;
 
 namespace CSMobile.Presentation.Views
@@ -38,7 +37,7 @@ namespace CSMobile.Presentation.Views
 
         public Page SetRootPage<TViewModel>() where TViewModel : BasePageViewModel
         {
-            var rootPage = GetPage(typeof(TViewModel));
+            Page rootPage = GetPage(typeof(TViewModel));
             _navigationPageStack.Clear();
             var mainPage = new NavigationPage(rootPage);
             _navigationPageStack.Push(mainPage);
@@ -69,7 +68,7 @@ namespace CSMobile.Presentation.Views
         {
             if (CurrentNavigationPage.NavigationProxy.NavigationStack.Count > 0)
             {
-                await CurrentNavigationPage.PopToRootAsync();                
+                await CurrentNavigationPage.Navigation.PopToRootAsync();                
             }
         }
 
@@ -91,12 +90,12 @@ namespace CSMobile.Presentation.Views
             await CurrentNavigationPage.PopAsync();
         }
 
-        public async Task NavigateModalAsync<TViewModel>(bool animated = true) where TViewModel : BasePageViewModel
+        public async Task NavigateModalAsync<TViewModel>(bool animated = false) where TViewModel : BasePageViewModel
         {
             await NavigateModalAsync<TViewModel>(null, animated);
         }
 
-        public async Task NavigateModalAsync<TViewModel>(object parameter, bool animated = true) where TViewModel : BasePageViewModel
+        public async Task NavigateModalAsync<TViewModel>(object parameter, bool animated = false) where TViewModel : BasePageViewModel
         {
             var page = GetPage(typeof(TViewModel), parameter);
             NavigationPage.SetHasNavigationBar(page, false);
@@ -110,7 +109,7 @@ namespace CSMobile.Presentation.Views
             await NavigateAsync<TViewModel>(null, animated);
         }
 
-        public async Task NavigateAsync<TViewModel>(object parameter, bool animated = true) where TViewModel : BasePageViewModel
+        public async Task NavigateAsync<TViewModel>(object parameter, bool animated = false) where TViewModel : BasePageViewModel
         {
             var page = GetPage(typeof(TViewModel), parameter);
             await CurrentNavigationPage.Navigation.PushAsync(page, animated);

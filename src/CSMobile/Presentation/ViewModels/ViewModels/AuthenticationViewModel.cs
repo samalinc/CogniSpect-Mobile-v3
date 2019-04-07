@@ -8,16 +8,13 @@ namespace CSMobile.Application.ViewModels.ViewModels
 {
     public partial class AuthenticationViewModel : BasePageViewModel, ICanThink
     {
-        private readonly INavigationService _navigationService;
         private readonly IAuthenticationService _authenticationService;
         
         public ICommand AuthenticateCommand { get; }
 
         public AuthenticationViewModel(
-            INavigationService navigationService,
             IAuthenticationService authenticationService)
         {
-            _navigationService = navigationService;
             _authenticationService = authenticationService;
             
             AuthenticateCommand = Command(Authenticate);
@@ -25,14 +22,9 @@ namespace CSMobile.Application.ViewModels.ViewModels
 
         private async Task Authenticate()
         {
+            // TODO: add validation of response
             AuthenticationResult result =
                 await _authenticationService.Authenticate(new AuthenticationData(StudNumber, Password));
-            if (result.IsAuthenticatedCorrectly)
-            {
-                await _navigationService.NavigateAsync<ProfileViewModel>();
-//                await _navigationService.GoBack();
-//                await _navigationService.GoToRoot();
-            }
         }
     }
 }

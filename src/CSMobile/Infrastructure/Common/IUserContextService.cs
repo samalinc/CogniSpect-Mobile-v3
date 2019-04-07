@@ -6,7 +6,7 @@ namespace CSMobile.Infrastructure.Common
     public interface IUserContextService
     {
         Task BeginUserSession(IHaveUserContextData data);
-        
         Task EndUserSession();
+        Task<bool> IsAuthenticated();
     }
 }

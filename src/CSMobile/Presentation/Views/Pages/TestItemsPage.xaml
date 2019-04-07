@@ -4,7 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
              x:Class="CSMobile.Presentation.Views.Pages.TestItemsPage"
-             x:Name="TestItemsPageBase">
+             x:Name="TestItemsPageBase"
+             NavigationPage.HasNavigationBar="False">
     <Grid Grid.Row="1">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="3"></ColumnDefinition>

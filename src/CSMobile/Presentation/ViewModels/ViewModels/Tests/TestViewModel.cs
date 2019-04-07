@@ -40,17 +40,15 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
         private void ReceiveTest(NotificationMessage<Test> message)
         {
             _mapper.Map(message.Content, this);
+            _questionNumber = 0;
+            CurrentQuestion = Questions[_questionNumber];
+            UpdateButtonsVisibility();
         }
 
         private Task NextQuestion()
         {
             CurrentQuestion = Questions[++_questionNumber];
-            if (_questionNumber == Questions.Count - 1)
-            {
-                IsLastQuestion = true;
-            }
-
-            IsFirstQuestion = false;
+            UpdateButtonsVisibility();
             
             return Task.CompletedTask;
         }
@@ -58,19 +56,23 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
         private Task PreviousQuestion()
         {
             CurrentQuestion = Questions[--_questionNumber];
-            if (_questionNumber == 0)
-            {
-                IsFirstQuestion = true;
-            }
-            IsLastQuestion = false;
+            UpdateButtonsVisibility();
             
             return Task.CompletedTask;
+        }
+
+        private void UpdateButtonsVisibility()
+        {
+            // TODO: Logic will be added on demand
+            IsPreviousButtonVisible = false;
+            IsNextButtonVisible = _questionNumber != Questions.Count - 1;
+            IsCompleteButtonVisible = !IsNextButtonVisible;
         }
 
         private async Task CompleteTest()
         {
             await _testsService.EndTest(_mapper.Map<Test>(this));
-            await _navigationService.NavigateAsync<TestItemsViewModel>();
+            await _navigationService.GoToRoot();
         }
     }
 }

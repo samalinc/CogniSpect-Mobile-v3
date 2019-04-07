@@ -1,4 +1,7 @@
 using Autofac;
+using CSMobile.Infrastructure.Common.Extensions;
+using CSMobile.Infrastructure.Services.WebApiIntegration;
+using CSMobile.Infrastructure.Services.WebClient;
 
 namespace CSMobile.Infrastructure.Services
 {
@@ -7,9 +10,8 @@ namespace CSMobile.Infrastructure.Services
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterAssemblyTypes(ThisAssembly)
-                .AsImplementedInterfaces()
-                .SingleInstance();
+                .RegisterScopedAsImplementedInterfaces<WebApiClient>()
+                .RegisterScopedAsImplementedInterfaces<CsApiClient>();
         }
     }
 }

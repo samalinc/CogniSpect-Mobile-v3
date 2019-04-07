@@ -15,7 +15,7 @@ namespace CSMobile.Application.ViewModels.Profiles
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
                 .ForMember(d => d.Value, o => o.MapFrom(s => s.Value))
-                .ForAllOtherMembers(d => d.Ignore());
+                .IgnoreAllOther();
             
             CreateMap<Question, QuestionViewModel>()
                 .ConstructByDiContainer()
@@ -23,14 +23,32 @@ namespace CSMobile.Application.ViewModels.Profiles
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
                 .ForMember(d => d.Image, o => o.MapFrom(s => s.Image))
                 .ForMember(d => d.Answers, o => o.MapFrom(s => s.Variants))
-                .ForAllOtherMembers(d => d.Ignore());
+                .IgnoreAllOther();
             
             CreateMap<Test, TestViewModel>()
                 .ConstructByDiContainer()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Questions, o => o.MapFrom(s => s.Questions))
                 .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
-                .ForAllOtherMembers(d => d.Ignore());
+                .IgnoreAllOther();
+            
+            CreateMap<AnswerViewModel, QuestionAnswerVariant>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+                .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
+                .ForMember(d => d.Value, o => o.MapFrom(s => s.Value))
+                .IgnoreAllOther();
+
+            CreateMap<QuestionViewModel, Question>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+                .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
+                .ForMember(d => d.Variants, o => o.MapFrom(s => s.Answers))
+                .IgnoreAllOther();
+            
+            CreateMap<TestViewModel, Test>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
+                .ForMember(d => d.Questions, o => o.MapFrom(s => s.Questions))
+                .IgnoreAllOther();
         }
     }
 }

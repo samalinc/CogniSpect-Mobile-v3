@@ -18,11 +18,21 @@ namespace CSMobile.Presentation.Views.Pages
         
         protected override void OnAppearing()
         {
+            if (DesignMode.IsDesignModeEnabled)
+            {
+                return;
+            }
+            
             ViewModel.OnAppearing().GetAwaiter().GetResult();
         }
 
         protected override void OnDisappearing()
         {
+            if (DesignMode.IsDesignModeEnabled)
+            {
+                return;
+            }
+            
             ViewModel.OnDisappearing().GetAwaiter().GetResult();
         }
     }

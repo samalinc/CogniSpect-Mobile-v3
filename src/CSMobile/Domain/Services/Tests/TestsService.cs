@@ -84,7 +84,7 @@ namespace CSMobile.Domain.Services.Tests
             
             return await Task.FromResult(new Test
             {
-                Name = "test",
+                Name = "Test test fgertert",
                 Questions = dummyData
             });
         }

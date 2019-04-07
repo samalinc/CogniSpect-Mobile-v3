@@ -16,5 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <Button Grid.Row="0" Grid.Column="0" Text="Tests" Command="{Binding OpenTestsCommand}"/>
+        <Button Grid.Row="0" Grid.Column="1" Text="Statistic" Command="{Binding OpenStatisticCommand}"/>
+
     </Grid>
 </local:ProfilePageBase>

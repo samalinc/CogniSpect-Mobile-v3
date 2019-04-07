@@ -15,6 +15,7 @@ namespace CSMobile.Application.ViewModels
                 .RegisterScopedAsSelf<ProfileViewModel>()
                 .RegisterScopedAsSelf<TestItemsViewModel>()
                 .RegisterScopedAsSelf<TestViewModel>()
+                .RegisterScopedAsSelf<StatisticsViewModel>()
                 .RegisterPerDependencyAsSelf<TestListItemViewModel>()
                 .RegisterPerDependencyAsSelf<QuestionViewModel>()
                 .RegisterPerDependencyAsSelf<AnswerViewModel>();

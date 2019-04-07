@@ -3,7 +3,7 @@ using Xamarin.Forms.Xaml;
 
 namespace CSMobile.Presentation.Views.Pages
 {
-    public class StatisticsPageBase : ViewPage<StatisticsPageViewModel> { }
+    public class StatisticsPageBase : ViewPage<StatisticsViewModel> { }
 
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StatisticsPage : StatisticsPageBase

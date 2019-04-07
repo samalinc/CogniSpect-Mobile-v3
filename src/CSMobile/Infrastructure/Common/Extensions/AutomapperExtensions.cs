@@ -14,5 +14,11 @@ namespace CSMobile.Infrastructure.Common.Extensions
 
             return mappingExpression;
         }
+        
+        public static void IgnoreAllOther<TSource, TDestination>(
+            this IMappingExpression<TSource, TDestination> mappingExpression)
+        {
+            mappingExpression.ForAllOtherMembers(d => d.Ignore());
+        }
     }
 }
