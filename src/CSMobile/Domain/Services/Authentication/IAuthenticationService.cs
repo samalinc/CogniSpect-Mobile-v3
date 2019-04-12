@@ -1,9 +1,10 @@
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Authentication
 {
     public interface IAuthenticationService
     {
-        Task<AuthenticationResult> Authenticate(AuthenticationData authenticationData);
+        [ItemNotNull] Task<AuthenticationResult> Authenticate([NotNull] AuthenticationData authenticationData);
     }
 }

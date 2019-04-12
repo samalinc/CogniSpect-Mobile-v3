@@ -46,6 +46,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ViewModels\CSMobile.Presentation.ViewModels.csproj" />
+    <ProjectReference Include="..\WebSockets\CSMobile.Presentation.WebSockets.csproj" />
   </ItemGroup>
 
 </Project>

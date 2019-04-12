@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Services.WebApiIntegration.Authentication;
+using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Services.WebApiIntegration
 {
     public interface ICsApiClient
     {
-        Task<AuthenticationResponseData> Authenticate(UserAuthenticationData data);
+        [ItemNotNull] Task<AuthenticationResponseData> Authenticate([NotNull] UserAuthenticationData data);
     }
 }

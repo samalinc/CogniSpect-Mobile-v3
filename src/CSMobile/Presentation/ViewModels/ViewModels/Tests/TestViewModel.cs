@@ -14,6 +14,7 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
         private readonly INavigationService _navigationService;
         private readonly ITestsService _testsService;
         private readonly IMapper _mapper;
+        private readonly IQuestionsService _questionsService;
 
         private int _questionNumber;
         
@@ -24,11 +25,13 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
         public TestViewModel(
             INavigationService navigationService,
             ITestsService testsService,
-            IMapper mapper)
+            IMapper mapper,
+            IQuestionsService questionsService)
         {
             _navigationService = navigationService;
             _testsService = testsService;
             _mapper = mapper;
+            _questionsService = questionsService;
 
             NextQuestionCommand = Command(NextQuestion);
             PreviousQuestionCommand = Command(PreviousQuestion);
@@ -45,12 +48,11 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
             UpdateButtonsVisibility();
         }
 
-        private Task NextQuestion()
+        private async Task NextQuestion()
         {
+            await _questionsService.SendQuestionAnswer(_mapper.Map<Question>(CurrentQuestion));
             CurrentQuestion = Questions[++_questionNumber];
             UpdateButtonsVisibility();
-            
-            return Task.CompletedTask;
         }
         
         private Task PreviousQuestion()

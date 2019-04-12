@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Autofac;
+using Autofac.Core;
 using CommonServiceLocator;
 using CSMobile.Application.ViewModels;
 using CSMobile.Application.ViewModels.Navigation;
@@ -25,9 +26,16 @@ namespace CSMobile.Presentation.Views
         public static App Instance { get; private set; }
         public ApplicationContext Context { get; private set; }
 
-        public App()
+        /// <summary>
+        /// Creates main platform independent entry class
+        /// </summary>
+        /// <param name="platformSpecificModule">
+        /// Platform specific services module.
+        /// Used to provide implementations for a specific platform 
+        /// </param>
+        public App([NotNull] IModule platformSpecificModule)
         {
-            Context = BuildApplication();
+            Context = BuildApplication(platformSpecificModule);
             _serviceLocator = new AutofacServiceLocator(Context);
             ServiceLocator.SetLocatorProvider(() => _serviceLocator);
             _navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
@@ -50,13 +58,14 @@ namespace CSMobile.Presentation.Views
             // Handle when your app resumes
         }
 
-        private ApplicationContext BuildApplication()
+        private ApplicationContext BuildApplication(IModule platformSpecificModule)
         {
             return new ApplicationContext(
                 ConfigureContainer(builder => builder
                     .RegisterAutomapper(cfg => cfg
                         .RegisterProfile<TestsProfile>()
                     )
+                    .RegisterModule(platformSpecificModule)
                     .RegisterModule<PresentationViewsModule>()
                     .RegisterModule<PresentationViewModelsModule>()
                     .RegisterModule<DomainServicesModule>()

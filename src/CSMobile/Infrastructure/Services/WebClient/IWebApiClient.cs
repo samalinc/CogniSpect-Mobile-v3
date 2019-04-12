@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Services.WebClient
 {
     public interface IWebApiClient
     {
-        Task<WebApiResponse> Request(WebApiRequestOptions requestOptions);
-        Task<WebApiResponse<TData>> Request<TData>(WebApiRequestOptions requestOptions);
+        [ItemNotNull] Task<WebApiResponse> Request([NotNull] WebApiRequestOptions requestOptions);
+        [ItemNotNull] Task<WebApiResponse<TData>> Request<TData>([NotNull] WebApiRequestOptions requestOptions);
     }
 }

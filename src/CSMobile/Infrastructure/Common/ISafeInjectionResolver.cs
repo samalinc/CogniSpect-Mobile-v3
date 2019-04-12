@@ -1,7 +1,9 @@
+using JetBrains.Annotations;
+
 namespace CSMobile.Infrastructure.Common
 {
     public interface ISafeInjectionResolver
     {
-        TService ResolveService<TService>();
+        [NotNull] TService ResolveService<TService>();
     }
 }

@@ -12,8 +12,8 @@ namespace CSMobile.Application.ViewModels.Navigation
         void Configure<TViewModel, TViewPage>() where TViewModel : BasePageViewModel;
         Task GoBack();
         Task NavigateModalAsync<TViewModel>(bool animated = true) where TViewModel : BasePageViewModel;
-        Task NavigateModalAsync<TViewModel>(object parameter, bool animated = true) where TViewModel : BasePageViewModel;
+        Task NavigateModalAsync<TViewModel>([CanBeNull] object parameter, bool animated = true) where TViewModel : BasePageViewModel;
         Task NavigateAsync<TViewModel>(bool animated = true) where TViewModel : BasePageViewModel;
-        Task NavigateAsync<TViewModel>(object parameter, bool animated = true) where TViewModel : BasePageViewModel;
+        Task NavigateAsync<TViewModel>([CanBeNull] object parameter, bool animated = true) where TViewModel : BasePageViewModel;
     }
 }

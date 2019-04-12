@@ -11,7 +11,8 @@ namespace CSMobile.Domain.Services
         {
             builder
                 .RegisterScopedAsImplementedInterfaces<TestsService>()
-                .RegisterScopedAsImplementedInterfaces<AuthenticationService>();
+                .RegisterScopedAsImplementedInterfaces<AuthenticationService>()
+                .RegisterScopedAsImplementedInterfaces<QuestionsService>();
         }
     }
 }
