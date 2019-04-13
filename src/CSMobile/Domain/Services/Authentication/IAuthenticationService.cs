@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
+using CSMobile.Infrastructure.Services.WebApiIntegration.Authentication;
+using CSMobile.Infrastructure.Services.WebApiIntegration.Dtos;
 using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Authentication
 {
     public interface IAuthenticationService
     {
-        [ItemNotNull] Task<AuthenticationResult> Authenticate([NotNull] AuthenticationData authenticationData);
+        Task<bool> Authenticate([NotNull] AuthenticationData authenticationData);
     }
 }

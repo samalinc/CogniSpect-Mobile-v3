@@ -36,5 +36,10 @@ namespace CSMobile.Presentation.Views
         {
             return Task.FromResult(App.Instance.Context.IsUserAuthenticated);
         }
+
+        public object GetUserSessionData(string key)
+        {
+            return App.Instance.Context.UserSession.UserContextData[key];
+        }
     }
 }

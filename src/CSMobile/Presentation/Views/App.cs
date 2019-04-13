@@ -10,6 +10,7 @@ using CSMobile.Application.ViewModels.ViewModels;
 using CSMobile.Application.ViewModels.ViewModels.Tests;
 using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Domain.Services;
+using CSMobile.Domain.Services.Authentication;
 using CSMobile.Infrastructure.Common.Contexts;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Security;
@@ -22,7 +23,7 @@ namespace CSMobile.Presentation.Views
     {
         private readonly INavigationService _navigationService;
         private readonly IServiceLocator _serviceLocator;
-        
+
         public static App Instance { get; private set; }
         public ApplicationContext Context { get; private set; }
 
@@ -63,7 +64,8 @@ namespace CSMobile.Presentation.Views
             return new ApplicationContext(
                 ConfigureContainer(builder => builder
                     .RegisterAutomapper(cfg => cfg
-                        .RegisterProfile<TestsProfile>()
+                        .RegisterProfile<TestsMappingProfile>()
+                        .RegisterProfile<AuthenticationMappingProfile>()
                     )
                     .RegisterModule(platformSpecificModule)
                     .RegisterModule<PresentationViewsModule>()

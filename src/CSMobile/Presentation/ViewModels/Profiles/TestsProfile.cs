@@ -6,9 +6,9 @@ using CSMobile.Infrastructure.Common.Extensions;
 
 namespace CSMobile.Application.ViewModels.Profiles
 {
-    public class TestsProfile : Profile
+    public class TestsMappingProfile : Profile
     {
-        public TestsProfile()
+        public TestsMappingProfile()
         {
             CreateMap<QuestionAnswerVariant, AnswerViewModel>()
                 .ConstructByDiContainer()

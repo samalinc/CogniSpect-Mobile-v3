@@ -3,14 +3,7 @@ namespace CSMobile.Application.ViewModels.ViewModels
     public partial class AuthenticationViewModel
     {
         private string _studNumber;
-        private bool _isThinking;
         private string _password;
-        
-        public bool IsThinking
-        {
-            get => _isThinking;
-            set => Set(nameof(IsThinking), ref _isThinking, value);
-        }
         
         public string StudNumber
         {

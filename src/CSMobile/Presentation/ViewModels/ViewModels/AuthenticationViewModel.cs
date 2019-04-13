@@ -1,12 +1,10 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CSMobile.Application.ViewModels.Navigation;
 using CSMobile.Domain.Services.Authentication;
-using Xamarin.Forms;
 
 namespace CSMobile.Application.ViewModels.ViewModels
 {
-    public partial class AuthenticationViewModel : BasePageViewModel, ICanThink
+    public partial class AuthenticationViewModel : BasePageViewModel
     {
         private readonly IAuthenticationService _authenticationService;
         
@@ -22,9 +20,7 @@ namespace CSMobile.Application.ViewModels.ViewModels
 
         private async Task Authenticate()
         {
-            // TODO: add validation of response
-            AuthenticationResult result =
-                await _authenticationService.Authenticate(new AuthenticationData(StudNumber, Password));
+            bool result = await _authenticationService.Authenticate(new AuthenticationData(StudNumber, Password));
         }
     }
 }

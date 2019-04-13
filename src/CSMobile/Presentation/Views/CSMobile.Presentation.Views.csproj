@@ -15,36 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="AuthenticationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="ProfilePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="TestsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="StatisticsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Pages\AuthenticationPage.xaml.cs">
-      <DependentUpon>AuthenticationPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\TestPage.xaml.cs">
-      <DependentUpon>TestPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\ProfilePage.xaml.cs">
-      <DependentUpon>ProfilePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\TestItemsPage.xaml.cs">
-      <DependentUpon>TestItemsPage.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\ViewModels\CSMobile.Presentation.ViewModels.csproj" />
     <ProjectReference Include="..\WebSockets\CSMobile.Presentation.WebSockets.csproj" />
   </ItemGroup>
