@@ -5,28 +5,28 @@
              xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages"
              x:Class="CSMobile.Presentation.Views.Pages.AuthenticationPage"
              NavigationPage.HasNavigationBar="False">
-
-    <StackLayout>
-        <Grid Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
-            <StackLayout HeightRequest="80" VerticalOptions="Center" Grid.Row="1">
-                <ActivityIndicator IsRunning="{Binding IsThinking}"
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="1">
+            <Label Text="Login"/>
+            <Entry Text="{Binding StudNumber, Mode=TwoWay}"/>
+        </StackLayout>
+        <StackLayout Grid.Row="2">
+            <Label Text="Password"/>
+            <Entry IsPassword="True" Text="{Binding Password, Mode=TwoWay}"/>
+        </StackLayout>
+        <Button HorizontalOptions="Start" Grid.Row="3" Text="Вход" Command="{Binding AuthenticateCommand}"/>
+        <ActivityIndicator IsRunning="{Binding IsThinking}"
                                    IsVisible="{Binding IsThinking}"
                                    HeightRequest="80"
                                    VerticalOptions="CenterAndExpand"
                                    HorizontalOptions="CenterAndExpand">
-                </ActivityIndicator>
-            </StackLayout>
-            <Entry Grid.Row="1" Text="{Binding StudNumber, Mode=TwoWay}"/>
-            <Entry IsPassword="True" Grid.Row="2" Text="{Binding Password, Mode=TwoWay}"/>
-            <Button HorizontalOptions="Start" Grid.Row="3" Text="Вход" Command="{Binding AuthenticateCommand}"/>
-        </Grid>
-    </StackLayout>
-
+        </ActivityIndicator>
+    </Grid>
 </local:AuthenticationBasePage>

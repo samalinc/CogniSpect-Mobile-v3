@@ -6,14 +6,14 @@ namespace CSMobile.Presentation.Views.Pages
 {
     public class ViewPage<TViewModel> : ContentPage where TViewModel : BasePageViewModel
     {
-        protected readonly TViewModel ViewModel;
+        private readonly TViewModel _viewModel;
 
         public ViewPage()
         {
-            ViewModel = DesignMode.IsDesignModeEnabled 
+            _viewModel = DesignMode.IsDesignModeEnabled 
                 ? default(TViewModel)
                 : ServiceLocator.Current.GetInstance<TViewModel>();
-            BindingContext = ViewModel;
+            BindingContext = _viewModel;
         }
         
         protected override void OnAppearing()
@@ -23,7 +23,7 @@ namespace CSMobile.Presentation.Views.Pages
                 return;
             }
             
-            ViewModel.OnAppearing().GetAwaiter().GetResult();
+            _viewModel.OnAppearing().GetAwaiter().GetResult();
         }
 
         protected override void OnDisappearing()
@@ -33,7 +33,7 @@ namespace CSMobile.Presentation.Views.Pages
                 return;
             }
             
-            ViewModel.OnDisappearing().GetAwaiter().GetResult();
+            _viewModel.OnDisappearing().GetAwaiter().GetResult();
         }
     }
 }

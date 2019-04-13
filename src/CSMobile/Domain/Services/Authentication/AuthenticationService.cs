@@ -5,7 +5,6 @@ using CSMobile.Infrastructure.Services.WebApiIntegration;
 using CSMobile.Infrastructure.Services.WebApiIntegration.Authentication;
 using CSMobile.Infrastructure.Services.WebApiIntegration.Dtos;
 using CSMobile.Infrastructure.Services.WebClient;
-using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Authentication
 {
