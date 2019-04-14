@@ -2,23 +2,23 @@ using System;
 using System.Collections.Generic;
 using Autofac;
 
-namespace CSMobile.Infrastructure.Common.Contexts.Session
+namespace CSMobile.Infrastructure.Common.Contexts.UserSession
 {
-    public class UserSession : IDisposable
+    public class UserContext : IDisposable
     {
         public ILifetimeScope Scope { get; private set; }
 
         public IDictionary<string, object> UserContextData { get; set; }
 
-        private UserSession(ILifetimeScope scope, IDictionary<string, object> data)
+        private UserContext(ILifetimeScope scope, IDictionary<string, object> data)
         {
             Scope = scope;
             UserContextData = data;
         }
 
-        public static UserSession InitNewSession(ILifetimeScope scope, IDictionary<string, object> data)
+        public static UserContext InitNewSession(ILifetimeScope scope, IDictionary<string, object> data)
         {
-            return new UserSession(scope, data);
+            return new UserContext(scope, data);
         }
 
         public void Dispose()

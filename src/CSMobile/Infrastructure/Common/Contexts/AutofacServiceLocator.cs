@@ -10,7 +10,7 @@ namespace CSMobile.Infrastructure.Common.Contexts
     {
         private readonly ApplicationContext _context;
 
-        private ILifetimeScope Container => _context.UserSession?.Scope ?? _context.Container;
+        private ILifetimeScope Container => _context.UserContext?.Scope ?? _context.Container;
 
         public AutofacServiceLocator(ApplicationContext context)
         {

@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using CSMobile.Application.ViewModels.Navigation;
 using CSMobile.Application.ViewModels.ViewModels;
 using CSMobile.Infrastructure.Common;
-using CSMobile.Infrastructure.Common.Contexts.Session;
+using CSMobile.Infrastructure.Common.Contexts.UserSession;
 
 namespace CSMobile.Presentation.Views
 {
@@ -39,7 +39,7 @@ namespace CSMobile.Presentation.Views
 
         public object GetUserSessionData(string key)
         {
-            return App.Instance.Context.UserSession.UserContextData[key];
+            return App.Instance.Context.UserContext.UserContextData[key];
         }
     }
 }

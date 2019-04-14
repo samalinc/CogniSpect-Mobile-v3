@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using CSMobile.Infrastructure.Common.Contexts.Session;
+using CSMobile.Infrastructure.Common.Contexts.UserSession;
 
 namespace CSMobile.Domain.Services.Authentication
 {

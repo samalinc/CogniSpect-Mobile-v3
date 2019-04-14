@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Autofac;
-using CSMobile.Infrastructure.Common.Contexts.Session;
+using CommonServiceLocator;
+using CSMobile.Infrastructure.Common.Contexts.UserSession;
+using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
 
 namespace CSMobile.Infrastructure.Common.Contexts
 {
@@ -8,9 +10,11 @@ namespace CSMobile.Infrastructure.Common.Contexts
     {
         public IContainer Container { get; }
         
-        public UserSession UserSession { get; private set; }
+        public UserContext UserContext { get; private set; }
+        
+        public IWebSocketContext WebSocketContext { get; private set; }
 
-        public bool IsUserAuthenticated => UserSession != null;
+        public bool IsUserAuthenticated => UserContext != null;
 
         public ApplicationContext(IContainer container)
         {
@@ -19,13 +23,25 @@ namespace CSMobile.Infrastructure.Common.Contexts
 
         public void BeginNewUserSession(IDictionary<string, object> data)
         {
-            UserSession = UserSession.InitNewSession(Container.BeginLifetimeScope(), data);
+            UserContext = UserContext.InitNewSession(Container.BeginLifetimeScope(), data);
         }
 
         public void EndUserSession()
         {
-            UserSession?.Dispose();
-            UserSession = null;
+            UserContext?.Dispose();
+            UserContext = null;
+        }
+        
+        public void BeginWebSocketSession()
+        {
+            WebSocketContext = ServiceLocator.Current.GetInstance<IWebSocketContext>();
+            WebSocketContext.BeginSession();
+        }
+
+        public void EndWebSocketSession()
+        {
+            WebSocketContext?.Dispose();
+            WebSocketContext = null;
         }
     }
 }

@@ -15,17 +15,21 @@ using CSMobile.Infrastructure.Common.Contexts;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Security;
 using CSMobile.Infrastructure.Services;
+using CSMobile.Infrastructure.WebSockets;
+using CSMobile.Infrastructure.WebSockets.Extensions;
 using CSMobile.Presentation.Views.Pages;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace CSMobile.Presentation.Views
 {
     public class App : Xamarin.Forms.Application
     {
-        private readonly INavigationService _navigationService;
-        private readonly IServiceLocator _serviceLocator;
+        private INavigationService _navigationService;
+        private IServiceLocator _serviceLocator;
 
         public static App Instance { get; private set; }
-        public ApplicationContext Context { get; private set; }
+        public ApplicationContext Context { get; }
 
         /// <summary>
         /// Creates main platform independent entry class
@@ -37,10 +41,6 @@ namespace CSMobile.Presentation.Views
         public App([NotNull] IModule platformSpecificModule)
         {
             Context = BuildApplication(platformSpecificModule);
-            _serviceLocator = new AutofacServiceLocator(Context);
-            ServiceLocator.SetLocatorProvider(() => _serviceLocator);
-            _navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
-            ConfigureNavigation();
             Instance = this;
         }
 
@@ -61,18 +61,31 @@ namespace CSMobile.Presentation.Views
 
         private ApplicationContext BuildApplication(IModule platformSpecificModule)
         {
-            return new ApplicationContext(
+            var context = new ApplicationContext(
                 ConfigureContainer(builder => builder
                     .RegisterAutomapper(cfg => cfg
                         .RegisterProfile<TestsMappingProfile>()
                         .RegisterProfile<AuthenticationMappingProfile>()
                     )
+                    .RegisterResponseHandlerResolver(cfg => cfg
+                        .RegisterRecorder<WebSocketsHandlersRecorder>()
+                    )
                     .RegisterModule(platformSpecificModule)
                     .RegisterModule<PresentationViewsModule>()
+                    .RegisterModule<WebSocketsModule>()
                     .RegisterModule<PresentationViewModelsModule>()
                     .RegisterModule<DomainServicesModule>()
                     .RegisterModule<InfrastructureServicesModule>()
-                    .RegisterModule<InfrastructureSecurityModule>()));
+                    .RegisterModule<InfrastructureSecurityModule>()
+                ));
+
+            _serviceLocator = new AutofacServiceLocator(context);
+            ServiceLocator.SetLocatorProvider(() => _serviceLocator);
+            
+            ConfigureNavigation();
+            ConfigureJsonSerializing();
+            
+            return context;
         }
 
         private IContainer ConfigureContainer(Action<ContainerBuilder> action)
@@ -85,6 +98,8 @@ namespace CSMobile.Presentation.Views
 
         private void ConfigureNavigation()
         {
+            _navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            
             _navigationService.Configure<AuthenticationViewModel, AuthenticationPage>();
             _navigationService.Configure<ProfileViewModel, ProfilePage>();
             _navigationService.Configure<TestItemsViewModel, TestItemsPage>();
@@ -92,6 +107,14 @@ namespace CSMobile.Presentation.Views
             _navigationService.Configure<StatisticsViewModel, StatisticsPage>();
 
             MainPage = ((NavigationService) _navigationService).SetRootPage<AuthenticationViewModel>();
+        }
+
+        private void ConfigureJsonSerializing()
+        {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
         }
     }
 }

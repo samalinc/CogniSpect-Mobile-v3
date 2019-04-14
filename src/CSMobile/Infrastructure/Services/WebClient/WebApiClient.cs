@@ -71,12 +71,8 @@ namespace CSMobile.Infrastructure.Services.WebClient
 
         private HttpRequestMessage FormRequest(WebApiRequestOptions requestOptions)
         {
-            var serializerSettings = new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
             StringContent content = new StringContent(
-                JsonConvert.SerializeObject(requestOptions.Body, serializerSettings),
+                JsonConvert.SerializeObject(requestOptions.Body),
                 Encoding.UTF8,
                 "application/json");
             

@@ -16,6 +16,7 @@ namespace CSMobile.Presentation.Views
                 .RegisterScopedAsSelf<StatisticsPage>()
                 .RegisterSingleAsImplementedInterfaces<AppSafeInjectionResolver>()
                 .RegisterSingleAsImplementedInterfaces<UserContextService>()
+                .RegisterSingleAsImplementedInterfaces<WebSocketSessionService>()
                 .RegisterSingleAsImplementedInterfaces<NavigationService>();
         }
     }

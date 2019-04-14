@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using CSMobile.Infrastructure.Common.Contexts.Session;
+using CSMobile.Infrastructure.Common.Contexts.UserSession;
 using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Common

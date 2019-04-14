@@ -31,6 +31,15 @@ namespace CSMobile.Infrastructure.Common.Extensions
             return containerBuilder;
         }
         
+        public static ContainerBuilder RegisterSingleAs<TService, TAs>(this ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterType<TService>()
+                .As<TAs>()
+                .SingleInstance();
+
+            return containerBuilder;
+        }
+        
         public static ContainerBuilder RegisterSingleAsImplementedInterfaces<TService>(this ContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterType<TService>()

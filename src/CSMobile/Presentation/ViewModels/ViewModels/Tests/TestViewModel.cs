@@ -5,6 +5,7 @@ using CSMobile.Application.ViewModels.Navigation;
 using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Domain.Models.Tests;
 using CSMobile.Domain.Services.Tests;
+using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace CSMobile.Application.ViewModels.ViewModels.Tests
@@ -15,6 +16,7 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
         private readonly ITestsService _testsService;
         private readonly IMapper _mapper;
         private readonly IQuestionsService _questionsService;
+        private readonly IWebSocketSessionService _webSocketSessionService;
 
         private int _questionNumber;
         
@@ -26,12 +28,13 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
             INavigationService navigationService,
             ITestsService testsService,
             IMapper mapper,
-            IQuestionsService questionsService)
+            IQuestionsService questionsService, IWebSocketSessionService webSocketSessionService)
         {
             _navigationService = navigationService;
             _testsService = testsService;
             _mapper = mapper;
             _questionsService = questionsService;
+            _webSocketSessionService = webSocketSessionService;
 
             NextQuestionCommand = Command(NextQuestion);
             PreviousQuestionCommand = Command(PreviousQuestion);
@@ -75,6 +78,7 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests
         {
             await _testsService.EndTest(_mapper.Map<Test>(this));
             await _navigationService.GoToRoot();
+            await _webSocketSessionService.EndSession();
         }
     }
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CSMobile.Infrastructure.Common.Contexts.Session
+namespace CSMobile.Infrastructure.Common.Contexts.UserSession
 {
     public interface IHaveUserContextData
     {

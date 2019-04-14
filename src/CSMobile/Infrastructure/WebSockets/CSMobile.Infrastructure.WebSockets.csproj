@@ -2,10 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
+        <RootNamespace>CSMobile.Infrastructure.WebSockets</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ViewModels\CSMobile.Presentation.ViewModels.csproj" />
+      <ProjectReference Include="..\Services\CSMobile.Infrastructure.Services.csproj" />
     </ItemGroup>
 
 </Project>

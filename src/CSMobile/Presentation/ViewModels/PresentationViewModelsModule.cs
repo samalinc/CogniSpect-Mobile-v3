@@ -18,7 +18,8 @@ namespace CSMobile.Application.ViewModels
                 .RegisterScopedAsSelf<StatisticsViewModel>()
                 .RegisterPerDependencyAsSelf<TestListItemViewModel>()
                 .RegisterPerDependencyAsSelf<QuestionViewModel>()
-                .RegisterPerDependencyAsSelf<AnswerViewModel>();
+                .RegisterPerDependencyAsSelf<AnswerViewModel>()
+                .RegisterSingleAsSelf<WebSocketsHandlersRecorder>();
         }
     }
 }
