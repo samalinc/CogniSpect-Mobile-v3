@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace CSMobile.Application.ViewModels.ViewModels
 {
-    public class BasePageViewModel : BaseViewModel, ICanThink
+    public abstract class BasePageViewModel : BaseViewModel, ICanThink
     {
         private bool _isThinking;
         
@@ -27,7 +27,7 @@ namespace CSMobile.Application.ViewModels.ViewModels
         
         protected sealed override ICommand Command(Func<Task> action)
         {
-            return new Command(async () =>
+            return base.Command(async () =>
             {
                 IsThinking = true;
                 await action();
@@ -35,19 +35,9 @@ namespace CSMobile.Application.ViewModels.ViewModels
             });
         }
         
-        protected sealed override ICommand Command<TArg>(Action<TArg> action)
-        {
-            return new Command<TArg>((arg) =>
-            {
-                IsThinking = true;
-                action(arg);
-                IsThinking = false;
-            });
-        }
-        
         protected sealed override ICommand Command<TArg>(Func<TArg, Task> action)
         {
-            return new Command<TArg>(async arg =>
+            return base.Command<TArg>(async arg =>
             {
                 IsThinking = true;
                 await action(arg);

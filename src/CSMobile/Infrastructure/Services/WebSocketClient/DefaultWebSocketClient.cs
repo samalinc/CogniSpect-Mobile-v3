@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using CSMobile.Infrastructure.Services.Exceptions;
 using Newtonsoft.Json;
 using Quobject.Collections.Immutable;
 using Quobject.SocketIoClientDotNet.Client;
@@ -40,7 +41,7 @@ namespace CSMobile.Infrastructure.Services.WebSocketClient
             {
                 if (_isFailed)
                 {
-                    throw new Exception("Failed to open connection");
+                    throw new WebSocketConnectionException("Failed to open connection");
                 }
                 Thread.Sleep(WebSocketsConstants.DefaultDelayAfterConnection);
             }
