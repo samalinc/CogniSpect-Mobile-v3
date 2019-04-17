@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Services.WebSocketClient
 {
@@ -7,6 +8,6 @@ namespace CSMobile.Infrastructure.Services.WebSocketClient
     {
         Task Connect();
         Task Disconnect();
-        Task Send(string action, object arg, Action<object> handler);
+        Task Send([NotNull] string action,[CanBeNull] object arg,[NotNull] Action<object> handler);
     }
 }

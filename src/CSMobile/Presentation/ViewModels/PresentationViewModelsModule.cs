@@ -1,4 +1,5 @@
 using Autofac;
+using CSMobile.Application.ViewModels.ExceptionHandling;
 using CSMobile.Application.ViewModels.ViewModels;
 using CSMobile.Application.ViewModels.ViewModels.Tests;
 using CSMobile.Application.ViewModels.ViewModels.Tests.List;
@@ -19,7 +20,8 @@ namespace CSMobile.Application.ViewModels
                 .RegisterPerDependencyAsSelf<TestListItemViewModel>()
                 .RegisterPerDependencyAsSelf<QuestionViewModel>()
                 .RegisterPerDependencyAsSelf<AnswerViewModel>()
-                .RegisterSingleAsSelf<WebSocketsHandlersRecorder>();
+                .RegisterSingleAsSelf<WebSocketsHandlersRecorder>()
+                .RegisterSingleAsImplementedInterfaces<AppExceptionHandler>();
         }
     }
 }

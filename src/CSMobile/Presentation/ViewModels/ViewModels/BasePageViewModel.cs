@@ -1,18 +1,18 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Forms;
+using CommonServiceLocator;
+using CSMobile.Application.ViewModels.ExceptionHandling;
 
 namespace CSMobile.Application.ViewModels.ViewModels
 {
-    public abstract class BasePageViewModel : BaseViewModel, ICanThink
+    public abstract partial class BasePageViewModel : BaseViewModel
     {
-        private bool _isThinking;
-        
-        public bool IsThinking
+        private readonly IAppExceptionHandler _appExceptionHandler;
+
+        protected BasePageViewModel()
         {
-            get => _isThinking;
-            set => Set(nameof(IsThinking), ref _isThinking, value);
+            _appExceptionHandler = ServiceLocator.Current.GetInstance<IAppExceptionHandler>();
         }
         
         public virtual Task OnAppearing()
@@ -31,7 +31,6 @@ namespace CSMobile.Application.ViewModels.ViewModels
             {
                 IsThinking = true;
                 await action();
-                IsThinking = false;
             });
         }
         
@@ -41,8 +40,18 @@ namespace CSMobile.Application.ViewModels.ViewModels
             {
                 IsThinking = true;
                 await action(arg);
-                IsThinking = false;
             });
+        }
+
+        protected override async Task OnCatchException(Exception ex)
+        {
+            await _appExceptionHandler.HandleException(ex);
+        }
+
+        protected override Task TryFinally()
+        {
+            IsThinking = false;
+            return Task.CompletedTask;
         }
     }
 }

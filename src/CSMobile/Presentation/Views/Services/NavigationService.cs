@@ -7,7 +7,7 @@ using CSMobile.Application.ViewModels.Navigation;
 using CSMobile.Application.ViewModels.ViewModels;
 using Xamarin.Forms;
 
-namespace CSMobile.Presentation.Views
+namespace CSMobile.Presentation.Views.Services
 {
     internal class NavigationService : INavigationService
     {
@@ -17,7 +17,7 @@ namespace CSMobile.Presentation.Views
         private readonly Stack<NavigationPage> _navigationPageStack =
             new Stack<NavigationPage>();
 
-        private NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
+        public NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
 
         public void Configure<TViewModel, TViewPage>() where TViewModel : BasePageViewModel
         {

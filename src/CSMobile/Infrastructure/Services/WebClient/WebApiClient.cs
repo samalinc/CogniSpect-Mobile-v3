@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Common;
+using CSMobile.Infrastructure.Services.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -38,9 +39,17 @@ namespace CSMobile.Infrastructure.Services.WebClient
             await AddAuthenticationToken(request);
             
             HttpResponseMessage result;
-            using (var client = new HttpClient())
+            
+            try
             {
-                result = await client.SendAsync(request);
+                using (var client = new HttpClient())
+                {
+                    result = await client.SendAsync(request);
+                }
+            }
+            catch (Exception e)
+            {
+                throw new HttpConnectionException(e);
             }
 
             return result;

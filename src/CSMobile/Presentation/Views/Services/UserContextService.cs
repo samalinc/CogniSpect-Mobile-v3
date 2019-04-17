@@ -4,7 +4,7 @@ using CSMobile.Application.ViewModels.ViewModels;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Common.Contexts.UserSession;
 
-namespace CSMobile.Presentation.Views
+namespace CSMobile.Presentation.Views.Services
 {
     internal class UserContextService : IUserContextService
     {

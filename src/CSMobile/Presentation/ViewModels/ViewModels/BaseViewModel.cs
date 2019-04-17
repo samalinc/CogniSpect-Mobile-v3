@@ -1,13 +1,12 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CSMobile.Infrastructure.Services.Exceptions;
 using GalaSoft.MvvmLight;
 using Xamarin.Forms;
 
 namespace CSMobile.Application.ViewModels.ViewModels
 {
-    public abstract partial class BaseViewModel : ViewModelBase
+    public abstract class BaseViewModel : ViewModelBase
     {
         protected virtual ICommand Command(Func<Task> action)
         {
@@ -25,14 +24,24 @@ namespace CSMobile.Application.ViewModels.ViewModels
             {
                 await action();
             }
-            catch (WebSocketConnectionException)
+            catch (Exception ex)
             {
-                Exceptions.Add("Connection error");
+                await OnCatchException(ex);
             }
-            catch (Exception e)
+            finally
             {
-                Exceptions.Add(e.ToString());
+                await TryFinally();
             }
+        }
+
+        protected virtual Task OnCatchException(Exception ex)
+        {
+            return Task.CompletedTask;
+        }
+        
+        protected virtual Task TryFinally()
+        {
+            return Task.CompletedTask;
         }
     }
 }
