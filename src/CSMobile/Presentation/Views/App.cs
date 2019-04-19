@@ -18,6 +18,7 @@ using CSMobile.Infrastructure.Services;
 using CSMobile.Infrastructure.WebSockets;
 using CSMobile.Infrastructure.WebSockets.Extensions;
 using CSMobile.Presentation.Views.Pages;
+using CSMobile.Presentation.Views.Services;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 

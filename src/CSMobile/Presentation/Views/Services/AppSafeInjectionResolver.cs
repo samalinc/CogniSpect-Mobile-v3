@@ -1,7 +1,7 @@
 using CommonServiceLocator;
 using CSMobile.Infrastructure.Common;
 
-namespace CSMobile.Presentation.Views
+namespace CSMobile.Presentation.Views.Services
 {
     public class AppSafeInjectionResolver : ISafeInjectionResolver
     {

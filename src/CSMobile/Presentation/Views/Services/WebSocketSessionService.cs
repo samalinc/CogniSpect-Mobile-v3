@@ -1,8 +1,7 @@
-
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
 
-namespace CSMobile.Presentation.Views
+namespace CSMobile.Presentation.Views.Services
 {
     public class WebSocketSessionService : IWebSocketSessionService
     {

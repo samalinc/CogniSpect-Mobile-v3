@@ -1,6 +1,7 @@
 using Autofac;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Presentation.Views.Pages;
+using CSMobile.Presentation.Views.Services;
 
 namespace CSMobile.Presentation.Views
 {
@@ -17,7 +18,8 @@ namespace CSMobile.Presentation.Views
                 .RegisterSingleAsImplementedInterfaces<AppSafeInjectionResolver>()
                 .RegisterSingleAsImplementedInterfaces<UserContextService>()
                 .RegisterSingleAsImplementedInterfaces<WebSocketSessionService>()
-                .RegisterSingleAsImplementedInterfaces<NavigationService>();
+                .RegisterSingleAsImplementedInterfaces<NavigationService>()
+                .RegisterSingleAsImplementedInterfaces<AlertService>();
         }
     }
 }

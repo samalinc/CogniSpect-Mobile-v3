@@ -36,6 +36,7 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests.List
 
         private async Task OnTestStarted(TestListItem listItem)
         {
+            // TODO: refactor this after implementation server logic
             Test test = await _testsService.BeginTest(listItem.Id);
             await _webSocketSessionService.BeginSession();
             await _webSocketSessionService.SendMessage(ExternalEvents.NewMessage, listItem);
