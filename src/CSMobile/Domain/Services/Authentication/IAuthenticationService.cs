@@ -7,6 +7,7 @@ namespace CSMobile.Domain.Services.Authentication
 {
     public interface IAuthenticationService
     {
-        Task<bool> Authenticate([NotNull] AuthenticationData authenticationData);
+        Task<bool> SignIn([NotNull] AuthenticationData authenticationData);
+        Task SignOut();
     }
 }

@@ -20,7 +20,7 @@ namespace CSMobile.Application.ViewModels.ViewModels
 
         private async Task Authenticate()
         {
-            bool result = await _authenticationService.Authenticate(new AuthenticationData(StudNumber, Password));
+            bool result = await _authenticationService.SignIn(new AuthenticationData(StudNumber, Password));
         }
     }
 }
