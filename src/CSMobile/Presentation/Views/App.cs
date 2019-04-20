@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
 using CommonServiceLocator;
@@ -18,7 +17,7 @@ using CSMobile.Infrastructure.Services;
 using CSMobile.Infrastructure.WebSockets;
 using CSMobile.Infrastructure.WebSockets.Extensions;
 using CSMobile.Presentation.Views.Pages;
-using CSMobile.Presentation.Views.Services;
+using CSMobile.Presentation.Views.Pages.Layouts;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -106,8 +105,9 @@ namespace CSMobile.Presentation.Views
             _navigationService.Configure<TestItemsViewModel, TestItemsPage>();
             _navigationService.Configure<TestViewModel, TestPage>();
             _navigationService.Configure<StatisticsViewModel, StatisticsPage>();
+            _navigationService.Configure<TabbedLayoutViewModel, TabbedLayoutPage>();
 
-            MainPage = ((NavigationService) _navigationService).SetRootPage<AuthenticationViewModel>();
+            MainPage = _navigationService.SetRootPage<AuthenticationViewModel>();
         }
 
         private void ConfigureJsonSerializing()

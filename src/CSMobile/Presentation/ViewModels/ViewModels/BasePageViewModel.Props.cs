@@ -9,5 +9,7 @@ namespace CSMobile.Application.ViewModels.ViewModels
             get => _isThinking;
             set => Set(nameof(IsThinking), ref _isThinking, value);
         }
+
+        public virtual string Title { get; set; }
     }
 }

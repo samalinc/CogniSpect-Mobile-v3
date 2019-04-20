@@ -1,7 +1,8 @@
 using AutoMapper;
 using CSMobile.Application.ViewModels.ViewModels.Tests;
+using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Domain.Models.Tests;
-using CSMobile.Infrastructure.Common;
+using CSMobile.Domain.Services.Tests;
 using CSMobile.Infrastructure.Common.Extensions;
 
 namespace CSMobile.Application.ViewModels.Profiles
@@ -48,6 +49,17 @@ namespace CSMobile.Application.ViewModels.Profiles
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
                 .ForMember(d => d.Questions, o => o.MapFrom(s => s.Questions))
+                .IgnoreAllOther();
+
+            CreateMap<TestListItem, TestListItemViewModel>()
+                .ConstructByDiContainer()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
+                .IgnoreAllOther();
+
+            CreateMap<TestListItemViewModel, TestListItem>()
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
                 .IgnoreAllOther();
         }
     }

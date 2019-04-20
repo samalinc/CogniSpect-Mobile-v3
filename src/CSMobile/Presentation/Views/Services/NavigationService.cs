@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CommonServiceLocator;
 using CSMobile.Application.ViewModels.Navigation;
 using CSMobile.Application.ViewModels.ViewModels;
+using CSMobile.Presentation.Views.Pages;
 using Xamarin.Forms;
 
 namespace CSMobile.Presentation.Views.Services
@@ -19,7 +20,9 @@ namespace CSMobile.Presentation.Views.Services
 
         public NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
 
-        public void Configure<TViewModel, TViewPage>() where TViewModel : BasePageViewModel
+        public void Configure<TViewModel, TViewPage>() 
+            where TViewModel : BasePageViewModel
+            where TViewPage : IViewPage<TViewModel>
         {
             lock (_sync)
             {

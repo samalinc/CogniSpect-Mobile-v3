@@ -28,6 +28,9 @@
       <Compile Update="ViewModels\BasePageViewModel.Props.cs">
         <DependentUpon>BasePageViewModel.cs</DependentUpon>
       </Compile>
+      <Compile Update="ViewModels\Tests\List\TestListItemViewModel.Props.cs">
+        <DependentUpon>TestListItemViewModel.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

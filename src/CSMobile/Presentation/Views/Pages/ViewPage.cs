@@ -4,16 +4,13 @@ using Xamarin.Forms;
 
 namespace CSMobile.Presentation.Views.Pages
 {
-    public class ViewPage<TViewModel> : ContentPage where TViewModel : BasePageViewModel
+    public class ViewPage<TViewModel> : ContentPage, IViewPage<TViewModel> where TViewModel : BasePageViewModel
     {
-        private readonly TViewModel _viewModel;
+        private TViewModel _viewModel;
 
         public ViewPage()
         {
-            _viewModel = DesignMode.IsDesignModeEnabled 
-                ? default(TViewModel)
-                : ServiceLocator.Current.GetInstance<TViewModel>();
-            BindingContext = _viewModel;
+            SetViewModel();
         }
         
         protected override void OnAppearing()
@@ -34,6 +31,14 @@ namespace CSMobile.Presentation.Views.Pages
             }
             
             _viewModel.OnDisappearing().GetAwaiter().GetResult();
+        }
+
+        public void SetViewModel()
+        {
+            _viewModel = DesignMode.IsDesignModeEnabled 
+                ? default(TViewModel)
+                : ServiceLocator.Current.GetInstance<TViewModel>();
+            BindingContext = _viewModel;
         }
     }
 }

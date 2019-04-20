@@ -1,6 +1,4 @@
 using System.ComponentModel;
-using CSMobile.Application.ViewModels.ViewModels;
-using CSMobile.Application.ViewModels.ViewModels.Tests;
 using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using Xamarin.Forms.Xaml;
 

@@ -19,7 +19,7 @@ namespace CSMobile.Presentation.Views.Services
         {
             App.Instance.Context.EndUserSession();
             App.Instance.Context.BeginNewUserSession(data.ToData());
-            App.Instance.MainPage = ((NavigationService) _navigationService).SetRootPage<ProfileViewModel>();
+            App.Instance.MainPage = _navigationService.SetRootPage<TabbedLayoutViewModel>();
             
             return Task.CompletedTask;
         }
@@ -27,7 +27,7 @@ namespace CSMobile.Presentation.Views.Services
         public Task EndUserSession()
         {
             App.Instance.Context.EndUserSession();
-            App.Instance.MainPage = ((NavigationService) _navigationService).SetRootPage<AuthenticationViewModel>();
+            App.Instance.MainPage = _navigationService.SetRootPage<AuthenticationViewModel>();
 
             return Task.CompletedTask;
         }

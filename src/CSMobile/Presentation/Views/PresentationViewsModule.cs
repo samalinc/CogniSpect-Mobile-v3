@@ -1,6 +1,7 @@
 using Autofac;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Presentation.Views.Pages;
+using CSMobile.Presentation.Views.Pages.Layouts;
 using CSMobile.Presentation.Views.Services;
 
 namespace CSMobile.Presentation.Views
@@ -15,6 +16,7 @@ namespace CSMobile.Presentation.Views
                 .RegisterScopedAsSelf<TestItemsPage>()
                 .RegisterScopedAsSelf<TestPage>()
                 .RegisterScopedAsSelf<StatisticsPage>()
+                .RegisterScopedAsSelf<TabbedLayoutPage>()
                 .RegisterSingleAsImplementedInterfaces<AppSafeInjectionResolver>()
                 .RegisterSingleAsImplementedInterfaces<UserContextService>()
                 .RegisterSingleAsImplementedInterfaces<WebSocketSessionService>()
