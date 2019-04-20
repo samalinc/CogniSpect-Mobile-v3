@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using CommonServiceLocator;
 using CSMobile.Application.ViewModels.ExceptionHandling;
+using CSMobile.Infrastructure.Common.Extensions;
+using JetBrains.Annotations;
 
 namespace CSMobile.Application.ViewModels.ViewModels.Core
 {
@@ -13,8 +15,13 @@ namespace CSMobile.Application.ViewModels.ViewModels.Core
         protected BasePageViewModel()
         {
             _appExceptionHandler = ServiceLocator.Current.GetInstance<IAppExceptionHandler>();
+
+            OnCommandStarted += OnCommandStartedHandler;
+            OnCommandEnded += OnCommandEndedHandler;
+            OnCommandFinal += OnCommandFinalHandler;
+            OnCommandExceptionHappened += OnCommandExceptionHappenedFinalHandler;
         }
-        
+
         public virtual Task OnAppearing()
         {
             return Task.CompletedTask;
@@ -24,34 +31,41 @@ namespace CSMobile.Application.ViewModels.ViewModels.Core
         {
             return Task.CompletedTask;
         }
-        
-        protected sealed override ICommand Command(Func<Task> action)
+
+        public void OnCommandStartedHandler(object source, EventArgs args)
         {
-            return base.Command(async () =>
-            {
-                IsThinking = true;
-                await action();
-            });
-        }
-        
-        protected sealed override ICommand Command<TArg>(Func<TArg, Task> action)
-        {
-            return base.Command<TArg>(async arg =>
-            {
-                IsThinking = true;
-                await action(arg);
-            });
+            IsThinking = true;
         }
 
-        protected override async Task OnCatchException(Exception ex)
+        public void OnCommandEndedHandler(object source, EventArgs args)
+        {
+            IsThinking = false;
+        }
+
+        public void OnCommandFinalHandler(object source, EventArgs args)
+        {
+            IsThinking = false;
+        }
+
+        public async void OnCommandExceptionHappenedFinalHandler(object source, Exception ex)
         {
             await _appExceptionHandler.HandleException(ex);
         }
 
-        protected override Task TryFinally()
+        protected void SafeRemoveNestedViewModels([CanBeNull] [ItemNotNull] IEnumerable<BaseViewModel> viewModels)
         {
-            IsThinking = false;
-            return Task.CompletedTask;
+            if (viewModels.IsNullOrEmpty())
+            {
+                return;
+            }
+
+            foreach (var viewModel in viewModels)
+            {
+                viewModel.OnCommandStarted -= OnCommandStartedHandler;
+                viewModel.OnCommandEnded -= OnCommandEndedHandler;
+                viewModel.OnCommandFinal -= OnCommandFinalHandler;
+                viewModel.OnCommandExceptionHappened -= OnCommandExceptionHappenedFinalHandler;
+            }
         }
     }
 }

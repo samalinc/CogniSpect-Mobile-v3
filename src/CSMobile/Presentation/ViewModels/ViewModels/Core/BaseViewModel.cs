@@ -8,12 +8,17 @@ namespace CSMobile.Application.ViewModels.ViewModels.Core
 {
     public abstract class BaseViewModel : ViewModelBase
     {
-        protected virtual ICommand Command(Func<Task> action)
+        public event EventHandler OnCommandStarted;
+        public event EventHandler OnCommandEnded;
+        public event EventHandler<Exception> OnCommandExceptionHappened;
+        public event EventHandler OnCommandFinal;
+        
+        protected ICommand Command(Func<Task> action)
         {
             return new Command(async () => await ExceptionHandler(action));
         }
         
-        protected virtual ICommand Command<TArg>(Func<TArg, Task> action)
+        protected ICommand Command<TArg>(Func<TArg, Task> action)
         {
             return new Command<TArg>(async arg => await ExceptionHandler(() => action(arg)));
         }
@@ -22,26 +27,19 @@ namespace CSMobile.Application.ViewModels.ViewModels.Core
         {
             try
             {
+                OnCommandStarted?.Invoke(this, EventArgs.Empty);
                 await action();
+                OnCommandEnded?.Invoke(this, EventArgs.Empty);
+
             }
             catch (Exception ex)
             {
-                await OnCatchException(ex);
+                OnCommandExceptionHappened?.Invoke(this, ex);
             }
             finally
             {
-                await TryFinally();
+                OnCommandFinal?.Invoke(this, EventArgs.Empty);
             }
-        }
-
-        protected virtual Task OnCatchException(Exception ex)
-        {
-            return Task.CompletedTask;
-        }
-        
-        protected virtual Task TryFinally()
-        {
-            return Task.CompletedTask;
         }
     }
 }

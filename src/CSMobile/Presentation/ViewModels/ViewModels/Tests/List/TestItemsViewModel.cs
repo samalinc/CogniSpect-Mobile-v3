@@ -11,15 +11,18 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests.List
     {
         private readonly ITestsService _testsService;
         private readonly IMapper _mapper;
+        private readonly IViewModelsFactory _viewModelsFactory;
 
         public ICommand OnRefreshTestsCommand { get; }
-        
+
         public TestItemsViewModel(
             ITestsService testsService,
-            IMapper mapper)
+            IMapper mapper,
+            IViewModelsFactory viewModelsFactory)
         {
             _testsService = testsService;
             _mapper = mapper;
+            _viewModelsFactory = viewModelsFactory;
 
             OnRefreshTestsCommand = Command(OnRefreshTests);
         }
@@ -31,8 +34,10 @@ namespace CSMobile.Application.ViewModels.ViewModels.Tests.List
 
         private async Task OnRefreshTests()
         {
-            Tests = new List<TestListItemViewModel>(
-                _mapper.Map<IEnumerable<TestListItemViewModel>>(await _testsService.GetAvailableTests()));
+            SafeRemoveNestedViewModels(Tests);
+            
+            Tests = _viewModelsFactory.Create<TestListItemViewModel>(
+                await _testsService.GetAvailableTests(), this);
         }
     }
 }

@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using CommonServiceLocator;
 using CSMobile.Application.ViewModels.Navigation;
-using CSMobile.Application.ViewModels.ViewModels;
 using CSMobile.Application.ViewModels.ViewModels.Core;
-using CSMobile.Presentation.Views.Pages;
 using Xamarin.Forms;
 
 namespace CSMobile.Presentation.Views.Services
@@ -25,17 +22,14 @@ namespace CSMobile.Presentation.Views.Services
             where TViewModel : BasePageViewModel
             where TViewPage : IViewPage<TViewModel>
         {
-            lock (_sync)
+            var viewModelType = typeof(TViewModel);
+            if (_pagesByKey.ContainsKey(viewModelType))
             {
-                var viewModelType = typeof(TViewModel);
-                if (_pagesByKey.ContainsKey(viewModelType))
-                {
-                    _pagesByKey[viewModelType] = typeof(TViewPage);
-                }
-                else
-                {
-                    _pagesByKey.Add(viewModelType, typeof(TViewPage));
-                }
+                _pagesByKey[viewModelType] = typeof(TViewPage);
+            }
+            else
+            {
+                _pagesByKey.Add(viewModelType, typeof(TViewPage));
             }
         }
 
@@ -48,25 +42,7 @@ namespace CSMobile.Presentation.Views.Services
             return mainPage;
         }
 
-        public Type CurrentPageViewModel
-        {
-            get
-            {
-                lock (_sync)
-                {
-                    if (CurrentNavigationPage?.CurrentPage == null)
-                    {
-                        return null;
-                    }
-
-                    var pageType = CurrentNavigationPage.CurrentPage.GetType();
-
-                    return _pagesByKey.ContainsValue(pageType)
-                        ? _pagesByKey.First(p => p.Value == pageType).Key
-                        : null;
-                }
-            }
-        }
+        public BasePageViewModel CurrentPageViewModel => CurrentNavigationPage.BindingContext as BasePageViewModel;
 
         public async Task GoToRoot()
         {

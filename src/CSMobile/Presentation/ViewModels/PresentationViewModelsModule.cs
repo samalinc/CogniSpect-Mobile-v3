@@ -29,7 +29,8 @@ namespace CSMobile.Application.ViewModels
             builder
                 .RegisterSingleAsSelf<WebSocketsHandlersRecorder>()
                 .RegisterSingleAsImplementedInterfaces<AppExceptionHandler>()
-                .RegisterSingleAsImplementedInterfaces<AuthenticationAlertsFactory>();
+                .RegisterSingleAsImplementedInterfaces<AuthenticationAlertsFactory>()
+                .RegisterSingleAsImplementedInterfaces<ViewModelsFactory>();
         }
     }
 }
