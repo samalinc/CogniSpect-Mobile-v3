@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <local:TestPageBase xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
-             x:Class="CSMobile.Presentation.Views.Pages.TestPage"
-             NavigationPage.HasNavigationBar="False">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
+                    x:Class="CSMobile.Presentation.Views.Pages.TestPage"
+                    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="10*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <Label Text="{Binding Name}"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"
-                   Grid.Row="0"/>
+                   Grid.Row="0" />
             <Grid Grid.Row="1" BindingContext="{Binding CurrentQuestion}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Text="{Binding Text}" />
                 <ListView
@@ -32,11 +32,11 @@
                                 <ViewCell.View>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="9*"/>
-                                            <ColumnDefinition Width="3*"/>
+                                            <ColumnDefinition Width="9*" />
+                                            <ColumnDefinition Width="3*" />
                                         </Grid.ColumnDefinitions>
                                         <Label Text="{Binding Text}" Grid.Column="0" />
-                                        <Switch IsToggled="{Binding Value}" Grid.Column="1"/>
+                                        <Switch IsToggled="{Binding Value}" Grid.Column="1" />
                                     </Grid>
                                 </ViewCell.View>
                             </ViewCell>
@@ -45,9 +45,11 @@
                 </ListView>
             </Grid>
             <StackLayout Grid.Row="2">
-                <Button Text="Назад" Command="{Binding PreviousQuestionCommand}" IsVisible="{Binding IsPreviousButtonVisible}"/>
-                <Button Text="Вперед" Command="{Binding NextQuestionCommand}" IsVisible="{Binding IsNextButtonVisible}"/>
-                <Button Text="Завершить" Command="{Binding CompleteTestCommand}" IsVisible="{Binding IsCompleteButtonVisible}"/>
+                <Button Text="Назад" Command="{Binding PreviousQuestionCommand}"
+                        IsVisible="{Binding IsPreviousButtonVisible}" />
+                <Button Text="Вперед" Command="{Binding NextQuestionCommand}" IsVisible="{Binding IsNextButtonVisible}" />
+                <Button Text="Завершить" Command="{Binding CompleteTestCommand}"
+                        IsVisible="{Binding IsCompleteButtonVisible}" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>

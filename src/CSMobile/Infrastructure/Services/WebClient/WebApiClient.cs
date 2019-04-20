@@ -5,14 +5,13 @@ using System.Threading.Tasks;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Services.Exceptions;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace CSMobile.Infrastructure.Services.WebClient
 {
     internal class WebApiClient : IWebApiClient
     {
-//        private const string WebApiUrl = "http://10.0.2.2:8080/api";
-        private const string WebApiUrl = "http://cognispect.herokuapp.com/api";
+        private const string WebApiUrl = "http://10.0.2.2:8080/api";
+        //private const string WebApiUrl = "http://cognispect.herokuapp.com/api";
         private const string TokenName = "Bearer token";
 
         private readonly IUserContextService _userContextService;

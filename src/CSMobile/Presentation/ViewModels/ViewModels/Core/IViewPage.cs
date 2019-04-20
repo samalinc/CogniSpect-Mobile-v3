@@ -1,6 +1,4 @@
-using CSMobile.Application.ViewModels.ViewModels.Core;
-
-namespace CSMobile.Application.ViewModels.ViewModels
+namespace CSMobile.Application.ViewModels.ViewModels.Core
 {
     public interface IViewPage<TViewModel> where TViewModel : BasePageViewModel
     {

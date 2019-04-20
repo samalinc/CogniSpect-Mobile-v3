@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <local:ProfilePageBase xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
-             x:Class="CSMobile.Presentation.Views.Pages.ProfilePage"
-             x:Name="ProfilePageBase"
-             NavigationPage.HasNavigationBar="False"
-             Title="{Binding Title}">
-    <ContentPage.Content>
-        <Label Text="Will be added"></Label>
-    </ContentPage.Content>
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
+                       x:Class="CSMobile.Presentation.Views.Pages.ProfilePage"
+                       x:Name="ProfilePageBase"
+                       NavigationPage.HasNavigationBar="False"
+                       Title="{Binding Title}">
+    <AbsoluteLayout VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand">
+        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+              AbsoluteLayout.LayoutFlags="All"
+              VerticalOptions="FillAndExpand"
+              HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+            <Button Text="SignOut" Command="{Binding SignOutCommand}" Grid.Row="0" />
+            <Label Text="Will be added" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" />
+        </Grid>
+        <AbsoluteLayout BackgroundColor="#22000000"
+                        AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        IsVisible="{Binding IsThinking}">
+            <ActivityIndicator IsRunning="{Binding IsThinking}"
+                               IsVisible="{Binding IsThinking}"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,0.1,0.1"
+                               AbsoluteLayout.LayoutFlags="All" />
+        </AbsoluteLayout>
+    </AbsoluteLayout>
 </local:ProfilePageBase>

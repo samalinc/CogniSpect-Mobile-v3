@@ -22,6 +22,13 @@ namespace CSMobile.Application.ViewModels.ViewModels.Authentication
             AuthenticateCommand = Command(Authenticate);
         }
 
+        public override Task OnAppearing()
+        {
+            StudNumber = null;
+            Password = null;
+            return Task.CompletedTask;
+        }
+
         private async Task Authenticate()
         {
             bool result = await _authenticationService.SignIn(new AuthenticationData(StudNumber, Password));
