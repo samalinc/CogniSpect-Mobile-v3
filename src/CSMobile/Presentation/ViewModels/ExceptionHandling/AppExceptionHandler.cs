@@ -16,7 +16,7 @@ namespace CSMobile.Application.ViewModels.ExceptionHandling
 
         public async Task HandleException(Exception ex)
         {
-            await _alertService.DisplayAlert("Error", ResolveExceptionMessage(ex), "Ok");
+            await _alertService.ErrorAlert(ResolveExceptionMessage(ex));
         }
 
         private string ResolveExceptionMessage(Exception ex)

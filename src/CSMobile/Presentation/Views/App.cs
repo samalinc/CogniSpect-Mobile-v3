@@ -6,6 +6,10 @@ using CSMobile.Application.ViewModels;
 using CSMobile.Application.ViewModels.Navigation;
 using CSMobile.Application.ViewModels.Profiles;
 using CSMobile.Application.ViewModels.ViewModels;
+using CSMobile.Application.ViewModels.ViewModels.Authentication;
+using CSMobile.Application.ViewModels.ViewModels.Core;
+using CSMobile.Application.ViewModels.ViewModels.Profile;
+using CSMobile.Application.ViewModels.ViewModels.Statistics;
 using CSMobile.Application.ViewModels.ViewModels.Tests;
 using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Domain.Services;
@@ -18,6 +22,7 @@ using CSMobile.Infrastructure.WebSockets;
 using CSMobile.Infrastructure.WebSockets.Extensions;
 using CSMobile.Presentation.Views.Pages;
 using CSMobile.Presentation.Views.Pages.Layouts;
+using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 

@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CSMobile.Application.ViewModels.Navigation;
+using CSMobile.Application.ViewModels.ViewModels.Core;
 using CSMobile.Domain.Models.Tests;
 using CSMobile.Domain.Services.SharedEvents;
 using CSMobile.Domain.Services.Tests;

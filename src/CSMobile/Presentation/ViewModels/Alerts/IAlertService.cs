@@ -1,10 +1,11 @@
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace CSMobile.Application.ViewModels.Alerts
 {
     public interface IAlertService
     {
-        Task DisplayAlert(string title, string message, string cancel);
-        Task<bool> DisplayAlert(string title, string message, string accept, string cancel);
+        Task<bool> Alert([NotNull] AlertConfigs configs);
+        Task ErrorAlert([NotNull] string message);
     }
 }

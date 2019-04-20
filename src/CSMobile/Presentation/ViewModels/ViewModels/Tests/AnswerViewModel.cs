@@ -1,4 +1,5 @@
 using System;
+using CSMobile.Application.ViewModels.ViewModels.Core;
 
 namespace CSMobile.Application.ViewModels.ViewModels.Tests
 {

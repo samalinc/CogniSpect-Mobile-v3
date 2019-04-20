@@ -1,5 +1,5 @@
 using System.ComponentModel;
-using CSMobile.Application.ViewModels.ViewModels;
+using CSMobile.Application.ViewModels.ViewModels.Profile;
 using Xamarin.Forms.Xaml;
 
 namespace CSMobile.Presentation.Views.Pages

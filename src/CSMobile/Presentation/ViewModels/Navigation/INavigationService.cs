@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using CSMobile.Application.ViewModels.ViewModels;
-using CSMobile.Presentation.Views.Pages;
-using GalaSoft.MvvmLight;
+using CSMobile.Application.ViewModels.ViewModels.Core;
+using JetBrains.Annotations;
 using Xamarin.Forms;
 
 namespace CSMobile.Application.ViewModels.Navigation

@@ -13,16 +13,24 @@ namespace CSMobile.Presentation.Views.Services
             _navigationService = navigationService;
         }
 
-        public async Task DisplayAlert(string title, string message, string cancel)
+        public async Task<bool> Alert(AlertConfigs configs)
         {
-            await ((NavigationService) _navigationService).CurrentNavigationPage.CurrentPage.DisplayAlert(title,
-                message, cancel);
+            return await ((NavigationService) _navigationService).CurrentNavigationPage.CurrentPage
+                .DisplayAlert(
+                    configs.Title,
+                    configs.Message,
+                    configs.Accept,
+                    configs.Cancel);
         }
-
-        public async Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
+        
+        public async Task ErrorAlert(string message)
         {
-            return await ((NavigationService) _navigationService).CurrentNavigationPage.CurrentPage.DisplayAlert(title,
-                message, accept, cancel);
+            await Alert(new AlertConfigs
+            {
+                Title = "Error",
+                Message = message,
+                Cancel = "OK"
+            });
         }
     }
 }

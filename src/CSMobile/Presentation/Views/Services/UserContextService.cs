@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using CSMobile.Application.ViewModels.Navigation;
 using CSMobile.Application.ViewModels.ViewModels;
+using CSMobile.Application.ViewModels.ViewModels.Authentication;
+using CSMobile.Application.ViewModels.ViewModels.Core;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Common.Contexts.UserSession;
 

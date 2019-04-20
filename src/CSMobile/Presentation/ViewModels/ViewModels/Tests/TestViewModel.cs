@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
 using CSMobile.Application.ViewModels.Navigation;
-using CSMobile.Application.ViewModels.ViewModels.Tests.List;
+using CSMobile.Application.ViewModels.ViewModels.Core;
 using CSMobile.Domain.Models.Tests;
 using CSMobile.Domain.Services.Tests;
 using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;

@@ -1,6 +1,10 @@
 using Autofac;
 using CSMobile.Application.ViewModels.ExceptionHandling;
 using CSMobile.Application.ViewModels.ViewModels;
+using CSMobile.Application.ViewModels.ViewModels.Authentication;
+using CSMobile.Application.ViewModels.ViewModels.Core;
+using CSMobile.Application.ViewModels.ViewModels.Profile;
+using CSMobile.Application.ViewModels.ViewModels.Statistics;
 using CSMobile.Application.ViewModels.ViewModels.Tests;
 using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Infrastructure.Common.Extensions;
@@ -20,9 +24,12 @@ namespace CSMobile.Application.ViewModels
                 .RegisterScopedAsSelf<TabbedLayoutViewModel>()
                 .RegisterPerDependencyAsSelf<TestListItemViewModel>()
                 .RegisterPerDependencyAsSelf<QuestionViewModel>()
-                .RegisterPerDependencyAsSelf<AnswerViewModel>()
+                .RegisterPerDependencyAsSelf<AnswerViewModel>();
+
+            builder
                 .RegisterSingleAsSelf<WebSocketsHandlersRecorder>()
-                .RegisterSingleAsImplementedInterfaces<AppExceptionHandler>();
+                .RegisterSingleAsImplementedInterfaces<AppExceptionHandler>()
+                .RegisterSingleAsImplementedInterfaces<AuthenticationAlertsFactory>();
         }
     }
 }

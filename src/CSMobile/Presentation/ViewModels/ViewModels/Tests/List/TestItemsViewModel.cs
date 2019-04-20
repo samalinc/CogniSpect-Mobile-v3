@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
+using CSMobile.Application.ViewModels.ViewModels.Core;
 using CSMobile.Domain.Services.Tests;
 
 namespace CSMobile.Application.ViewModels.ViewModels.Tests.List

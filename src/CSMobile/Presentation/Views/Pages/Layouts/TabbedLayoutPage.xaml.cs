@@ -1,5 +1,6 @@
 ﻿using CommonServiceLocator;
 using CSMobile.Application.ViewModels.ViewModels;
+using CSMobile.Application.ViewModels.ViewModels.Core;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

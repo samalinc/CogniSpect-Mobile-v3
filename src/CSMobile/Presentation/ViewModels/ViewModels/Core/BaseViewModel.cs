@@ -4,7 +4,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using Xamarin.Forms;
 
-namespace CSMobile.Application.ViewModels.ViewModels
+namespace CSMobile.Application.ViewModels.ViewModels.Core
 {
     public abstract class BaseViewModel : ViewModelBase
     {

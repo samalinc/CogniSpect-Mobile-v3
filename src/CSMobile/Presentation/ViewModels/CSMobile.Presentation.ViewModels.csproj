@@ -16,16 +16,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="ViewModels\AuthenticationViewModel.Props.cs">
-        <DependentUpon>AuthenticationViewModel.cs</DependentUpon>
-      </Compile>
       <Compile Update="ViewModels\Tests\TestViewModel.Props.cs">
         <DependentUpon>TestViewModel.cs</DependentUpon>
       </Compile>
       <Compile Update="ViewModels\Tests\List\TestItemsViewModel.Props.cs">
         <DependentUpon>TestItemsViewModel.cs</DependentUpon>
       </Compile>
-      <Compile Update="ViewModels\BasePageViewModel.Props.cs">
+      <Compile Update="ViewModels\Core\BasePageViewModel.Props.cs">
         <DependentUpon>BasePageViewModel.cs</DependentUpon>
       </Compile>
       <Compile Update="ViewModels\Tests\List\TestListItemViewModel.Props.cs">

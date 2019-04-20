@@ -4,7 +4,7 @@ using System.Windows.Input;
 using CommonServiceLocator;
 using CSMobile.Application.ViewModels.ExceptionHandling;
 
-namespace CSMobile.Application.ViewModels.ViewModels
+namespace CSMobile.Application.ViewModels.ViewModels.Core
 {
     public abstract partial class BasePageViewModel : BaseViewModel
     {

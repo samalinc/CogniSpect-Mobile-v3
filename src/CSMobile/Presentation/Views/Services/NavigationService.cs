@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CommonServiceLocator;
 using CSMobile.Application.ViewModels.Navigation;
 using CSMobile.Application.ViewModels.ViewModels;
+using CSMobile.Application.ViewModels.ViewModels.Core;
 using CSMobile.Presentation.Views.Pages;
 using Xamarin.Forms;
 

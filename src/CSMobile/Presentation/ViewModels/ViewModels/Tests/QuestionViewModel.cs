@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CSMobile.Application.ViewModels.ViewModels.Core;
 
 namespace CSMobile.Application.ViewModels.ViewModels.Tests
 {
