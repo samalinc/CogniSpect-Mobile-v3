@@ -2,8 +2,8 @@ using System.Threading.Tasks;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Common.Contexts.UserSession;
 using CSMobile.Infrastructure.Mvvm.Navigation;
-using CSMobile.Presentation.ViewModels.ViewModels.Authentication;
-using CSMobile.Presentation.ViewModels.ViewModels.Core;
+using CSMobile.Presentation.ViewModels.Authentication;
+using CSMobile.Presentation.ViewModels.Core;
 
 namespace CSMobile.Presentation.Views.Services
 {
@@ -40,7 +40,7 @@ namespace CSMobile.Presentation.Views.Services
 
         public object GetUserSessionData(string key)
         {
-            return App.Instance.Context.UserContext.UserContextData[key];
+            return App.Instance.Context.UserContext.GetUserData(key);
         }
     }
 }

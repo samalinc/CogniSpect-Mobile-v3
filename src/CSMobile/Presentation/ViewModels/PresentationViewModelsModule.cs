@@ -1,12 +1,13 @@
 using Autofac;
 using CSMobile.Infrastructure.Common.Extensions;
-using CSMobile.Presentation.ViewModels.ExceptionHandling;
-using CSMobile.Presentation.ViewModels.ViewModels.Authentication;
-using CSMobile.Presentation.ViewModels.ViewModels.Core;
-using CSMobile.Presentation.ViewModels.ViewModels.Profile;
-using CSMobile.Presentation.ViewModels.ViewModels.Statistics;
-using CSMobile.Presentation.ViewModels.ViewModels.Tests;
-using CSMobile.Presentation.ViewModels.ViewModels.Tests.List;
+using CSMobile.Presentation.ViewModels.Authentication;
+using CSMobile.Presentation.ViewModels.Core;
+using CSMobile.Presentation.ViewModels.Profile;
+using CSMobile.Presentation.ViewModels.Services;
+using CSMobile.Presentation.ViewModels.Services.ExceptionHandling;
+using CSMobile.Presentation.ViewModels.Sessions;
+using CSMobile.Presentation.ViewModels.Statistics;
+using CSMobile.Presentation.ViewModels.Tests;
 
 namespace CSMobile.Presentation.ViewModels
 {
@@ -17,11 +18,11 @@ namespace CSMobile.Presentation.ViewModels
             builder
                 .RegisterScopedAsSelf<AuthenticationViewModel>()
                 .RegisterScopedAsSelf<ProfileViewModel>()
-                .RegisterScopedAsSelf<TestItemsViewModel>()
+                .RegisterScopedAsSelf<SessionItemsViewModel>()
                 .RegisterScopedAsSelf<TestViewModel>()
                 .RegisterScopedAsSelf<StatisticsViewModel>()
                 .RegisterScopedAsSelf<TabbedLayoutViewModel>()
-                .RegisterPerDependencyAsSelf<TestListItemViewModel>()
+                .RegisterPerDependencyAsSelf<SessionListItemViewModel>()
                 .RegisterPerDependencyAsSelf<QuestionViewModel>()
                 .RegisterPerDependencyAsSelf<AnswerViewModel>();
 

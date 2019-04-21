@@ -8,28 +8,6 @@ namespace CSMobile.Domain.Services.Tests
 {
     internal class TestsService : ITestsService
     {
-        public Task<IEnumerable<TestListItem>> GetAvailableTests()
-        {
-            var dummyData = new List<TestListItem>
-            {
-                new TestListItem
-                {
-                    Name = "First Test",
-                    Id = Guid.NewGuid()
-                },
-                new TestListItem
-                {
-                    Name = "Second Test"
-                },
-                new TestListItem
-                {
-                    Name = "Third Test"
-                },
-            };
-            
-            return Task.FromResult(dummyData.AsEnumerable());
-        }
-
         public async Task<Test> BeginTest(Guid testId)
         {
             var dummyData = new List<Question>

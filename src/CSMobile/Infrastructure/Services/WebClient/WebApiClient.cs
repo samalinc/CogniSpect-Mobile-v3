@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,31 +15,32 @@ namespace CSMobile.Infrastructure.Services.WebClient
     {
         private const string WebApiUrl = "http://10.0.2.2:8080/api";
         //private const string WebApiUrl = "http://cognispect.herokuapp.com/api";
-        private const string TokenName = "Bearer token";
-
-        private readonly IUserContextService _userContextService;
-
-        public WebApiClient(IUserContextService userContextService)
+        
+        public async Task<WebApiResponse<TData>> GetRequest<TData>(string endPoint, WebApiSecurityOptions securityOptions) where TData: class
         {
-            _userContextService = userContextService;
+            return await Request<TData>(new WebApiRequestOptions
+            {
+                Method = HttpMethod.Get,
+                Endpoint = endPoint,
+                SecurityToken = securityOptions
+            });
         }
 
         public async Task<WebApiResponse> Request(WebApiRequestOptions requestOptions)
         {
             HttpResponseMessage result = await Request(FormRequest(requestOptions));
-            return new WebApiResponse(result.IsSuccessStatusCode);
+            return new WebApiResponse(IsSucceeded(result));
         }
 
         public async Task<WebApiResponse<TData>> Request<TData>(WebApiRequestOptions requestOptions) where TData: class
         {
             HttpResponseMessage result = await Request(FormRequest(requestOptions));
-            return new WebApiResponse<TData>(result.IsSuccessStatusCode, await GetResponseData<TData>(result));
+            
+            return new WebApiResponse<TData>(IsSucceeded(result), await GetResponseData<TData>(result));
         }
 
         private async Task<HttpResponseMessage> Request(HttpRequestMessage request)
-        {
-            await AddAuthenticationToken(request);
-            
+        {            
             HttpResponseMessage result;
             
             try
@@ -55,14 +58,14 @@ namespace CSMobile.Infrastructure.Services.WebClient
             return result;
         }
 
-        private async Task AddAuthenticationToken(HttpRequestMessage request)
+        private void AddAuthenticationToken(HttpRequestMessage request, WebApiSecurityOptions securityOptions)
         {
-            if (!await _userContextService.IsAuthenticated())
+            if (securityOptions == null)
             {
                 return;
             }
             
-            request.Headers.Add(TokenName, _userContextService.GetUserSessionData("Token") as string);
+            request.Headers.Add(securityOptions.Name, securityOptions.Value);
         }
 
         private async Task<TData> GetResponseData<TData>(HttpResponseMessage result) where TData: class
@@ -93,8 +96,24 @@ namespace CSMobile.Infrastructure.Services.WebClient
                 Content = content
             };
             message.Headers.Add("Accept", "application/json");
+            AddAuthenticationToken(message, requestOptions.SecurityToken);
 
             return message;
+        }
+
+        private bool IsSucceeded(HttpResponseMessage responseMessage)
+        {
+            switch (responseMessage.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized: 
+                    throw new NotAuthorizedException();
+                case HttpStatusCode.Forbidden:
+                    throw new ForbiddenException();
+                case HttpStatusCode.NotFound:
+                    throw new NotFoundException();
+            }
+
+            return responseMessage.IsSuccessStatusCode;
         }
     }
 }

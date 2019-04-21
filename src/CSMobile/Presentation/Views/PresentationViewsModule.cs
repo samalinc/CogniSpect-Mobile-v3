@@ -13,7 +13,7 @@ namespace CSMobile.Presentation.Views
             builder
                 .RegisterScopedAsSelf<AuthenticationPage>()
                 .RegisterScopedAsSelf<ProfilePage>()
-                .RegisterScopedAsSelf<TestItemsPage>()
+                .RegisterScopedAsSelf<SessionItemsPage>()
                 .RegisterScopedAsSelf<TestPage>()
                 .RegisterScopedAsSelf<StatisticsPage>()
                 .RegisterScopedAsSelf<TabbedLayoutPage>()

@@ -4,6 +4,7 @@ using Autofac.Core;
 using CommonServiceLocator;
 using CSMobile.Domain.Services;
 using CSMobile.Domain.Services.Authentication;
+using CSMobile.Domain.Services.Sessions;
 using CSMobile.Infrastructure.Common.Contexts;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Mvvm;
@@ -13,13 +14,13 @@ using CSMobile.Infrastructure.Services;
 using CSMobile.Infrastructure.WebSockets;
 using CSMobile.Infrastructure.WebSockets.Extensions;
 using CSMobile.Presentation.ViewModels;
-using CSMobile.Presentation.ViewModels.Profiles;
-using CSMobile.Presentation.ViewModels.ViewModels.Authentication;
-using CSMobile.Presentation.ViewModels.ViewModels.Core;
-using CSMobile.Presentation.ViewModels.ViewModels.Profile;
-using CSMobile.Presentation.ViewModels.ViewModels.Statistics;
-using CSMobile.Presentation.ViewModels.ViewModels.Tests;
-using CSMobile.Presentation.ViewModels.ViewModels.Tests.List;
+using CSMobile.Presentation.ViewModels.Authentication;
+using CSMobile.Presentation.ViewModels.Core;
+using CSMobile.Presentation.ViewModels.Profile;
+using CSMobile.Presentation.ViewModels.Services;
+using CSMobile.Presentation.ViewModels.Sessions;
+using CSMobile.Presentation.ViewModels.Statistics;
+using CSMobile.Presentation.ViewModels.Tests;
 using CSMobile.Presentation.Views.Pages;
 using CSMobile.Presentation.Views.Pages.Layouts;
 using CSMobile.Presentation.Views.Services;
@@ -71,8 +72,10 @@ namespace CSMobile.Presentation.Views
             var context = new ApplicationContext(
                 ConfigureContainer(builder => builder
                     .RegisterAutomapper(cfg => cfg
-                        .RegisterProfile<TestsMappingProfile>()
+                        .RegisterProfile<TestViewModelsMappingProfile>()
                         .RegisterProfile<AuthenticationMappingProfile>()
+                        .RegisterProfile<SessionsProfile>()
+                        .RegisterProfile<SessionViewModelsProfile>()
                     )
                     .RegisterResponseHandlerResolver(cfg => cfg
                         .RegisterRecorder<WebSocketsHandlersRecorder>()
@@ -110,7 +113,7 @@ namespace CSMobile.Presentation.Views
             
             _navigationService.Configure<AuthenticationViewModel, AuthenticationPage>();
             _navigationService.Configure<ProfileViewModel, ProfilePage>();
-            _navigationService.Configure<TestItemsViewModel, TestItemsPage>();
+            _navigationService.Configure<SessionItemsViewModel, SessionItemsPage>();
             _navigationService.Configure<TestViewModel, TestPage>();
             _navigationService.Configure<StatisticsViewModel, StatisticsPage>();
             _navigationService.Configure<TabbedLayoutViewModel, TabbedLayoutPage>();

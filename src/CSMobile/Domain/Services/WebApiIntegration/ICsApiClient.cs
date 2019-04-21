@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CSMobile.Domain.Services.WebApiIntegration.Authentication;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos;
@@ -9,5 +10,6 @@ namespace CSMobile.Domain.Services.WebApiIntegration
     public interface ICsApiClient
     {
         Task<WebApiResponse<AuthenticationResult>> Authenticate([NotNull] UserAuthenticationData data);
+        Task<WebApiResponse<IEnumerable<TestSessionDto>>> GetTestSessionListItems();
     }
 }

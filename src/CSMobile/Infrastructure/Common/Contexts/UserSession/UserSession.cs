@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Autofac;
+using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Common.Contexts.UserSession
 {
@@ -8,7 +9,7 @@ namespace CSMobile.Infrastructure.Common.Contexts.UserSession
     {
         public ILifetimeScope Scope { get; private set; }
 
-        public IDictionary<string, object> UserContextData { get; set; }
+        private IDictionary<string, object> UserContextData { get; set; }
 
         private UserContext(ILifetimeScope scope, IDictionary<string, object> data)
         {
@@ -24,6 +25,17 @@ namespace CSMobile.Infrastructure.Common.Contexts.UserSession
         public void Dispose()
         {
             Scope?.Dispose();
+        }
+
+        [CanBeNull]
+        public object GetUserData([NotNull] string key)
+        {
+            if (!UserContextData.TryGetValue(key, out var value))
+            {
+                return null;
+            }
+
+            return value;
         }
     }
 }

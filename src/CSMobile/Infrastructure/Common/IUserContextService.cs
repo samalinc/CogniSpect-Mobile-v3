@@ -9,6 +9,7 @@ namespace CSMobile.Infrastructure.Common
         Task BeginUserSession([NotNull] IHaveUserContextData data);
         Task EndUserSession();
         Task<bool> IsAuthenticated();
+        [CanBeNull]
         object GetUserSessionData(string key);
     }
 }

@@ -1,4 +1,5 @@
 using System.Net.Http;
+using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Interfaces.WebClient
 {
@@ -7,8 +8,8 @@ namespace CSMobile.Infrastructure.Interfaces.WebClient
         public HttpMethod Method { get; set; }
 
         public string Endpoint { get; set; }
-        
-        public string SecurityToken { get; set; }
+
+        [CanBeNull] public WebApiSecurityOptions SecurityToken { get; set; }
 
         public object Body { get; set; }
     }

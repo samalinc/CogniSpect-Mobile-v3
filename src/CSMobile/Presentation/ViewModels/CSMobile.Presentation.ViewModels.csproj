@@ -9,12 +9,6 @@
       <Compile Update="ViewModels\Tests\TestViewModel.Props.cs">
         <DependentUpon>TestViewModel.cs</DependentUpon>
       </Compile>
-      <Compile Update="ViewModels\Tests\List\TestItemsViewModel.Props.cs">
-        <DependentUpon>TestItemsViewModel.cs</DependentUpon>
-      </Compile>
-      <Compile Update="ViewModels\Tests\List\TestListItemViewModel.Props.cs">
-        <DependentUpon>TestListItemViewModel.cs</DependentUpon>
-      </Compile>
     </ItemGroup>
 
     <ItemGroup>
