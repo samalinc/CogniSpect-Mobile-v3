@@ -8,7 +8,8 @@ namespace CSMobile.Presentation.Droid
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterScopedAsImplementedInterfaces<AndroidWifiPositionsService>();
+                .RegisterSingleAsImplementedInterfaces<AndroidWifiPositionsService>()
+                .RegisterSingleAsImplementedInterfaces<AndroidCultureResolver>();
         }
     }
 }

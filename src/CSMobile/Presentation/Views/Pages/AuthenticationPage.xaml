@@ -3,6 +3,7 @@
 <local:AuthenticationBasePage xmlns="http://xamarin.com/schemas/2014/forms"
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages"
+                              xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
                               x:Class="CSMobile.Presentation.Views.Pages.AuthenticationPage"
                               NavigationPage.HasNavigationBar="False">
 
@@ -21,14 +22,14 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <StackLayout Grid.Row="1">
-                <Label Text="Login" />
+                <Label Text="{viewExtensions:Translate Login}" />
                 <Entry Text="{Binding StudNumber, Mode=TwoWay}" />
             </StackLayout>
             <StackLayout Grid.Row="2">
-                <Label Text="Password" />
+                <Label Text="{viewExtensions:Translate Password}" />
                 <Entry IsPassword="True" Text="{Binding Password, Mode=TwoWay}" />
             </StackLayout>
-            <Button HorizontalOptions="Start" Grid.Row="3" Text="Вход" Command="{Binding AuthenticateCommand}" />
+            <Button HorizontalOptions="Start" Grid.Row="3" Text="{viewExtensions:Translate SignIn}" Command="{Binding AuthenticateCommand}" />
 
         </Grid>
         <AbsoluteLayout BackgroundColor="#22000000"

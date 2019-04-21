@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Autofac;
 using Autofac.Core;
 using CommonServiceLocator;
@@ -7,6 +8,7 @@ using CSMobile.Domain.Services.Authentication;
 using CSMobile.Domain.Services.Sessions;
 using CSMobile.Infrastructure.Common.Contexts;
 using CSMobile.Infrastructure.Common.Extensions;
+using CSMobile.Infrastructure.Interfaces.Localization;
 using CSMobile.Infrastructure.Mvvm;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Security;
@@ -27,6 +29,7 @@ using CSMobile.Presentation.Views.Services;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using CSMobile.Presentation.Views.Resources;
 using Xamarin.Forms;
 
 namespace CSMobile.Presentation.Views
@@ -95,6 +98,7 @@ namespace CSMobile.Presentation.Views
             
             ConfigureNavigation();
             ConfigureJsonSerializing();
+            ConfigureLocalization();
             
             return context;
         }
@@ -127,6 +131,12 @@ namespace CSMobile.Presentation.Views
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
+        }
+
+        private void ConfigureLocalization()
+        {
+            ICultureResolver cultureResolver = ServiceLocator.Current.GetInstance<ICultureResolver>();
+            AppResource.Culture = cultureResolver.GetCurrentCultureInfo();
         }
     }
 }

@@ -21,7 +21,8 @@ namespace CSMobile.Presentation.Views
                 .RegisterSingleAsImplementedInterfaces<UserContextService>()
                 .RegisterSingleAsImplementedInterfaces<WebSocketSessionService>()
                 .RegisterSingleAsImplementedInterfaces<NavigationService>()
-                .RegisterSingleAsImplementedInterfaces<AlertService>();
+                .RegisterSingleAsImplementedInterfaces<AlertService>()
+                .RegisterSingleAsImplementedInterfaces<Localizer>();
         }
     }
 }

@@ -34,6 +34,8 @@
     <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
+    <MandroidI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,6 +68,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidCultureResolver.cs" />
     <Compile Include="AndroidModule.cs" />
     <Compile Include="AndroidWifiPositionsService.cs" />
     <Compile Include="MainActivity.cs" />
@@ -106,6 +109,10 @@
     <ProjectReference Include="..\..\Infrastructure\Common\CSMobile.Infrastructure.Common.csproj">
       <Project>{4d0b1bf5-ba53-4b7e-8a4c-5d158f52cdf0}</Project>
       <Name>CSMobile.Infrastructure.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Interfaces\CSMobile.Infrastructure.Interfaces.csproj">
+      <Project>{86a8d0f8-f888-4924-bde2-7ed22cbe4993}</Project>
+      <Name>CSMobile.Infrastructure.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\Security\CSMobile.Infrastructure.Security.csproj">
       <Project>{99c9cd1c-c80f-4830-8ebe-d145cf7b8167}</Project>

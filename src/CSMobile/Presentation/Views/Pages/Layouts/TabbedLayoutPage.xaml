@@ -5,22 +5,23 @@
             xmlns:views="clr-namespace:CSMobile.Presentation.Views.Pages"
             x:Class="CSMobile.Presentation.Views.Pages.Layouts.TabbedLayoutPage"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
             android:TabbedPage.ToolbarPlacement="Bottom">
 
     <TabbedPage.Children>
-        <NavigationPage Title="Tests">
+        <NavigationPage Title="{viewExtensions:Translate Tests}">
             <x:Arguments>
                 <views:SessionItemsPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Profile">
+        <NavigationPage Title="{viewExtensions:Translate Profile}">
             <x:Arguments>
                 <views:ProfilePage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Statistics">
+        <NavigationPage Title="{viewExtensions:Translate Statistics}">
             <x:Arguments>
                 <views:StatisticsPage />
             </x:Arguments>

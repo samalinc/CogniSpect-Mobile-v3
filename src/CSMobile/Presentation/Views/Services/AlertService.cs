@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using CSMobile.Infrastructure.Interfaces.Localization;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Presentation.ViewModels.Services.Alerts;
 
@@ -7,10 +8,14 @@ namespace CSMobile.Presentation.Views.Services
     internal class AlertService : IAlertService
     {
         private readonly INavigationService _navigationService;
+        private readonly ILocalizer _localizer;
 
-        public AlertService(INavigationService navigationService)
+        public AlertService(
+            INavigationService navigationService,
+            ILocalizer localizer)
         {
             _navigationService = navigationService;
+            _localizer = localizer;
         }
 
         public async Task<bool> Alert(AlertConfigs configs)
@@ -27,9 +32,9 @@ namespace CSMobile.Presentation.Views.Services
         {
             await Alert(new AlertConfigs
             {
-                Title = "Error",
+                Title = _localizer["Error"],
                 Message = message,
-                Cancel = "OK"
+                Cancel = _localizer["Ok"]
             });
         }
     }

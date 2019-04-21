@@ -134,6 +134,10 @@
       <Project>{4d0b1bf5-ba53-4b7e-8a4c-5d158f52cdf0}</Project>
       <Name>CSMobile.Infrastructure.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Interfaces\CSMobile.Infrastructure.Interfaces.csproj">
+      <Project>{86a8d0f8-f888-4924-bde2-7ed22cbe4993}</Project>
+      <Name>CSMobile.Infrastructure.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Presentation\Views\CSMobile.Presentation.Views.csproj">
       <Project>{85F8530D-F6C4-4BE2-9D5D-4D679035BF87}</Project>
       <Name>CSMobile.Presentation.Views</Name>

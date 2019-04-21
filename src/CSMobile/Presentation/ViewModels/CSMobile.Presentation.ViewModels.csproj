@@ -9,6 +9,18 @@
       <Compile Update="ViewModels\Tests\TestViewModel.Props.cs">
         <DependentUpon>TestViewModel.cs</DependentUpon>
       </Compile>
+      <Compile Update="Sessions\SessionListItemViewModel.Props.cs">
+        <DependentUpon>SessionListItemViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Sessions\SessionItemsViewModel.Props.cs">
+        <DependentUpon>SessionItemsViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Tests\TestViewModel.Props.cs">
+        <DependentUpon>TestViewModel.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Authentication\AuthenticationViewModel.Props.cs">
+        <DependentUpon>AuthenticationViewModel.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
