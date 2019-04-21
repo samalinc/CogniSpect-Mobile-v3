@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using CSMobile.Application.ViewModels.Alerts;
-using CSMobile.Infrastructure.Services.Exceptions;
+using CSMobile.Infrastructure.Interfaces.Exceptions;
+using CSMobile.Infrastructure.Mvvm;
+using CSMobile.Presentation.ViewModels.Alerts;
 
-namespace CSMobile.Application.ViewModels.ExceptionHandling
+namespace CSMobile.Presentation.ViewModels.ExceptionHandling
 {
     internal class AppExceptionHandler : IAppExceptionHandler
     {
@@ -16,6 +18,7 @@ namespace CSMobile.Application.ViewModels.ExceptionHandling
 
         public async Task HandleException(Exception ex)
         {
+            Debug.WriteLine(ex.ToString());
             await _alertService.ErrorAlert(ResolveExceptionMessage(ex));
         }
 

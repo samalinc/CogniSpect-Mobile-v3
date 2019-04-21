@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
-using CSMobile.Application.ViewModels.Navigation;
-using CSMobile.Application.ViewModels.ViewModels;
-using CSMobile.Application.ViewModels.ViewModels.Authentication;
-using CSMobile.Application.ViewModels.ViewModels.Core;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Common.Contexts.UserSession;
+using CSMobile.Infrastructure.Mvvm.Navigation;
+using CSMobile.Presentation.ViewModels.ViewModels.Authentication;
+using CSMobile.Presentation.ViewModels.ViewModels.Core;
 
 namespace CSMobile.Presentation.Views.Services
 {
@@ -21,7 +20,7 @@ namespace CSMobile.Presentation.Views.Services
         {
             App.Instance.Context.EndUserSession();
             App.Instance.Context.BeginNewUserSession(data.ToData());
-            App.Instance.MainPage = _navigationService.SetRootPage<TabbedLayoutViewModel>();
+            App.Instance.MainPage = ((NavigationService) _navigationService).SetRootPage<TabbedLayoutViewModel>();
             
             return Task.CompletedTask;
         }
@@ -29,7 +28,7 @@ namespace CSMobile.Presentation.Views.Services
         public Task EndUserSession()
         {
             App.Instance.Context.EndUserSession();
-            App.Instance.MainPage = _navigationService.SetRootPage<AuthenticationViewModel>();
+            App.Instance.MainPage = ((NavigationService) _navigationService).SetRootPage<AuthenticationViewModel>();
 
             return Task.CompletedTask;
         }

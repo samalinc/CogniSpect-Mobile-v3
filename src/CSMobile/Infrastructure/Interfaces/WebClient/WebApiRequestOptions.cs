@@ -1,6 +1,6 @@
 using System.Net.Http;
 
-namespace CSMobile.Infrastructure.Services.WebClient
+namespace CSMobile.Infrastructure.Interfaces.WebClient
 {
     public class WebApiRequestOptions
     {

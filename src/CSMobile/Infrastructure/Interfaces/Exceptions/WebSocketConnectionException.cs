@@ -1,6 +1,6 @@
 using System;
 
-namespace CSMobile.Infrastructure.Services.Exceptions
+namespace CSMobile.Infrastructure.Interfaces.Exceptions
 {
     public class WebSocketConnectionException : Exception
     {

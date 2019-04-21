@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CSMobile.Infrastructure.Mvvm.Commands;
 using GalaSoft.MvvmLight;
-using Xamarin.Forms;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Core
+namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
 {
     public abstract class BaseViewModel : ViewModelBase
     {

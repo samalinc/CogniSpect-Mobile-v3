@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using AutoMapper;
-using CSMobile.Application.ViewModels.ViewModels.Core;
-using Xamarin.Forms.Internals;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
-namespace CSMobile.Application.ViewModels.ViewModels
+namespace CSMobile.Infrastructure.Mvvm
 {
     internal class ViewModelsFactory : IViewModelsFactory
     {
@@ -31,7 +30,10 @@ namespace CSMobile.Application.ViewModels.ViewModels
             where TDestination : BaseViewModel
         {
             IEnumerable<TDestination> result = _mapper.Map<IEnumerable<TDestination>>(source);
-            result.ForEach((v) => SetHandlers(v, page));
+            foreach (var destination in result)
+            {
+                SetHandlers(destination, page);
+            }
 
             return result;
         }

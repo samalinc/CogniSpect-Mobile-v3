@@ -1,4 +1,4 @@
-namespace CSMobile.Infrastructure.Services.WebApiIntegration.Dtos
+namespace CSMobile.Domain.Services.WebApiIntegration.Dtos
 {
     public class AuthenticationResult
     {

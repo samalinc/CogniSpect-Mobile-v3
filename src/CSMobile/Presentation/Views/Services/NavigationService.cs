@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CommonServiceLocator;
-using CSMobile.Application.ViewModels.Navigation;
-using CSMobile.Application.ViewModels.ViewModels.Core;
+using CSMobile.Infrastructure.Mvvm.Navigation;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using Xamarin.Forms;
 
 namespace CSMobile.Presentation.Views.Services

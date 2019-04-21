@@ -1,4 +1,4 @@
-namespace CSMobile.Application.ViewModels.ViewModels.Core
+namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
 {
     public interface IViewPage<TViewModel> where TViewModel : BasePageViewModel
     {

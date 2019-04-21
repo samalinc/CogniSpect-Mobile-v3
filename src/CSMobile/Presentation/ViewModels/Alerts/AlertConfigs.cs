@@ -1,4 +1,4 @@
-namespace CSMobile.Application.ViewModels.Alerts
+namespace CSMobile.Presentation.ViewModels.Alerts
 {
     public class AlertConfigs
     {

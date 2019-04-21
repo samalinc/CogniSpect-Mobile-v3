@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using AutoMapper;
+using CSMobile.Domain.Services.WebApiIntegration;
+using CSMobile.Domain.Services.WebApiIntegration.Authentication;
+using CSMobile.Domain.Services.WebApiIntegration.Dtos;
 using CSMobile.Infrastructure.Common;
-using CSMobile.Infrastructure.Services.WebApiIntegration;
-using CSMobile.Infrastructure.Services.WebApiIntegration.Authentication;
-using CSMobile.Infrastructure.Services.WebApiIntegration.Dtos;
-using CSMobile.Infrastructure.Services.WebClient;
+using CSMobile.Infrastructure.Interfaces.WebClient;
 
 namespace CSMobile.Domain.Services.Authentication
 {

@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\Interfaces\CSMobile.Infrastructure.Interfaces.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Security\CSMobile.Infrastructure.Security.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Services\CSMobile.Infrastructure.Services.csproj" />
     <ProjectReference Include="..\..\Infrastructure\WebSockets\CSMobile.Infrastructure.WebSockets.csproj" />
     <ProjectReference Include="..\Models\CSMobile.Domain.Models.csproj" />
   </ItemGroup>

@@ -1,11 +1,11 @@
 using AutoMapper;
-using CSMobile.Application.ViewModels.ViewModels.Tests;
-using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Domain.Models.Tests;
 using CSMobile.Domain.Services.Tests;
 using CSMobile.Infrastructure.Common.Extensions;
+using CSMobile.Presentation.ViewModels.ViewModels.Tests;
+using CSMobile.Presentation.ViewModels.ViewModels.Tests.List;
 
-namespace CSMobile.Application.ViewModels.Profiles
+namespace CSMobile.Presentation.ViewModels.Profiles
 {
     public class TestsMappingProfile : Profile
     {

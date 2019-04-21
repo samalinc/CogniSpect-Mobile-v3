@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CSMobile.Application.ViewModels.ViewModels.Core;
 using CSMobile.Domain.Services.Authentication;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Profile
+namespace CSMobile.Presentation.ViewModels.ViewModels.Profile
 {
     public class ProfileViewModel : BasePageViewModel
     {

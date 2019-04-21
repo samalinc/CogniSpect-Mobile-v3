@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace CSMobile.Application.ViewModels.ExceptionHandling
+namespace CSMobile.Infrastructure.Mvvm
 {
     public interface IAppExceptionHandler
     {

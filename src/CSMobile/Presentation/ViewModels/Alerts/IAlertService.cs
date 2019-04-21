@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 
-namespace CSMobile.Application.ViewModels.Alerts
+namespace CSMobile.Presentation.ViewModels.Alerts
 {
     public interface IAlertService
     {

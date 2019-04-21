@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CommonServiceLocator;
-using CSMobile.Application.ViewModels.ExceptionHandling;
 using CSMobile.Infrastructure.Common.Extensions;
 using JetBrains.Annotations;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Core
+namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
 {
     public abstract partial class BasePageViewModel : BaseViewModel
     {

@@ -1,4 +1,4 @@
-namespace CSMobile.Infrastructure.Services.WebApiIntegration
+namespace CSMobile.Domain.Services.WebApiIntegration
 {
     public static class ApiEndpoints
     {

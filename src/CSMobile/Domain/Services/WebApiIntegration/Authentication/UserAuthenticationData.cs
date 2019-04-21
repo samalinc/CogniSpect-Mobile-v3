@@ -1,4 +1,4 @@
-namespace CSMobile.Infrastructure.Services.WebApiIntegration.Authentication
+namespace CSMobile.Domain.Services.WebApiIntegration.Authentication
 {
     public class UserAuthenticationData
     {

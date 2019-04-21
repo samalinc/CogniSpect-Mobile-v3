@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Tests
+namespace CSMobile.Presentation.ViewModels.ViewModels.Tests
 {
     public partial class TestViewModel
     {

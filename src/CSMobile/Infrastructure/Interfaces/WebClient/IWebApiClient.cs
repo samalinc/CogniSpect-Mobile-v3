@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 
-namespace CSMobile.Infrastructure.Services.WebClient
+namespace CSMobile.Infrastructure.Interfaces.WebClient
 {
     public interface IWebApiClient
     {

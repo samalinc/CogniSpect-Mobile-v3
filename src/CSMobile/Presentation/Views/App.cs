@@ -2,33 +2,35 @@
 using Autofac;
 using Autofac.Core;
 using CommonServiceLocator;
-using CSMobile.Application.ViewModels;
-using CSMobile.Application.ViewModels.Navigation;
-using CSMobile.Application.ViewModels.Profiles;
-using CSMobile.Application.ViewModels.ViewModels;
-using CSMobile.Application.ViewModels.ViewModels.Authentication;
-using CSMobile.Application.ViewModels.ViewModels.Core;
-using CSMobile.Application.ViewModels.ViewModels.Profile;
-using CSMobile.Application.ViewModels.ViewModels.Statistics;
-using CSMobile.Application.ViewModels.ViewModels.Tests;
-using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Domain.Services;
 using CSMobile.Domain.Services.Authentication;
 using CSMobile.Infrastructure.Common.Contexts;
 using CSMobile.Infrastructure.Common.Extensions;
+using CSMobile.Infrastructure.Mvvm;
+using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Security;
 using CSMobile.Infrastructure.Services;
 using CSMobile.Infrastructure.WebSockets;
 using CSMobile.Infrastructure.WebSockets.Extensions;
+using CSMobile.Presentation.ViewModels;
+using CSMobile.Presentation.ViewModels.Profiles;
+using CSMobile.Presentation.ViewModels.ViewModels.Authentication;
+using CSMobile.Presentation.ViewModels.ViewModels.Core;
+using CSMobile.Presentation.ViewModels.ViewModels.Profile;
+using CSMobile.Presentation.ViewModels.ViewModels.Statistics;
+using CSMobile.Presentation.ViewModels.ViewModels.Tests;
+using CSMobile.Presentation.ViewModels.ViewModels.Tests.List;
 using CSMobile.Presentation.Views.Pages;
 using CSMobile.Presentation.Views.Pages.Layouts;
+using CSMobile.Presentation.Views.Services;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Xamarin.Forms;
 
 namespace CSMobile.Presentation.Views
 {
-    public class App : Xamarin.Forms.Application
+    public class App : Application
     {
         private INavigationService _navigationService;
         private IServiceLocator _serviceLocator;
@@ -77,6 +79,7 @@ namespace CSMobile.Presentation.Views
                     )
                     .RegisterModule(platformSpecificModule)
                     .RegisterModule<PresentationViewsModule>()
+                    .RegisterModule<MvvmModule>()
                     .RegisterModule<WebSocketsModule>()
                     .RegisterModule<PresentationViewModelsModule>()
                     .RegisterModule<DomainServicesModule>()
@@ -112,7 +115,7 @@ namespace CSMobile.Presentation.Views
             _navigationService.Configure<StatisticsViewModel, StatisticsPage>();
             _navigationService.Configure<TabbedLayoutViewModel, TabbedLayoutPage>();
 
-            MainPage = _navigationService.SetRootPage<AuthenticationViewModel>();
+            MainPage = ((NavigationService) _navigationService).SetRootPage<AuthenticationViewModel>();
         }
 
         private void ConfigureJsonSerializing()

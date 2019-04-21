@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Services\CSMobile.Infrastructure.Services.csproj" />
+      <ProjectReference Include="..\Interfaces\CSMobile.Infrastructure.Interfaces.csproj" />
     </ItemGroup>
 
 </Project>

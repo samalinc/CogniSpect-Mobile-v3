@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
-using CSMobile.Infrastructure.Services.WebSocketClient;
+using CSMobile.Infrastructure.Interfaces.WebSocketClient;
 using CSMobile.Infrastructure.WebSockets.ResponseHandling;
 
 namespace CSMobile.Infrastructure.WebSockets

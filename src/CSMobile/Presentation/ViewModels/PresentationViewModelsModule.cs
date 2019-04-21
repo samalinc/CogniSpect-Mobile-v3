@@ -1,15 +1,14 @@
 using Autofac;
-using CSMobile.Application.ViewModels.ExceptionHandling;
-using CSMobile.Application.ViewModels.ViewModels;
-using CSMobile.Application.ViewModels.ViewModels.Authentication;
-using CSMobile.Application.ViewModels.ViewModels.Core;
-using CSMobile.Application.ViewModels.ViewModels.Profile;
-using CSMobile.Application.ViewModels.ViewModels.Statistics;
-using CSMobile.Application.ViewModels.ViewModels.Tests;
-using CSMobile.Application.ViewModels.ViewModels.Tests.List;
 using CSMobile.Infrastructure.Common.Extensions;
+using CSMobile.Presentation.ViewModels.ExceptionHandling;
+using CSMobile.Presentation.ViewModels.ViewModels.Authentication;
+using CSMobile.Presentation.ViewModels.ViewModels.Core;
+using CSMobile.Presentation.ViewModels.ViewModels.Profile;
+using CSMobile.Presentation.ViewModels.ViewModels.Statistics;
+using CSMobile.Presentation.ViewModels.ViewModels.Tests;
+using CSMobile.Presentation.ViewModels.ViewModels.Tests.List;
 
-namespace CSMobile.Application.ViewModels
+namespace CSMobile.Presentation.ViewModels
 {
     public class PresentationViewModelsModule : Module
     {
@@ -29,8 +28,7 @@ namespace CSMobile.Application.ViewModels
             builder
                 .RegisterSingleAsSelf<WebSocketsHandlersRecorder>()
                 .RegisterSingleAsImplementedInterfaces<AppExceptionHandler>()
-                .RegisterSingleAsImplementedInterfaces<AuthenticationAlertsFactory>()
-                .RegisterSingleAsImplementedInterfaces<ViewModelsFactory>();
+                .RegisterSingleAsImplementedInterfaces<AuthenticationAlertsFactory>();
         }
     }
 }

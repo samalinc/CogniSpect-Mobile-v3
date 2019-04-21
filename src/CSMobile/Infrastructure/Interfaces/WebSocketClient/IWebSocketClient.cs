@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 
-namespace CSMobile.Infrastructure.Services.WebSocketClient
+namespace CSMobile.Infrastructure.Interfaces.WebSocketClient
 {
     public interface IWebSocketClient : IDisposable
     {

@@ -3,7 +3,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Common;
-using CSMobile.Infrastructure.Services.Exceptions;
+using CSMobile.Infrastructure.Interfaces.Exceptions;
+using CSMobile.Infrastructure.Interfaces.WebClient;
 using Newtonsoft.Json;
 
 namespace CSMobile.Infrastructure.Services.WebClient

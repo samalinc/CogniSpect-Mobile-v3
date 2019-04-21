@@ -1,7 +1,7 @@
 using System;
-using CSMobile.Application.ViewModels.ViewModels.Core;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Tests
+namespace CSMobile.Presentation.ViewModels.ViewModels.Tests
 {
     public class AnswerViewModel : BaseViewModel
     {

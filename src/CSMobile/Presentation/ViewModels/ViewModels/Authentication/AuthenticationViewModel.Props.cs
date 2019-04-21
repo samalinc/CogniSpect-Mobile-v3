@@ -1,4 +1,4 @@
-namespace CSMobile.Application.ViewModels.ViewModels.Authentication
+namespace CSMobile.Presentation.ViewModels.ViewModels.Authentication
 {
     public partial class AuthenticationViewModel
     {

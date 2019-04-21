@@ -1,6 +1,7 @@
 using Autofac;
 using CSMobile.Domain.Services.Authentication;
 using CSMobile.Domain.Services.Tests;
+using CSMobile.Domain.Services.WebApiIntegration;
 using CSMobile.Infrastructure.Common.Extensions;
 
 namespace CSMobile.Domain.Services
@@ -12,7 +13,8 @@ namespace CSMobile.Domain.Services
             builder
                 .RegisterScopedAsImplementedInterfaces<TestsService>()
                 .RegisterScopedAsImplementedInterfaces<AuthenticationService>()
-                .RegisterScopedAsImplementedInterfaces<QuestionsService>();
+                .RegisterScopedAsImplementedInterfaces<QuestionsService>()
+                .RegisterScopedAsImplementedInterfaces<CsApiClient>();
         }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Tests.List
+namespace CSMobile.Presentation.ViewModels.ViewModels.Tests.List
 {
     public partial class TestListItemViewModel
     {

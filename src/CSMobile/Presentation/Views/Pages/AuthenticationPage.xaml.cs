@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel;
-using CSMobile.Application.ViewModels.ViewModels;
-using CSMobile.Application.ViewModels.ViewModels.Authentication;
-using Xamarin.Forms;
+using CSMobile.Presentation.ViewModels.ViewModels.Authentication;
 using Xamarin.Forms.Xaml;
 
 namespace CSMobile.Presentation.Views.Pages

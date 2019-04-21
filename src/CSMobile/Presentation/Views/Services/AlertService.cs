@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using CSMobile.Application.ViewModels.Alerts;
-using CSMobile.Application.ViewModels.Navigation;
+using CSMobile.Infrastructure.Mvvm.Navigation;
+using CSMobile.Presentation.ViewModels.Alerts;
 
 namespace CSMobile.Presentation.Views.Services
 {

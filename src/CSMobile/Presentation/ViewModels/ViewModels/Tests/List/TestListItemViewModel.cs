@@ -1,14 +1,14 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CSMobile.Application.ViewModels.Navigation;
-using CSMobile.Application.ViewModels.ViewModels.Core;
 using CSMobile.Domain.Models.Tests;
 using CSMobile.Domain.Services.SharedEvents;
 using CSMobile.Domain.Services.Tests;
 using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
+using CSMobile.Infrastructure.Mvvm.Navigation;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Tests.List
+namespace CSMobile.Presentation.ViewModels.ViewModels.Tests.List
 {
     public partial class TestListItemViewModel : BaseViewModel
     {

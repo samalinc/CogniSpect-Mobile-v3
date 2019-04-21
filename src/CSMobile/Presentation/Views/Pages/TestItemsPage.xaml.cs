@@ -1,5 +1,5 @@
 using System.ComponentModel;
-using CSMobile.Application.ViewModels.ViewModels.Tests.List;
+using CSMobile.Presentation.ViewModels.ViewModels.Tests.List;
 using Xamarin.Forms.Xaml;
 
 namespace CSMobile.Presentation.Views.Pages

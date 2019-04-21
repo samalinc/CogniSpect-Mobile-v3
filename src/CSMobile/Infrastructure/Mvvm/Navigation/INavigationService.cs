@@ -1,11 +1,7 @@
-using System;
 using System.Threading.Tasks;
-using CSMobile.Application.ViewModels.ViewModels;
-using CSMobile.Application.ViewModels.ViewModels.Core;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using JetBrains.Annotations;
-using Xamarin.Forms;
-
-namespace CSMobile.Application.ViewModels.Navigation
+namespace CSMobile.Infrastructure.Mvvm.Navigation
 {
     public interface INavigationService
     {
@@ -19,6 +15,5 @@ namespace CSMobile.Application.ViewModels.Navigation
         Task NavigateModalAsync<TViewModel>([CanBeNull] object parameter, bool animated = true) where TViewModel : BasePageViewModel;
         Task NavigateAsync<TViewModel>(bool animated = true) where TViewModel : BasePageViewModel;
         Task NavigateAsync<TViewModel>([CanBeNull] object parameter, bool animated = true) where TViewModel : BasePageViewModel;
-        Page SetRootPage<TViewModel>() where TViewModel : BasePageViewModel;
     }
 }

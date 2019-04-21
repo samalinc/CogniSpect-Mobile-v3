@@ -1,6 +1,6 @@
-using CSMobile.Application.ViewModels.ViewModels.Core;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Statistics
+namespace CSMobile.Presentation.ViewModels.ViewModels.Statistics
 {
     public class StatisticsViewModel : BasePageViewModel
     {

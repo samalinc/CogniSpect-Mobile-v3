@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using CSMobile.Application.ViewModels.ViewModels.Core;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Tests
+namespace CSMobile.Presentation.ViewModels.ViewModels.Tests
 {
     public class QuestionViewModel : BaseViewModel
     {

@@ -1,10 +1,10 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using CSMobile.Infrastructure.Services.WebApiIntegration.Authentication;
-using CSMobile.Infrastructure.Services.WebApiIntegration.Dtos;
-using CSMobile.Infrastructure.Services.WebClient;
+using CSMobile.Domain.Services.WebApiIntegration.Authentication;
+using CSMobile.Domain.Services.WebApiIntegration.Dtos;
+using CSMobile.Infrastructure.Interfaces.WebClient;
 
-namespace CSMobile.Infrastructure.Services.WebApiIntegration
+namespace CSMobile.Domain.Services.WebApiIntegration
 {
     internal class CsApiClient : ICsApiClient
     {

@@ -1,11 +1,11 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
-using CSMobile.Application.ViewModels.ViewModels.Core;
 using CSMobile.Domain.Services.Tests;
+using CSMobile.Infrastructure.Mvvm;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Tests.List
+namespace CSMobile.Presentation.ViewModels.ViewModels.Tests.List
 {
     public partial class TestItemsViewModel : BasePageViewModel
     {

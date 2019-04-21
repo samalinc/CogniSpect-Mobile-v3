@@ -1,7 +1,7 @@
 using AutoMapper;
-using CSMobile.Infrastructure.Services.WebApiIntegration.Authentication;
-using CSMobile.Infrastructure.Services.WebApiIntegration.Dtos;
-using CSMobile.Infrastructure.Services.WebClient;
+using CSMobile.Domain.Services.WebApiIntegration.Authentication;
+using CSMobile.Domain.Services.WebApiIntegration.Dtos;
+using CSMobile.Infrastructure.Interfaces.WebClient;
 
 namespace CSMobile.Domain.Services.Authentication
 {

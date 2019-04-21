@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using CSMobile.Application.ViewModels.ViewModels.Core;
+using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using JetBrains.Annotations;
 
-namespace CSMobile.Application.ViewModels.ViewModels
+namespace CSMobile.Infrastructure.Mvvm
 {
     public interface IViewModelsFactory
     {

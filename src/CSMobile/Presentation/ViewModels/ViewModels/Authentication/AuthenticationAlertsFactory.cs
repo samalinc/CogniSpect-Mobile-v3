@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using CSMobile.Application.ViewModels.Alerts;
+using CSMobile.Presentation.ViewModels.Alerts;
 
-namespace CSMobile.Application.ViewModels.ViewModels.Authentication
+namespace CSMobile.Presentation.ViewModels.ViewModels.Authentication
 {
     internal class AuthenticationAlertsFactory : IAuthenticationAlertsFactory
     {

@@ -2,18 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <RootNamespace>CSMobile.Application.ViewModels</RootNamespace>
+        <RootNamespace>CSMobile.Presentation.ViewModels</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\..\Domain\Services\CSMobile.Domain.Services.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="MvvmLight" Version="5.4.1.1" />
-      <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
-      <PackageReference Include="Xamarin.Forms" Version="3.6.0.264807" />
-    </ItemGroup>
 
     <ItemGroup>
       <Compile Update="ViewModels\Tests\TestViewModel.Props.cs">
@@ -22,12 +12,14 @@
       <Compile Update="ViewModels\Tests\List\TestItemsViewModel.Props.cs">
         <DependentUpon>TestItemsViewModel.cs</DependentUpon>
       </Compile>
-      <Compile Update="ViewModels\Core\BasePageViewModel.Props.cs">
-        <DependentUpon>BasePageViewModel.cs</DependentUpon>
-      </Compile>
       <Compile Update="ViewModels\Tests\List\TestListItemViewModel.Props.cs">
         <DependentUpon>TestListItemViewModel.cs</DependentUpon>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Domain\Services\CSMobile.Domain.Services.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\Mvvm\CSMobile.Infrastructure.Mvvm.csproj" />
     </ItemGroup>
 
 </Project>

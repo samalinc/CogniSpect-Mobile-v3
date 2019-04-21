@@ -4,7 +4,7 @@ using CSMobile.Domain.Services.SharedEvents;
 using CSMobile.Domain.Services.Tests;
 using CSMobile.Infrastructure.WebSockets.ResponseHandling.Core;
 
-namespace CSMobile.Application.ViewModels
+namespace CSMobile.Presentation.ViewModels
 {
     public class WebSocketsHandlersRecorder : ResponseHandlersRecorder
     {

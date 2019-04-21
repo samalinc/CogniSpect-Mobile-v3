@@ -1,7 +1,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using CSMobile.Infrastructure.Services.Exceptions;
+using CSMobile.Infrastructure.Interfaces.Exceptions;
+using CSMobile.Infrastructure.Interfaces.WebSocketClient;
 using Newtonsoft.Json;
 using Quobject.Collections.Immutable;
 using Quobject.SocketIoClientDotNet.Client;
@@ -18,7 +19,7 @@ namespace CSMobile.Infrastructure.Services.WebSocketClient
             _socket = IO.Socket(AppConstants.WebSocketsUrl, new IO.Options
             {
                 ReconnectionAttempts = WebSocketsConstants.ReconnectionAttempts,
-                Transports = ImmutableList<string>.Empty.Add(WebSocketsConstants.DefaultTransport)
+                Transports = ImmutableList<string>.Empty.Add(WebSocketsConstants.DefaultTransport),
             });
             
             // need to check when attempts will end
