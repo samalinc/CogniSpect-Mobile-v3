@@ -9,19 +9,19 @@
             android:TabbedPage.ToolbarPlacement="Bottom">
 
     <TabbedPage.Children>
-        <NavigationPage Title="{viewExtensions:Translate Tests}">
+        <NavigationPage Title="{viewExtensions:Locale Tests}">
             <x:Arguments>
                 <views:SessionItemsPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="{viewExtensions:Translate Profile}">
+        <NavigationPage Title="{viewExtensions:Locale Profile}">
             <x:Arguments>
                 <views:ProfilePage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="{viewExtensions:Translate Statistics}">
+        <NavigationPage Title="{viewExtensions:Locale Statistics}">
             <x:Arguments>
                 <views:StatisticsPage />
             </x:Arguments>

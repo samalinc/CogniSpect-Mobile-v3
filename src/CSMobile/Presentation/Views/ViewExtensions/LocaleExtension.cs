@@ -7,13 +7,13 @@ using Xamarin.Forms.Xaml;
 namespace CSMobile.Presentation.Views.ViewExtensions
 {
     [ContentProperty("Text")]
-    internal class TranslateExtension : IMarkupExtension
+    internal class LocaleExtension : IMarkupExtension
     {
         private readonly ILocalizer _localizer;
         
         public string Text { get; set; }
 
-        public TranslateExtension()
+        public LocaleExtension()
         {
             _localizer = ServiceLocator.Current.GetInstance<ILocalizer>();
         }

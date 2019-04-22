@@ -95,11 +95,11 @@ namespace CSMobile.Presentation.Views
 
             _serviceLocator = new AutofacServiceLocator(context);
             ServiceLocator.SetLocatorProvider(() => _serviceLocator);
-            
+
             ConfigureNavigation();
             ConfigureJsonSerializing();
             ConfigureLocalization();
-            
+
             return context;
         }
 
@@ -114,7 +114,7 @@ namespace CSMobile.Presentation.Views
         private void ConfigureNavigation()
         {
             _navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
-            
+
             _navigationService.Configure<AuthenticationViewModel, AuthenticationPage>();
             _navigationService.Configure<ProfileViewModel, ProfilePage>();
             _navigationService.Configure<SessionItemsViewModel, SessionItemsPage>();
@@ -136,6 +136,7 @@ namespace CSMobile.Presentation.Views
         private void ConfigureLocalization()
         {
             ICultureResolver cultureResolver = ServiceLocator.Current.GetInstance<ICultureResolver>();
+            // TODO: think why it doesn't work. Currently we can't change culture in this way
             AppResource.Culture = cultureResolver.GetCurrentCultureInfo();
         }
     }

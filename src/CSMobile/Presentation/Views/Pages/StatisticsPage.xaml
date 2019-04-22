@@ -7,7 +7,7 @@
                           x:Class="CSMobile.Presentation.Views.Pages.StatisticsPage"
                           x:Name="StatisticsPageBase"
                           NavigationPage.HasNavigationBar="False"
-                          Title="{viewExtensions:Translate Statistics}">
+                          Title="{viewExtensions:Locale Statistics}">
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
@@ -17,7 +17,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Label Text="{viewExtensions:Translate WillBeAddedSoon}" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" />
+            <Label Text="{viewExtensions:Locale WillBeAddedSoon}" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" />
         </Grid>
         <AbsoluteLayout BackgroundColor="#22000000"
                         AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"

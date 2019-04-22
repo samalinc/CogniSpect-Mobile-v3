@@ -10,7 +10,7 @@
                          Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{viewExtensions:Translate Refresh}" Command="{Binding OnRefreshTestsCommand}" />
+        <ToolbarItem Text="{viewExtensions:Locale Refresh}" Command="{Binding OnRefreshTestsCommand}" />
     </ContentPage.ToolbarItems>
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">

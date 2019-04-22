@@ -46,10 +46,10 @@
                 </ListView>
             </Grid>
             <StackLayout Grid.Row="2">
-                <Button Text="{viewExtensions:Translate Previous}" Command="{Binding PreviousQuestionCommand}"
+                <Button Text="{viewExtensions:Locale Previous}" Command="{Binding PreviousQuestionCommand}"
                         IsVisible="{Binding IsPreviousButtonVisible}" />
-                <Button Text="{viewExtensions:Translate Next}" Command="{Binding NextQuestionCommand}" IsVisible="{Binding IsNextButtonVisible}" />
-                <Button Text="{viewExtensions:Translate Complete}" Command="{Binding CompleteTestCommand}"
+                <Button Text="{viewExtensions:Locale Next}" Command="{Binding NextQuestionCommand}" IsVisible="{Binding IsNextButtonVisible}" />
+                <Button Text="{viewExtensions:Locale Complete}" Command="{Binding CompleteTestCommand}"
                         IsVisible="{Binding IsCompleteButtonVisible}" />
             </StackLayout>
         </Grid>
