@@ -1,0 +1,12 @@
+.container {
+    margin: 40px;
+}
+
+.activity {
+    background: grey;
+}
+
+.button {
+    color: red;
+    opacity: 50%;
+}

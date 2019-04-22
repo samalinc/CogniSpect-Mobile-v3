@@ -15,12 +15,20 @@ namespace CSMobile.Presentation.Views.ViewExtensions
 
         public LocaleExtension()
         {
-            _localizer = ServiceLocator.Current.GetInstance<ILocalizer>();
+            if (!DesignMode.IsDesignModeEnabled)
+            {
+                _localizer = ServiceLocator.Current.GetInstance<ILocalizer>();
+            }
         }
 
         public object ProvideValue(IServiceProvider serviceProvider)
         {
-            return Text == null ? "" : _localizer[Text];
+            if (DesignMode.IsDesignModeEnabled)
+            {
+                return Text;
+            }
+            
+            return Text == null ? string.Empty : _localizer[Text];
         }
     }
 }

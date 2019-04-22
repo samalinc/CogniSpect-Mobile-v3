@@ -38,7 +38,7 @@ using Xamarin.Forms;
 
 namespace CSMobile.Presentation.Views
 {
-    public class App : Application
+    public partial class App : Application
     {
         private INavigationService _navigationService;
         private IServiceLocator _serviceLocator;

@@ -1,37 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <authentication:AuthenticationBasePage xmlns="http://xamarin.com/schemas/2014/forms"
-                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                              xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
-                              xmlns:authentication="clr-namespace:CSMobile.Presentation.Views.Pages.Authentication;assembly=CSMobile.Presentation.Views"
-                              x:Class="CSMobile.Presentation.Views.Pages.Authentication.AuthenticationPage"
-                              NavigationPage.HasNavigationBar="False">
-    
+                                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                                       xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
+                                       xmlns:authentication="clr-namespace:CSMobile.Presentation.Views.Pages.Authentication;assembly=CSMobile.Presentation.Views"
+                                       x:Class="CSMobile.Presentation.Views.Pages.Authentication.AuthenticationPage"
+                                       NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <x:StyleSheet Source="/Styles/styles.css" />
+    </ContentPage.Resources>
+
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
-        <Grid Margin="20"
+        <Grid StyleClass="container"
               AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand">
+             
             <Grid.RowDefinitions>
-                <RowDefinition Height="10*" />
+                <RowDefinition Height="13*" />
                 <RowDefinition Height="2*" />
-                <RowDefinition Height="2*" />
-                <RowDefinition Height="1*" />
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
+            
             <StackLayout Grid.Row="1">
-                <Label Text="{viewExtensions:Locale Login}" />
-                <Entry Text="{Binding StudNumber, Mode=TwoWay}" />
+                <Entry Text="{Binding StudNumber, Mode=TwoWay}" Placeholder="{viewExtensions:Locale Login}"
+                       StyleClass="input" />
+                <Entry IsPassword="True" Text="{Binding Password, Mode=TwoWay}"
+                       Placeholder="{viewExtensions:Locale Password}" />
+                <Button StyleClass="button"
+                        Text="{viewExtensions:Locale SignIn}"
+                        Command="{Binding AuthenticateCommand}"
+                        HorizontalOptions="Start"/>
             </StackLayout>
-            <StackLayout Grid.Row="2">
-                <Label Text="{viewExtensions:Locale Password}" />
-                <Entry IsPassword="True" Text="{Binding Password, Mode=TwoWay}" />
-            </StackLayout>
-            <Button HorizontalOptions="Start" Grid.Row="3" Text="{viewExtensions:Locale SignIn}" Command="{Binding AuthenticateCommand}" />
+            
         </Grid>
-        <AbsoluteLayout BackgroundColor="#22000000"
+        <AbsoluteLayout StyleClass="activity"
                         AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
                         AbsoluteLayout.LayoutFlags="All"
                         IsVisible="{Binding IsThinking}">
