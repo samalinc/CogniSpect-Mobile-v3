@@ -1,7 +1,9 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using CSMobile.Domain.Services.Exceptions;
 using CSMobile.Infrastructure.Interfaces.Exceptions;
+using CSMobile.Infrastructure.Interfaces.Localization;
 using CSMobile.Infrastructure.Mvvm;
 using CSMobile.Presentation.ViewModels.Services.Alerts;
 
@@ -10,10 +12,14 @@ namespace CSMobile.Presentation.ViewModels.Services.ExceptionHandling
     internal class AppExceptionHandler : IAppExceptionHandler
     {
         private readonly IAlertService _alertService;
+        private readonly ILocalizer _localizer;
 
-        public AppExceptionHandler(IAlertService alertService)
+        public AppExceptionHandler(
+            IAlertService alertService,
+            ILocalizer localizer)
         {
             _alertService = alertService;
+            _localizer = localizer;
         }
 
         public async Task HandleException(Exception ex)
@@ -27,11 +33,12 @@ namespace CSMobile.Presentation.ViewModels.Services.ExceptionHandling
             switch (ex)
             {
                 case WebSocketConnectionException _:
-                    return "Connection error";
                 case HttpConnectionException _:
-                    return "Connection error";
+                    return _localizer["ConnectionErrorMessage"];
+                case InvalidStudentLocation _:
+                    return _localizer["InvalidStudentLocationMessage"];
                 default:
-                    return "An unexpected error has happened";
+                    return _localizer["UnexpectedErrorMessage"];
             }
         }
     }

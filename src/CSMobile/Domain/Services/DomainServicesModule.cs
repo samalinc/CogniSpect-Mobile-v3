@@ -1,5 +1,6 @@
 using Autofac;
 using CSMobile.Domain.Services.Authentication;
+using CSMobile.Domain.Services.Mfa;
 using CSMobile.Domain.Services.Sessions;
 using CSMobile.Domain.Services.Tests;
 using CSMobile.Domain.Services.WebApiIntegration;
@@ -16,7 +17,8 @@ namespace CSMobile.Domain.Services
                 .RegisterSingleAsImplementedInterfaces<AuthenticationService>()
                 .RegisterSingleAsImplementedInterfaces<QuestionsService>()
                 .RegisterSingleAsImplementedInterfaces<CsApiClient>()
-                .RegisterSingleAsImplementedInterfaces<SessionService>();
+                .RegisterSingleAsImplementedInterfaces<SessionService>()
+                .RegisterSingleAsImplementedInterfaces<MfaService>();
         }
     }
 }

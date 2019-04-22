@@ -120,11 +120,17 @@
   <data name="Complete" xml:space="preserve">
     <value>Complete</value>
   </data>
+  <data name="ConnectionErrorMessage" xml:space="preserve">
+    <value>Connection error</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
   <data name="IncorrectLoginOrPassword" xml:space="preserve">
     <value>Incorrect login or password</value>
+  </data>
+  <data name="InvalidStudentLocationMessage" xml:space="preserve">
+    <value>Invalid student location</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
@@ -158,6 +164,9 @@
   </data>
   <data name="Tests" xml:space="preserve">
     <value>Tests</value>
+  </data>
+  <data name="UnexpectedErrorMessage" xml:space="preserve">
+    <value>Unexpected error happened</value>
   </data>
   <data name="WillBeAddedSoon" xml:space="preserve">
     <value>Will be added soon</value>

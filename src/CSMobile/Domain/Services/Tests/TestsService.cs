@@ -8,7 +8,17 @@ namespace CSMobile.Domain.Services.Tests
 {
     internal class TestsService : ITestsService
     {
-        public async Task<Test> BeginTest(Guid testId)
+        public async Task<Test> GetSessionTest(Guid sessionId)
+        {
+            return await Task.FromResult(GetDummyTest());
+        }
+
+        public async Task EndTest(Test test)
+        {
+            await Task.CompletedTask;
+        }
+
+        private Test GetDummyTest()
         {
             var dummyData = new List<Question>
             {
@@ -59,17 +69,12 @@ namespace CSMobile.Domain.Services.Tests
                     }
                 },
             };
-            
-            return await Task.FromResult(new Test
+
+            return new Test
             {
                 Name = "Test test fgertert",
                 Questions = dummyData
-            });
-        }
-
-        public async Task EndTest(Test test)
-        {
-            await Task.CompletedTask;
+            };
         }
     }
 }

@@ -70,6 +70,15 @@ namespace CSMobile.Presentation.Views.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connection error.
+        /// </summary>
+        public static string ConnectionErrorMessage {
+            get {
+                return ResourceManager.GetString("ConnectionErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
@@ -84,6 +93,15 @@ namespace CSMobile.Presentation.Views.Resources {
         public static string IncorrectLoginOrPassword {
             get {
                 return ResourceManager.GetString("IncorrectLoginOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid student location.
+        /// </summary>
+        public static string InvalidStudentLocationMessage {
+            get {
+                return ResourceManager.GetString("InvalidStudentLocationMessage", resourceCulture);
             }
         }
         
@@ -183,6 +201,15 @@ namespace CSMobile.Presentation.Views.Resources {
         public static string Tests {
             get {
                 return ResourceManager.GetString("Tests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected error happened.
+        /// </summary>
+        public static string UnexpectedErrorMessage {
+            get {
+                return ResourceManager.GetString("UnexpectedErrorMessage", resourceCulture);
             }
         }
         

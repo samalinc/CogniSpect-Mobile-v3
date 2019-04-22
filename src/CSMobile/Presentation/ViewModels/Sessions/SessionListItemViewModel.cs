@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
+using AutoMapper;
+using CSMobile.Domain.Models.Sessions;
 using CSMobile.Domain.Models.Tests;
-using CSMobile.Domain.Services.SharedEvents;
-using CSMobile.Domain.Services.Tests;
-using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
+using CSMobile.Domain.Services.Sessions;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using CSMobile.Presentation.ViewModels.Tests;
@@ -14,29 +14,26 @@ namespace CSMobile.Presentation.ViewModels.Sessions
     public partial class SessionListItemViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;
-        private readonly ITestsService _testsService;
-        private readonly IWebSocketSessionService _webSocketSessionService;
+        private readonly ISessionService _sessionService;
+        private readonly IMapper _mapper;
 
         public ICommand OnTestStartedCommand { get; }
         
         public SessionListItemViewModel(
             INavigationService navigationService,
-            ITestsService testsService,
-            IWebSocketSessionService webSocketSessionService)
+            ISessionService sessionService,
+            IMapper mapper)
         {
             _navigationService = navigationService;
-            _testsService = testsService;
-            _webSocketSessionService = webSocketSessionService;
+            _sessionService = sessionService;
+            _mapper = mapper;
 
             OnTestStartedCommand = Command(OnTestStarted);
         }
         
         private async Task OnTestStarted()
         {
-            // TODO: refactor this after implementation server logic
-            Test test = await _testsService.BeginTest(Id);
-            await _webSocketSessionService.BeginSession();
-            await _webSocketSessionService.SendMessage(ExternalEvents.NewMessage, this);
+            Test test = await _sessionService.BeginSession(_mapper.Map<SessionListItem>(this));
             await _navigationService.NavigateAsync<TestViewModel>();
             MessengerInstance.Send(new NotificationMessage<Test>(test, string.Empty));
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CSMobile.Domain.Models.Sessions
 {
@@ -9,5 +10,7 @@ namespace CSMobile.Domain.Models.Sessions
         public SessionStatus Status { get; set; }
         
         public string Name { get; set; }
+
+        public IEnumerable<string> SecurityPoints { get; set; }
     }
 }

@@ -120,11 +120,17 @@
   <data name="Complete" xml:space="preserve">
     <value>Закончить</value>
   </data>
+  <data name="ConnectionErrorMessage" xml:space="preserve">
+    <value>Ошибка соединения</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
   </data>
   <data name="IncorrectLoginOrPassword" xml:space="preserve">
     <value>Неправильный логин или пароль</value>
+  </data>
+  <data name="InvalidStudentLocationMessage" xml:space="preserve">
+    <value>Неправильное местоположение студента</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Логин</value>
@@ -158,6 +164,9 @@
   </data>
   <data name="Tests" xml:space="preserve">
     <value>Тесты</value>
+  </data>
+  <data name="UnexpectedErrorMessage" xml:space="preserve">
+    <value>Произошла неожиданная ошибка</value>
   </data>
   <data name="WillBeAddedSoon" xml:space="preserve">
     <value>Будет добавлено в ближайшее время</value>
