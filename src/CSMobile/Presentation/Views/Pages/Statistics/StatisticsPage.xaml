@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<local:StatisticsPageBase xmlns="http://xamarin.com/schemas/2014/forms"
+<statistics:StatisticsPageBase xmlns="http://xamarin.com/schemas/2014/forms"
                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                           xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
                           xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
-                          x:Class="CSMobile.Presentation.Views.Pages.StatisticsPage"
+                          xmlns:statistics="clr-namespace:CSMobile.Presentation.Views.Pages.Statistics;assembly=CSMobile.Presentation.Views"
+                          x:Class="CSMobile.Presentation.Views.Pages.Statistics.StatisticsPage"
                           x:Name="StatisticsPageBase"
                           NavigationPage.HasNavigationBar="False"
                           Title="{viewExtensions:Locale Statistics}">
@@ -29,4 +30,4 @@
                                AbsoluteLayout.LayoutFlags="All" />
         </AbsoluteLayout>
     </AbsoluteLayout>
-</local:StatisticsPageBase>
+</statistics:StatisticsPageBase>

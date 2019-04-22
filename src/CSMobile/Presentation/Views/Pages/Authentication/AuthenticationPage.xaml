@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<local:AuthenticationBasePage xmlns="http://xamarin.com/schemas/2014/forms"
+<authentication:AuthenticationBasePage xmlns="http://xamarin.com/schemas/2014/forms"
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                              xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages"
                               xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
-                              x:Class="CSMobile.Presentation.Views.Pages.AuthenticationPage"
+                              xmlns:authentication="clr-namespace:CSMobile.Presentation.Views.Pages.Authentication;assembly=CSMobile.Presentation.Views"
+                              x:Class="CSMobile.Presentation.Views.Pages.Authentication.AuthenticationPage"
                               NavigationPage.HasNavigationBar="False">
-
+    
     <AbsoluteLayout VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand">
         <Grid Margin="20"
@@ -30,7 +30,6 @@
                 <Entry IsPassword="True" Text="{Binding Password, Mode=TwoWay}" />
             </StackLayout>
             <Button HorizontalOptions="Start" Grid.Row="3" Text="{viewExtensions:Locale SignIn}" Command="{Binding AuthenticateCommand}" />
-
         </Grid>
         <AbsoluteLayout BackgroundColor="#22000000"
                         AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
@@ -43,4 +42,4 @@
         </AbsoluteLayout>
     </AbsoluteLayout>
 
-</local:AuthenticationBasePage>
+</authentication:AuthenticationBasePage>

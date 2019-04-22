@@ -2,7 +2,7 @@
 using CSMobile.Presentation.ViewModels.Authentication;
 using Xamarin.Forms.Xaml;
 
-namespace CSMobile.Presentation.Views.Pages
+namespace CSMobile.Presentation.Views.Pages.Authentication
 {
     public class AuthenticationBasePage : ViewPage<AuthenticationViewModel> { }
 

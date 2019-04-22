@@ -1,7 +1,7 @@
 using CSMobile.Presentation.ViewModels.Tests;
 using Xamarin.Forms.Xaml;
 
-namespace CSMobile.Presentation.Views.Pages
+namespace CSMobile.Presentation.Views.Pages.Tests
 {
     public class TestPageBase : ViewPage<TestViewModel> { }
     

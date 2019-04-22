@@ -2,7 +2,7 @@ using System.ComponentModel;
 using CSMobile.Presentation.ViewModels.Sessions;
 using Xamarin.Forms.Xaml;
 
-namespace CSMobile.Presentation.Views.Pages
+namespace CSMobile.Presentation.Views.Pages.Session
 {
     public class SessionItemsPageBase : ViewPage<SessionItemsViewModel> { }
     

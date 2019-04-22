@@ -6,24 +6,27 @@
             x:Class="CSMobile.Presentation.Views.Pages.Layouts.TabbedLayoutPage"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
+            xmlns:session="clr-namespace:CSMobile.Presentation.Views.Pages.Session;assembly=CSMobile.Presentation.Views"
+            xmlns:profiles="clr-namespace:CSMobile.Presentation.Views.Pages.Profiles;assembly=CSMobile.Presentation.Views"
+            xmlns:statistics="clr-namespace:CSMobile.Presentation.Views.Pages.Statistics;assembly=CSMobile.Presentation.Views"
             android:TabbedPage.ToolbarPlacement="Bottom">
 
     <TabbedPage.Children>
         <NavigationPage Title="{viewExtensions:Locale Tests}">
             <x:Arguments>
-                <views:SessionItemsPage />
+                <session:SessionItemsPage />
             </x:Arguments>
         </NavigationPage>
 
         <NavigationPage Title="{viewExtensions:Locale Profile}">
             <x:Arguments>
-                <views:ProfilePage />
+                <profiles:ProfilePage />
             </x:Arguments>
         </NavigationPage>
 
         <NavigationPage Title="{viewExtensions:Locale Statistics}">
             <x:Arguments>
-                <views:StatisticsPage />
+                <statistics:StatisticsPage />
             </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>

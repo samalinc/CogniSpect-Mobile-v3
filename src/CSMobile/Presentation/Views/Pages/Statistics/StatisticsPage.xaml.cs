@@ -2,7 +2,7 @@ using System.ComponentModel;
 using CSMobile.Presentation.ViewModels.Statistics;
 using Xamarin.Forms.Xaml;
 
-namespace CSMobile.Presentation.Views.Pages
+namespace CSMobile.Presentation.Views.Pages.Statistics
 {
     public class StatisticsPageBase : ViewPage<StatisticsViewModel> { }
 
