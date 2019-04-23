@@ -35,6 +35,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using CSMobile.Presentation.Views.Resources;
 using Xamarin.Forms;
+using XF.Material.Forms;
 
 namespace CSMobile.Presentation.Views
 {
@@ -57,6 +58,8 @@ namespace CSMobile.Presentation.Views
         {
             Context = BuildApplication(platformSpecificModule);
             Instance = this;
+            InitializeComponent();
+            Material.Init(this, "Material.Configuration");
         }
 
         protected override void OnStart()

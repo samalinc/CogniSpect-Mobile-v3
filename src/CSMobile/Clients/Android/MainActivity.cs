@@ -3,7 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using CSMobile.Presentation.Views;
-using CSMobile.Presentation.Views.Pages;
+using XF.Material.Droid;
 
 namespace CSMobile.Presentation.Droid
 {
@@ -19,6 +19,7 @@ namespace CSMobile.Presentation.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Material.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidModule()));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
