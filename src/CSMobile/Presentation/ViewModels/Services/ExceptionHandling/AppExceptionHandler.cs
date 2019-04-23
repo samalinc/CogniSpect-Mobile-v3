@@ -5,7 +5,7 @@ using CSMobile.Domain.Services.Exceptions;
 using CSMobile.Infrastructure.Interfaces.Exceptions;
 using CSMobile.Infrastructure.Interfaces.Localization;
 using CSMobile.Infrastructure.Mvvm;
-using CSMobile.Presentation.ViewModels.Services.Alerts;
+using CSMobile.Presentation.ViewModels.Services.Dialogs.Alerts;
 
 namespace CSMobile.Presentation.ViewModels.Services.ExceptionHandling
 {

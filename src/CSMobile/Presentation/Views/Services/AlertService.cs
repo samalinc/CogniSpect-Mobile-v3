@@ -1,7 +1,8 @@
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Interfaces.Localization;
 using CSMobile.Infrastructure.Mvvm.Navigation;
-using CSMobile.Presentation.ViewModels.Services.Alerts;
+using CSMobile.Presentation.ViewModels.Services.Dialogs.Alerts;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace CSMobile.Presentation.Views.Services
 {
@@ -18,14 +19,9 @@ namespace CSMobile.Presentation.Views.Services
             _localizer = localizer;
         }
 
-        public async Task<bool> Alert(AlertConfigs configs)
+        public async Task Alert(AlertConfigs configs)
         {
-            return await ((NavigationService) _navigationService).CurrentNavigationPage.CurrentPage
-                .DisplayAlert(
-                    configs.Title,
-                    configs.Message,
-                    configs.Accept,
-                    configs.Cancel);
+            await MaterialDialog.Instance.AlertAsync(configs.Message, configs.Title, configs.Cancel);
         }
         
         public async Task ErrorAlert(string message)

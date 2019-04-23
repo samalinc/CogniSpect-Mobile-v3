@@ -56,10 +56,10 @@ namespace CSMobile.Presentation.Views
         /// </param>
         public App([NotNull] IModule platformSpecificModule)
         {
-            Context = BuildApplication(platformSpecificModule);
-            Instance = this;
             InitializeComponent();
             Material.Init(this, "Material.Configuration");
+            Context = BuildApplication(platformSpecificModule);
+            Instance = this;
         }
 
         protected override void OnStart()

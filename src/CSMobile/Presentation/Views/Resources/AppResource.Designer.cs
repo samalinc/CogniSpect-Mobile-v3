@@ -79,6 +79,15 @@ namespace CSMobile.Presentation.Views.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please wait....
+        /// </summary>
+        public static string DefaultLoadingMessage {
+            get {
+                return ResourceManager.GetString("DefaultLoadingMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {

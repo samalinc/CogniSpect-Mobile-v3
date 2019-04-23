@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Interfaces.Localization;
-using CSMobile.Presentation.ViewModels.Services.Alerts;
+using CSMobile.Presentation.ViewModels.Services.Dialogs.Alerts;
 
 namespace CSMobile.Presentation.ViewModels.Authentication
 {

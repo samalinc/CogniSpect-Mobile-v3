@@ -32,7 +32,7 @@
                                             Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
 
         <resources:MaterialColorConfiguration x:Key="Material.Color"
-                                         Background="#EAEAEA"
+                                         Background="#B00020"
                                          Error="#B00020"
                                          OnBackground="#000000"
                                          OnError="#FFFFFF"
@@ -41,7 +41,7 @@
                                          OnSurface="#000000"
                                          Primary="#011A27"
                                          PrimaryVariant="#000000"
-                                         Secondary="#063852"
+                                         Secondary="#a81a7d"
                                          SecondaryVariant="#001229"
                                          Surface="#FFFFFF" />
 

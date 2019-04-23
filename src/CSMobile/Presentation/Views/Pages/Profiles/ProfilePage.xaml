@@ -22,14 +22,5 @@
             <Button Text="{viewExtensions:Locale SignOut}" Command="{Binding SignOutCommand}" Grid.Row="0" />
             <Label Text="{viewExtensions:Locale WillBeAddedSoon}" Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" />
         </Grid>
-        <AbsoluteLayout BackgroundColor="#22000000"
-                        AbsoluteLayout.LayoutBounds="0.5,0.5,1,1"
-                        AbsoluteLayout.LayoutFlags="All"
-                        IsVisible="{Binding IsThinking}">
-            <ActivityIndicator IsRunning="{Binding IsThinking}"
-                               IsVisible="{Binding IsThinking}"
-                               AbsoluteLayout.LayoutBounds="0.5,0.5,0.1,0.1"
-                               AbsoluteLayout.LayoutFlags="All" />
-        </AbsoluteLayout>
     </AbsoluteLayout>
 </profiles:ProfilePageBase>
