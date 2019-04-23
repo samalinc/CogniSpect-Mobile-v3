@@ -9,42 +9,42 @@
                                        NavigationPage.HasNavigationBar="False">
 
     <!-- For some reasons thows exception. Need more investigations-->
-     <!--<ContentPage.Resources> 
+    <!--<ContentPage.Resources> 
          <x:StyleSheet Source="/Styles/styles.css" /> 
-     </ContentPage.Resources>--> 
+     </ContentPage.Resources>-->
 
-  <Grid StyleClass="container"
-        VerticalOptions="FillAndExpand"
-        HorizontalOptions="FillAndExpand">
+    <Grid StyleClass="container"
+          VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand">
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="13*" />
-                <RowDefinition Height="5*" />
-                <RowDefinition Height="2*" />
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="13*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
 
-            <StackLayout
-                Grid.Row="1">
-                <ui:MaterialTextField
-                    InputType="Text"
-                    Text="{Binding StudNumber, Mode=TwoWay}"
-                    Placeholder="{viewExtensions:Locale Login}"
-                    FloatingPlaceholderEnabled="False" />
-                <ui:MaterialTextField                 
-                    InputType="Password"
-                    Text="{Binding Password, Mode=TwoWay}"
-                    Placeholder="{viewExtensions:Locale Password}"
-                    FloatingPlaceholderEnabled="False"/>
+        <StackLayout
+            Grid.Row="1">
+            <ui:MaterialTextField
+                InputType="Text"
+                Text="{Binding StudNumber, Mode=TwoWay}"
+                Placeholder="{viewExtensions:Locale Login}"
+                FloatingPlaceholderEnabled="False" />
+            <ui:MaterialTextField
+                InputType="Password"
+                Text="{Binding Password, Mode=TwoWay}"
+                Placeholder="{viewExtensions:Locale Password}"
+                FloatingPlaceholderEnabled="False" />
 
-                <ui:MaterialButton
-                    ButtonType="Elevated"
-                    Elevation="3"
-                    Text="{viewExtensions:Locale SignIn}"
-                    Command="{Binding AuthenticateCommand}"
-                    HorizontalOptions="Start"
-                    VerticalOptions="Start" />
+            <ui:MaterialButton
+                ButtonType="Elevated"
+                Elevation="3"
+                Text="{viewExtensions:Locale SignIn}"
+                Command="{Binding AuthenticateCommand}"
+                HorizontalOptions="Start"
+                VerticalOptions="Start" />
 
-            </StackLayout>
-        </Grid>
+        </StackLayout>
+    </Grid>
 
 </authentication:AuthenticationBasePage>

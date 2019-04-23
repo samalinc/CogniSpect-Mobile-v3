@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <statistics:StatisticsPageBase xmlns="http://xamarin.com/schemas/2014/forms"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                          xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
-                          xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
-                          xmlns:statistics="clr-namespace:CSMobile.Presentation.Views.Pages.Statistics;assembly=CSMobile.Presentation.Views"
-                          x:Class="CSMobile.Presentation.Views.Pages.Statistics.StatisticsPage"
-                          x:Name="StatisticsPageBase"
-                          NavigationPage.HasNavigationBar="False"
-                          Title="{viewExtensions:Locale Statistics}">
-    <AbsoluteLayout VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand">
-        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
-              AbsoluteLayout.LayoutFlags="All"
-              VerticalOptions="FillAndExpand"
-              HorizontalOptions="FillAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label Text="{viewExtensions:Locale WillBeAddedSoon}" Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" />
-        </Grid>
-    </AbsoluteLayout>
+                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                               xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
+                               xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
+                               xmlns:statistics="clr-namespace:CSMobile.Presentation.Views.Pages.Statistics;assembly=CSMobile.Presentation.Views"
+                               x:Class="CSMobile.Presentation.Views.Pages.Statistics.StatisticsPage"
+                               x:Name="StatisticsPageBase"
+                               NavigationPage.HasNavigationBar="False"
+                               Title="{viewExtensions:Locale Statistics}">
+    <Grid VerticalOptions="FillAndExpand"
+          HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Text="{viewExtensions:Locale WillBeAddedSoon}" Grid.Row="0" VerticalOptions="Center"
+               HorizontalOptions="Center" />
+    </Grid>
 </statistics:StatisticsPageBase>
