@@ -1,7 +1,5 @@
-using System.Linq;
 using Autofac;
 using CSMobile.Infrastructure.Common.Extensions;
-using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using CSMobile.Presentation.ViewModels.Authentication;
 using CSMobile.Presentation.ViewModels.Core;
 using CSMobile.Presentation.ViewModels.Profile;

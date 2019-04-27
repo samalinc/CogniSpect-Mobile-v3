@@ -2,13 +2,12 @@
 
 <session:SessionItemsPageBase xmlns="http://xamarin.com/schemas/2014/forms"
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                              xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
                               xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
                               xmlns:session="clr-namespace:CSMobile.Presentation.Views.Pages.Session;assembly=CSMobile.Presentation.Views"
                               x:Class="CSMobile.Presentation.Views.Pages.Session.SessionItemsPage"
-                              x:Name="TestItemsPageBase"
+                              x:Name="SessionItemsPageBase"
                               NavigationPage.HasNavigationBar="False"
-                              Title="{Binding Title}">
+                              Title="{viewExtensions:Locale Sessions}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{viewExtensions:Locale Refresh}" Command="{Binding OnRefreshTestsCommand}" />

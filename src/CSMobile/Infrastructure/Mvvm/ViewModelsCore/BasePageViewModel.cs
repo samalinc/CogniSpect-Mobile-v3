@@ -1,12 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
 using System.Threading.Tasks;
 using CommonServiceLocator;
-using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Mvvm.LoadingDialog;
-using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
 {

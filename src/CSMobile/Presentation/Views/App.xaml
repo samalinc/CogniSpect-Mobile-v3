@@ -6,7 +6,6 @@
              xmlns:resources="clr-namespace:XF.Material.Forms.Resources;assembly=XF.Material.Forms"
              x:Class="CSMobile.Presentation.Views.App">
     <Application.Resources>
-
         <OnPlatform x:Key="FontFamily.RobotoRegular"
                     x:TypeArguments="x:String"
                     Android="Fonts/Roboto-Regular.ttf#Roboto-Regular"

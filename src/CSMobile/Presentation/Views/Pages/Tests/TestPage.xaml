@@ -2,7 +2,6 @@
 
 <tests:TestPageBase xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
                     xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
                     xmlns:tests="clr-namespace:CSMobile.Presentation.Views.Pages.Tests;assembly=CSMobile.Presentation.Views"
                     x:Class="CSMobile.Presentation.Views.Pages.Tests.TestPage"

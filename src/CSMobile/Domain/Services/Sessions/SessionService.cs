@@ -9,9 +9,7 @@ using CSMobile.Domain.Services.Exceptions;
 using CSMobile.Domain.Services.Mfa;
 using CSMobile.Domain.Services.Tests;
 using CSMobile.Domain.Services.WebApiIntegration;
-using CSMobile.Domain.Services.WebApiIntegration.Dtos;
 using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
-using CSMobile.Infrastructure.Interfaces.WebClient;
 
 namespace CSMobile.Domain.Services.Sessions
 {

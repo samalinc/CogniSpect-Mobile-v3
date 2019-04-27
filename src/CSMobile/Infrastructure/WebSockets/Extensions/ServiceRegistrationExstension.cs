@@ -1,6 +1,5 @@
 using System;
 using Autofac;
-using CSMobile.Infrastructure.WebSockets.ResponseHandling;
 using CSMobile.Infrastructure.WebSockets.ResponseHandling.Core;
 
 namespace CSMobile.Infrastructure.WebSockets.Extensions
