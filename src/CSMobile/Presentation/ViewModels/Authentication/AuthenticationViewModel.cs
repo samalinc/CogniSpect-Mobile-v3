@@ -4,8 +4,6 @@ using AutoMapper;
 using CSMobile.Domain.Services.Authentication;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos;
 using CSMobile.Infrastructure.Common;
-using CSMobile.Infrastructure.Mvvm.Commands;
-using CSMobile.Infrastructure.Mvvm.LoadingDialog;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
 namespace CSMobile.Presentation.ViewModels.Authentication
@@ -42,11 +40,8 @@ namespace CSMobile.Presentation.ViewModels.Authentication
 
         private async Task Authenticate()
         {
-            AuthenticationResult result;
-            using (await Loading.Start())
-            {
-                result = await _authenticationService.SignIn(new AuthenticationData(StudNumber, Password));
-            }
+            AuthenticationResult result =
+                await _authenticationService.SignIn(new AuthenticationData(StudNumber, Password));
 
             if (result == null)
             {

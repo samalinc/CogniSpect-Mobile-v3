@@ -28,7 +28,8 @@ namespace CSMobile.Presentation.ViewModels.Tests
             INavigationService navigationService,
             ITestsService testsService,
             IMapper mapper,
-            IQuestionsService questionsService, IWebSocketSessionService webSocketSessionService)
+            IQuestionsService questionsService,
+            IWebSocketSessionService webSocketSessionService)
         {
             _navigationService = navigationService;
             _testsService = testsService;
@@ -36,8 +37,8 @@ namespace CSMobile.Presentation.ViewModels.Tests
             _questionsService = questionsService;
             _webSocketSessionService = webSocketSessionService;
 
-            NextQuestionCommand = Command(NextQuestion, this);
-            PreviousQuestionCommand = Command(PreviousQuestion, this);
+            NextQuestionCommand = Command(NextQuestion, this, false);
+            PreviousQuestionCommand = Command(PreviousQuestion, this, false);
             CompleteTestCommand = Command(CompleteTest, this);
             
             MessengerInstance.Register<NotificationMessage<Test>>(this, ReceiveTest);

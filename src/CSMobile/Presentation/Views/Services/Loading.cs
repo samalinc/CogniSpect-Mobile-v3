@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Common;
+using CSMobile.Infrastructure.Interfaces.Localization;
 using CSMobile.Infrastructure.Mvvm.LoadingDialog;
 using XF.Material.Forms.UI.Dialogs;
 
@@ -8,19 +9,20 @@ namespace CSMobile.Presentation.Views.Services
 {
     public class Loading : ILoading
     {
+        private readonly ILocalizer _localizer;
+
         public DyingWrapper<IMaterialModalPage> MaterialModalPage { get; set; }
 
-        public string Text { get; set; }
-
-        public Loading(string text)
+        public Loading(ILocalizer localizer)
         {
-            Text = text;
+            _localizer = localizer;
         }
 
-        public async Task<IDisposable> Start()
+        public async Task<IDisposable> Start(string text)
         {
             MaterialModalPage =
-                new DyingWrapper<IMaterialModalPage>(await MaterialDialog.Instance.LoadingDialogAsync(Text));
+                new DyingWrapper<IMaterialModalPage>(
+                    await MaterialDialog.Instance.LoadingDialogAsync(text ?? _localizer["DefaultLoadingMessage"]));
 
             return MaterialModalPage;
         }

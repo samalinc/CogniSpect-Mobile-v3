@@ -8,18 +8,53 @@ namespace CSMobile.Infrastructure.Mvvm.Commands
 {
     internal class CommandsFactory : ICommandsFactory
     {
-        public ICommand Command(Func<Task> action, BasePageViewModel pageViewModel)
+        public ICommand Command(CommandConfigs configs)
         {
-            return new Command(async () => await ExceptionHandler(action, pageViewModel));
-        } 
+            Func<Task> action = configs.Action;
+
+            action = WrapWithGlobalLoading(action, configs);
+            action = WrapWithExceptionHandling(action, configs);
+            action = WrapWithIsBusy(action, configs);
+
+            return new Command(async () => await action());
+        }
+
+        private Func<Task> WrapWithGlobalLoading(Func<Task> action, CommandConfigs configs)
+        {
+            if (!configs.IsGlobalLoading)
+            {
+                return action;
+            }
+            
+            return async () =>
+            {
+                using (await configs.RootPageViewModel.Loading.Start())
+                {
+                    await action();
+                }
+            };
+        }
+
+        private Func<Task> WrapWithExceptionHandling(Func<Task> action, CommandConfigs configs)
+        {
+            return async () => await ExceptionHandler(action, configs.RootPageViewModel);
+        }
+        
+        private Func<Task> WrapWithIsBusy(Func<Task> action, CommandConfigs configs)
+        {
+            return async () =>
+            {
+                if (configs.RootPageViewModel.IsBusy)
+                {
+                    return;
+                }
+                
+                await action();
+            };
+        }
         
         private async Task ExceptionHandler(Func<Task> action, BasePageViewModel pageViewModel)
         {
-            if (pageViewModel.IsBusy)
-            {
-                return;
-            }
-            
             try
             {
                 await pageViewModel.OnCommandStartedHandler();

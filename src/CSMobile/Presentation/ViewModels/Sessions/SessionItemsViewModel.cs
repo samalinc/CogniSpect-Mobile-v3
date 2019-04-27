@@ -30,8 +30,6 @@ namespace CSMobile.Presentation.ViewModels.Sessions
 
         private async Task OnRefreshTests()
         {
-//            SafeRemoveNestedViewModels(Sessions);
-            
             Sessions = _viewModelsFactory.Create<SessionListItemViewModel>(
                 await _sessionService.GetSessionListItems(), this);
         }

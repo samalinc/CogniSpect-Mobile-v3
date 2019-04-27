@@ -1,12 +1,11 @@
-using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
+using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Mvvm.Commands
 {
     public interface ICommandsFactory
     {
-        ICommand Command(Func<Task> action, BasePageViewModel pageViewModel);
+        [NotNull]
+        ICommand Command([NotNull] CommandConfigs configs);
     }
 }

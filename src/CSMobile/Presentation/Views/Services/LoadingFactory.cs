@@ -12,9 +12,9 @@ namespace CSMobile.Presentation.Views.Services
             _localizer = localizer;
         }
 
-        public ILoading Create(string message)
+        public ILoading Create()
         {
-            return new Loading(message ?? _localizer["DefaultLoadingMessage"]);
+            return new Loading(_localizer);
         }
     }
 }

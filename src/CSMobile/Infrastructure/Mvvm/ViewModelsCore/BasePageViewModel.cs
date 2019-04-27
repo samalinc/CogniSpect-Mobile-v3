@@ -18,7 +18,7 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
     public abstract partial class BasePageViewModel : BaseViewModel
     {
         private readonly IAppExceptionHandler _appExceptionHandler;
-        protected ILoading Loading { get; }
+        public ILoading Loading { get; }
 
         protected BasePageViewModel()
         {

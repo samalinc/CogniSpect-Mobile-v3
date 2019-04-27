@@ -4,6 +4,7 @@ using System.Windows.Input;
 using CommonServiceLocator;
 using CSMobile.Infrastructure.Mvvm.Commands;
 using GalaSoft.MvvmLight;
+using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
 {
@@ -11,7 +12,11 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
     {
         private ICommandsFactory CommandsFactory => ServiceLocator.Current.GetInstance<ICommandsFactory>();
 
-        protected ICommand Command(Func<Task> action, BasePageViewModel basePageViewModel) =>
-            CommandsFactory.Command(action, basePageViewModel);
+        [NotNull]
+        protected ICommand Command(
+            [NotNull] Func<Task> action,
+            [NotNull] BasePageViewModel basePageViewModel,
+            bool withGlobalLoading = true) =>
+            CommandsFactory.Command(new CommandConfigs(action, basePageViewModel, withGlobalLoading));
     }
 }
