@@ -61,6 +61,15 @@ namespace CSMobile.Presentation.Views.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available tests.
+        /// </summary>
+        public static string AvailableTests {
+            get {
+                return ResourceManager.GetString("AvailableTests", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complete.
         /// </summary>
         public static string Complete {

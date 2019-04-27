@@ -31,11 +31,11 @@ namespace CSMobile.Presentation.ViewModels.Authentication
             AuthenticateCommand = Command(Authenticate, this);
         }
 
-        public override Task OnAppearing()
+        public override async Task OnAppearing()
         {
             StudNumber = null;
             Password = null;
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         private async Task Authenticate()

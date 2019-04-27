@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CSMobile.Domain.Services.Sessions;
+using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Mvvm;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
@@ -20,18 +21,25 @@ namespace CSMobile.Presentation.ViewModels.Sessions
             _viewModelsFactory = viewModelsFactory;
             _sessionService = sessionService;
 
-            OnRefreshTestsCommand = Command(OnRefreshTests, this);
+            OnRefreshTestsCommand = Command(OnRefreshTests, this, false);
         }
 
         public override async Task OnAppearing()
         {
+            if (!Sessions.IsNullOrEmpty())
+            {
+                return;
+            }
+            
             await OnRefreshTests();
         }
 
         private async Task OnRefreshTests()
         {
+            IsRefreshing = true;
             Sessions = _viewModelsFactory.Create<SessionListItemViewModel>(
                 await _sessionService.GetSessionListItems(), this);
+            IsRefreshing = false;
         }
     }
 }

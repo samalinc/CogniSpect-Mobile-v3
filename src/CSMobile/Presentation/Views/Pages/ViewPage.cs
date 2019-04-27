@@ -13,24 +13,24 @@ namespace CSMobile.Presentation.Views.Pages
             SetViewModel();
         }
         
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             if (DesignMode.IsDesignModeEnabled)
             {
                 return;
             }
             
-            _viewModel.OnAppearing().GetAwaiter().GetResult();
+            await _viewModel.OnAppearing();
         }
 
-        protected override void OnDisappearing()
+        protected override async void OnDisappearing()
         {
             if (DesignMode.IsDesignModeEnabled)
             {
                 return;
             }
             
-            _viewModel.OnDisappearing().GetAwaiter().GetResult();
+            await _viewModel.OnDisappearing();
         }
 
         public void SetViewModel()

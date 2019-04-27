@@ -2,9 +2,9 @@
 
 <profiles:ProfilePageBase xmlns="http://xamarin.com/schemas/2014/forms"
                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                          xmlns:local="clr-namespace:CSMobile.Presentation.Views.Pages;assembly=CSMobile.Presentation.Views"
                           xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
                           xmlns:profiles="clr-namespace:CSMobile.Presentation.Views.Pages.Profiles;assembly=CSMobile.Presentation.Views"
+                          xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
                           x:Class="CSMobile.Presentation.Views.Pages.Profiles.ProfilePage"
                           x:Name="ProfilePageBase"
                           NavigationPage.HasNavigationBar="False"
@@ -15,8 +15,8 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="10*" />
         </Grid.RowDefinitions>
-        <Button Text="{viewExtensions:Locale SignOut}" Command="{Binding SignOutCommand}" Grid.Row="0" />
-        <Label Text="{viewExtensions:Locale WillBeAddedSoon}" Grid.Row="1" VerticalOptions="Center"
+        <ui:MaterialButton Text="{viewExtensions:Locale SignOut}" Command="{Binding SignOutCommand}" Grid.Row="0" />
+        <ui:MaterialLabel Text="{viewExtensions:Locale WillBeAddedSoon}" Grid.Row="1" VerticalOptions="Center"
                HorizontalOptions="Center" />
     </Grid>
 </profiles:ProfilePageBase>

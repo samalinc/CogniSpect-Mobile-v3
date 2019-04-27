@@ -8,8 +8,9 @@
             xmlns:session="clr-namespace:CSMobile.Presentation.Views.Pages.Session;assembly=CSMobile.Presentation.Views"
             xmlns:profiles="clr-namespace:CSMobile.Presentation.Views.Pages.Profiles;assembly=CSMobile.Presentation.Views"
             xmlns:statistics="clr-namespace:CSMobile.Presentation.Views.Pages.Statistics;assembly=CSMobile.Presentation.Views"
-            android:TabbedPage.ToolbarPlacement="Bottom">
-
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            NavigationPage.HasNavigationBar="False">
+    
     <TabbedPage.Children>
         <NavigationPage Title="{viewExtensions:Locale Tests}">
             <x:Arguments>

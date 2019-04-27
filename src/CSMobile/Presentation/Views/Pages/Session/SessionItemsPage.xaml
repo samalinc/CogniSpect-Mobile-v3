@@ -4,39 +4,64 @@
                               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                               xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
                               xmlns:session="clr-namespace:CSMobile.Presentation.Views.Pages.Session;assembly=CSMobile.Presentation.Views"
+                              xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
                               x:Class="CSMobile.Presentation.Views.Pages.Session.SessionItemsPage"
                               x:Name="SessionItemsPageBase"
                               NavigationPage.HasNavigationBar="False"
                               Title="{viewExtensions:Locale Sessions}">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{viewExtensions:Locale Refresh}" Command="{Binding OnRefreshTestsCommand}" />
-    </ContentPage.ToolbarItems>
-    <Grid
-        VerticalOptions="FillAndExpand"
-        HorizontalOptions="FillAndExpand">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3" />
-        </Grid.ColumnDefinitions>
-        <StackLayout Grid.Column="1" Spacing="1">
-            <ListView
-                ItemsSource="{Binding Sessions}"
-                HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout Spacing="-2">
-                                    <Button Text="{Binding Name}" Command="{Binding OnTestStartedCommand}" />
-                                </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+    <Grid RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="0"
+                  RowHeight="100"
+                  SeparatorVisibility="None"
+                  VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand"
+                  ItemsSource="{Binding Sessions}"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding OnRefreshTestsCommand}"
+                  IsRefreshing="{Binding IsRefreshing}">
+            <ListView.Header>
+                <StackLayout Padding="5"
+                             VerticalOptions="FillAndExpand"
+                             HorizontalOptions="FillAndExpand">
+                    <ui:MaterialLabel TypeScale="H5"
+                                      Text="{viewExtensions:Locale AvailableTests}" />
+                </StackLayout>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <StackLayout Padding="5"
+                                         VerticalOptions="FillAndExpand"
+                                         HorizontalOptions="FillAndExpand">
+                                <ui:MaterialCard VerticalOptions="FillAndExpand"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 HasShadow="True"
+                                                 CornerRadius="2"
+                                                 IsClickable="True"
+                                                 ClickCommand="{Binding OnTestStartedCommand}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <ui:MaterialLabel Text="{Binding Name}"
+                                                          TypeScale="H6"
+                                                          Grid.Row="0"
+                                                          VerticalOptions="StartAndExpand"
+                                                          HorizontalOptions="StartAndExpand" />
+                                    </Grid>
+                                </ui:MaterialCard>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 
 </session:SessionItemsPageBase>
