@@ -8,7 +8,7 @@ namespace CSMobile.Presentation.Views.Pages.Statistics
 
     [DesignTimeVisible(true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StatisticsPage : StatisticsPageBase
+    public partial class StatisticsPage
     {
         public StatisticsPage()
         {

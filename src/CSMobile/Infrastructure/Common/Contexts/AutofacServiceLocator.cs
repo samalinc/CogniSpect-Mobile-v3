@@ -78,6 +78,11 @@ namespace CSMobile.Infrastructure.Common.Contexts
             return GetInstance<TService>();
         }
 
+        public object ResolveService(Type type)
+        {
+            return GetInstance(type);
+        }
+
         public TService ResolveService<TService>(params Parameter[] parameters)
         {
             return Container.Resolve<TService>(parameters);

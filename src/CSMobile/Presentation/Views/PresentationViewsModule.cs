@@ -1,5 +1,4 @@
 using Autofac;
-using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Common.Contexts;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Presentation.Views.Pages.Authentication;

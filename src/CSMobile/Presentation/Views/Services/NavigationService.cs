@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CommonServiceLocator;
+using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using Xamarin.Forms;
@@ -10,11 +10,16 @@ namespace CSMobile.Presentation.Views.Services
 {
     internal class NavigationService : INavigationService
     {
-        private readonly object _sync = new object();
-        private readonly Dictionary<Type, Type> _pagesByKey = new Dictionary<Type, Type>();
+        private readonly ISafeInjectionResolver _safeInjectionResolver;
+        private readonly IDictionary<Type, Type> _pagesByKey;
+        private readonly Stack<NavigationPage> _navigationPageStack;
 
-        private readonly Stack<NavigationPage> _navigationPageStack =
-            new Stack<NavigationPage>();
+        public NavigationService(ISafeInjectionResolver safeInjectionResolver)
+        {
+            _safeInjectionResolver = safeInjectionResolver;
+            _pagesByKey = new Dictionary<Type, Type>();
+            _navigationPageStack = new Stack<NavigationPage>();
+        }
 
         public NavigationPage CurrentNavigationPage => _navigationPageStack.Peek();
 
@@ -41,8 +46,6 @@ namespace CSMobile.Presentation.Views.Services
             _navigationPageStack.Push(mainPage);
             return mainPage;
         }
-
-        public BasePageViewModel CurrentPageViewModel => CurrentNavigationPage.BindingContext as BasePageViewModel;
 
         public async Task GoToRoot()
         {
@@ -72,42 +75,28 @@ namespace CSMobile.Presentation.Views.Services
 
         public async Task NavigateModalAsync<TViewModel>(bool animated = false) where TViewModel : BasePageViewModel
         {
-            await NavigateModalAsync<TViewModel>(null, animated);
-        }
-
-        public async Task NavigateModalAsync<TViewModel>(object parameter, bool animated = false) where TViewModel : BasePageViewModel
-        {
-            var page = GetPage(typeof(TViewModel), parameter);
+            var page = GetPage(typeof(TViewModel));
             NavigationPage.SetHasNavigationBar(page, false);
             var modalNavigationPage = new NavigationPage(page);
             await CurrentNavigationPage.Navigation.PushModalAsync(modalNavigationPage, animated);
             _navigationPageStack.Push(modalNavigationPage);
         }
 
-        public async Task NavigateAsync<TViewModel>(bool animated = true) where TViewModel : BasePageViewModel
+        public async Task NavigateAsync<TViewModel>(bool animated = false) where TViewModel : BasePageViewModel
         {
-            await NavigateAsync<TViewModel>(null, animated);
-        }
-
-        public async Task NavigateAsync<TViewModel>(object parameter, bool animated = false) where TViewModel : BasePageViewModel
-        {
-            var page = GetPage(typeof(TViewModel), parameter);
+            var page = GetPage(typeof(TViewModel));
             await CurrentNavigationPage.Navigation.PushAsync(page, animated);
         }
 
-        private Page GetPage(Type viewModelType, object parameter = null)
+        private Page GetPage(Type viewModelType)
         {
-
-            lock (_sync)
+            if (!_pagesByKey.ContainsKey(viewModelType))
             {
-                if (!_pagesByKey.ContainsKey(viewModelType))
-                {
-                    throw new ArgumentException(
-                        $"No such page for viewmodel: {viewModelType}. Did you forget to call NavigationService.Configure?");
-                }
-
-                return (Page)ServiceLocator.Current.GetInstance(_pagesByKey[viewModelType]);
+                throw new ArgumentException(
+                    $"No such page for viewmodel: {viewModelType}. Did you forget to call NavigationService.Configure?");
             }
+
+            return (Page) _safeInjectionResolver.ResolveService(_pagesByKey[viewModelType]);
         }
     }
 }

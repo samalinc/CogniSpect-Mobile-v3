@@ -8,7 +8,7 @@ namespace CSMobile.Presentation.Views.Pages.Session
     
     [DesignTimeVisible(true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SessionItemsPage : SessionItemsPageBase
+    public partial class SessionItemsPage
     {
         public SessionItemsPage()
         {

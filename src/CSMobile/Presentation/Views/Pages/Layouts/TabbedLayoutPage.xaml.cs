@@ -7,7 +7,7 @@ using Xamarin.Forms.Xaml;
 namespace CSMobile.Presentation.Views.Pages.Layouts
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TabbedLayoutPage : TabbedPage, IViewPage<TabbedLayoutViewModel>
+    public partial class TabbedLayoutPage : IViewPage<TabbedLayoutViewModel>
     {
         private TabbedLayoutViewModel _viewModel;
 

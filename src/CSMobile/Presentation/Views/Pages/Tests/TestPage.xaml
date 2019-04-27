@@ -4,6 +4,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
                     xmlns:tests="clr-namespace:CSMobile.Presentation.Views.Pages.Tests;assembly=CSMobile.Presentation.Views"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:viewModel="clr-namespace:CSMobile.Presentation.ViewModels.Tests;assembly=CSMobile.Presentation.ViewModels"
+                    d:DataContext="{d:DesignInstance viewModel:TestViewModel}"
+                    mc:Ignorable="d"
                     x:Class="CSMobile.Presentation.Views.Pages.Tests.TestPage"
                     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>

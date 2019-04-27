@@ -33,16 +33,12 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using CSMobile.Presentation.Views.Resources;
-using Xamarin.Forms;
 using XF.Material.Forms;
 
 namespace CSMobile.Presentation.Views
 {
-    public partial class App : Application
+    public partial class App
     {
-        private INavigationService _navigationService;
-//        private IServiceLocator _serviceLocator;
-
         public static App Instance { get; private set; }
         public ApplicationContext Context { get; }
 
@@ -119,16 +115,16 @@ namespace CSMobile.Presentation.Views
 
         private void ConfigureNavigation()
         {
-            _navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            
+            navigationService.Configure<AuthenticationViewModel, AuthenticationPage>();
+            navigationService.Configure<ProfileViewModel, ProfilePage>();
+            navigationService.Configure<SessionItemsViewModel, SessionItemsPage>();
+            navigationService.Configure<TestViewModel, TestPage>();
+            navigationService.Configure<StatisticsViewModel, StatisticsPage>();
+            navigationService.Configure<TabbedLayoutViewModel, TabbedLayoutPage>();
 
-            _navigationService.Configure<AuthenticationViewModel, AuthenticationPage>();
-            _navigationService.Configure<ProfileViewModel, ProfilePage>();
-            _navigationService.Configure<SessionItemsViewModel, SessionItemsPage>();
-            _navigationService.Configure<TestViewModel, TestPage>();
-            _navigationService.Configure<StatisticsViewModel, StatisticsPage>();
-            _navigationService.Configure<TabbedLayoutViewModel, TabbedLayoutPage>();
-
-            MainPage = ((NavigationService) _navigationService).SetRootPage<AuthenticationViewModel>();
+            MainPage = ((NavigationService) navigationService).SetRootPage<AuthenticationViewModel>();
         }
 
         private void ConfigureJsonSerializing()

@@ -5,13 +5,13 @@
                                        xmlns:viewExtensions="clr-namespace:CSMobile.Presentation.Views.ViewExtensions;assembly=CSMobile.Presentation.Views"
                                        xmlns:authentication="clr-namespace:CSMobile.Presentation.Views.Pages.Authentication;assembly=CSMobile.Presentation.Views"
                                        xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+                                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                       xmlns:viewModel="clr-namespace:CSMobile.Presentation.ViewModels.Authentication;assembly=CSMobile.Presentation.ViewModels"
+                                       d:DataContext="{d:DesignInstance viewModel:AuthenticationViewModel}"
+                                       mc:Ignorable="d"
                                        x:Class="CSMobile.Presentation.Views.Pages.Authentication.AuthenticationPage"
                                        NavigationPage.HasNavigationBar="False">
-
-    <!-- For some reasons thows exception. Need more investigations-->
-    <!--<ContentPage.Resources> 
-         <x:StyleSheet Source="/Styles/styles.css" /> 
-     </ContentPage.Resources>-->
 
     <Grid StyleClass="container"
           VerticalOptions="FillAndExpand"
