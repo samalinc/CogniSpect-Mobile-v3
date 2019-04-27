@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using System.Threading.Tasks;
 using CommonServiceLocator;
@@ -9,6 +10,11 @@ using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
 {
+    /// <summary>
+    /// For creating commands int nested viewModels,
+    /// use constructor argument with type <see cref="BasePageViewModel"/>
+    /// and construct theirs by specified method of <see cref="IViewModelsFactory"/>
+    /// </summary>
     public abstract partial class BasePageViewModel : BaseViewModel
     {
         private readonly IAppExceptionHandler _appExceptionHandler;
@@ -18,11 +24,6 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
         {
             _appExceptionHandler = ServiceLocator.Current.GetInstance<IAppExceptionHandler>();
             Loading = ServiceLocator.Current.GetInstance<ILoadingFactory>().Create();
-
-            OnCommandStarted += OnCommandStartedHandler;
-            OnCommandEnded += OnCommandEndedHandler;
-            OnCommandFinal += OnCommandFinalHandler;
-            OnCommandExceptionHappened += OnCommandExceptionHappenedFinalHandler;
         }
 
         public virtual Task OnAppearing()
@@ -35,41 +36,28 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
             return Task.CompletedTask;
         }
 
-        public void OnCommandStartedHandler(object source, EventArgs args)
+        public virtual Task OnCommandStartedHandler()
         {
             IsBusy = true;
+            return Task.CompletedTask;
         }
 
-        public void OnCommandEndedHandler(object source, EventArgs args)
+        public virtual Task OnCommandEndedHandler()
         {
             IsBusy = false;
+            return Task.CompletedTask;
         }
 
-        public void OnCommandFinalHandler(object source, EventArgs args)
+        public virtual Task OnCommandFinalHandler()
         {
             IsBusy = false;
+            return Task.CompletedTask;
         }
 
-        public async void OnCommandExceptionHappenedFinalHandler(object source, Exception ex)
+        public virtual async Task OnCommandExceptionHappenedHandler(Exception ex)
         {
             await Loading.End();
             await _appExceptionHandler.HandleException(ex);
-        }
-
-        protected void SafeRemoveNestedViewModels([CanBeNull] [ItemNotNull] IEnumerable<BaseViewModel> viewModels)
-        {
-            if (viewModels.IsNullOrEmpty())
-            {
-                return;
-            }
-
-            foreach (var viewModel in viewModels)
-            {
-                viewModel.OnCommandStarted -= OnCommandStartedHandler;
-                viewModel.OnCommandEnded -= OnCommandEndedHandler;
-                viewModel.OnCommandFinal -= OnCommandFinalHandler;
-                viewModel.OnCommandExceptionHappened -= OnCommandExceptionHappenedFinalHandler;
-            }
         }
     }
 }

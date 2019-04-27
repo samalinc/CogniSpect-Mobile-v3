@@ -20,7 +20,7 @@ namespace CSMobile.Presentation.ViewModels.Sessions
             _viewModelsFactory = viewModelsFactory;
             _sessionService = sessionService;
 
-            OnRefreshTestsCommand = Command(OnRefreshTests);
+            OnRefreshTestsCommand = Command(OnRefreshTests, this);
         }
 
         public override async Task OnAppearing()
@@ -30,7 +30,7 @@ namespace CSMobile.Presentation.ViewModels.Sessions
 
         private async Task OnRefreshTests()
         {
-            SafeRemoveNestedViewModels(Sessions);
+//            SafeRemoveNestedViewModels(Sessions);
             
             Sessions = _viewModelsFactory.Create<SessionListItemViewModel>(
                 await _sessionService.GetSessionListItems(), this);

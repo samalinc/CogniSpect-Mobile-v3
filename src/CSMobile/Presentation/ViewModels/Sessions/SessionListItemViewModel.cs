@@ -20,6 +20,7 @@ namespace CSMobile.Presentation.ViewModels.Sessions
         public ICommand OnTestStartedCommand { get; }
         
         public SessionListItemViewModel(
+            BasePageViewModel rootPageViewModel,
             INavigationService navigationService,
             ISessionService sessionService,
             IMapper mapper)
@@ -28,7 +29,7 @@ namespace CSMobile.Presentation.ViewModels.Sessions
             _sessionService = sessionService;
             _mapper = mapper;
 
-            OnTestStartedCommand = Command(OnTestStarted);
+            OnTestStartedCommand = Command(OnTestStarted, rootPageViewModel);
         }
         
         private async Task OnTestStarted()

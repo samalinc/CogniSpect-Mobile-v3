@@ -1,4 +1,3 @@
-using Autofac.Core;
 using AutoMapper;
 using CommonServiceLocator;
 

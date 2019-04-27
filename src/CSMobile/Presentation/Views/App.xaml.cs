@@ -42,7 +42,7 @@ namespace CSMobile.Presentation.Views
     public partial class App : Application
     {
         private INavigationService _navigationService;
-        private IServiceLocator _serviceLocator;
+//        private IServiceLocator _serviceLocator;
 
         public static App Instance { get; private set; }
         public ApplicationContext Context { get; }
@@ -100,8 +100,8 @@ namespace CSMobile.Presentation.Views
                     .RegisterModule<InfrastructureSecurityModule>()
                 ));
 
-            _serviceLocator = new AutofacServiceLocator(context);
-            ServiceLocator.SetLocatorProvider(() => _serviceLocator);
+            ServiceLocator.SetLocatorProvider(() =>
+                context.Container.Resolve<IServiceLocator>(new TypedParameter(typeof(ApplicationContext), context)));
 
             ConfigureNavigation();
             ConfigureJsonSerializing();

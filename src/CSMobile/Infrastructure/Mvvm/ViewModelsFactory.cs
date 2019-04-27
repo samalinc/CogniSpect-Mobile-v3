@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
+using Autofac;
 using AutoMapper;
+using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
 namespace CSMobile.Infrastructure.Mvvm
@@ -7,10 +10,13 @@ namespace CSMobile.Infrastructure.Mvvm
     internal class ViewModelsFactory : IViewModelsFactory
     {
         private readonly IMapper _mapper;
+        private readonly ISafeInjectionResolver _safeInjectionResolver;
 
-        public ViewModelsFactory(IMapper mapper)
+        public ViewModelsFactory(IMapper mapper,
+            ISafeInjectionResolver safeInjectionResolver)
         {
             _mapper = mapper;
+            _safeInjectionResolver = safeInjectionResolver;
         }
 
         public TDestination Create<TDestination>(
@@ -18,10 +24,9 @@ namespace CSMobile.Infrastructure.Mvvm
             BasePageViewModel page)
             where TDestination : BaseViewModel
         {
-            TDestination result = _mapper.Map<TDestination>(source);
-            SetHandlers(result, page);
+            TDestination result = CreateRaw<TDestination>(page);
 
-            return result;
+            return _mapper.Map(source, result);
         }
 
         public IEnumerable<TDestination> Create<TDestination>(
@@ -29,23 +34,14 @@ namespace CSMobile.Infrastructure.Mvvm
             BasePageViewModel page)
             where TDestination : BaseViewModel
         {
-            IEnumerable<TDestination> result = _mapper.Map<IEnumerable<TDestination>>(source);
-            foreach (var destination in result)
-            {
-                SetHandlers(destination, page);
-            }
-
-            return result;
+            return source.Select(s => Create<TDestination>(s, page)).ToArray();
         }
-
-        private void SetHandlers<TDestination, TPageViewModel>(TDestination destination, TPageViewModel page)
-            where TDestination : BaseViewModel
-            where TPageViewModel : BasePageViewModel
+        
+        private TDestination CreateRaw<TDestination>(BasePageViewModel page)
         {
-            destination.OnCommandStarted += page.OnCommandStartedHandler;
-            destination.OnCommandEnded += page.OnCommandEndedHandler;
-            destination.OnCommandFinal += page.OnCommandFinalHandler;
-            destination.OnCommandExceptionHappened +=  page.OnCommandExceptionHappenedFinalHandler;
+            return _safeInjectionResolver
+                .ResolveService<TDestination>(new TypedParameter(typeof(BasePageViewModel),
+                    page));
         }
     }
 }

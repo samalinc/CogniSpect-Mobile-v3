@@ -1,5 +1,6 @@
 using Autofac;
 using CSMobile.Infrastructure.Common.Extensions;
+using CSMobile.Infrastructure.Mvvm.Commands;
 
 namespace CSMobile.Infrastructure.Mvvm
 {
@@ -8,7 +9,8 @@ namespace CSMobile.Infrastructure.Mvvm
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterSingleAsImplementedInterfaces<ViewModelsFactory>();
+                .RegisterSingleAsImplementedInterfaces<ViewModelsFactory>()
+                .RegisterSingleAsImplementedInterfaces<CommandsFactory>();
         }
     }
 }

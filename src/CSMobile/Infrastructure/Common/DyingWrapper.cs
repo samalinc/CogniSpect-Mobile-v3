@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 
 namespace CSMobile.Infrastructure.Common
 {
@@ -6,11 +7,11 @@ namespace CSMobile.Infrastructure.Common
     {
         public bool IsDead { get; private set; }
 
-        public TDying Dying { get; }
-        
+        [NotNull] public TDying Dying { get; }
+
         private readonly object _lockObject = new object();
 
-        public DyingWrapper(TDying dying)
+        public DyingWrapper([NotNull] TDying dying)
         {
             Dying = dying;
         }

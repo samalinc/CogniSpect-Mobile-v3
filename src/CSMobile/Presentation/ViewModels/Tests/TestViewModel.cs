@@ -36,9 +36,9 @@ namespace CSMobile.Presentation.ViewModels.Tests
             _questionsService = questionsService;
             _webSocketSessionService = webSocketSessionService;
 
-            NextQuestionCommand = Command(NextQuestion);
-            PreviousQuestionCommand = Command(PreviousQuestion);
-            CompleteTestCommand = Command(CompleteTest);
+            NextQuestionCommand = Command(NextQuestion, this);
+            PreviousQuestionCommand = Command(PreviousQuestion, this);
+            CompleteTestCommand = Command(CompleteTest, this);
             
             MessengerInstance.Register<NotificationMessage<Test>>(this, ReceiveTest);
         }

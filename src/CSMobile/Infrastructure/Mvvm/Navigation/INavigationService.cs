@@ -6,7 +6,6 @@ namespace CSMobile.Infrastructure.Mvvm.Navigation
     public interface INavigationService
     {
         Task GoToRoot();
-        BasePageViewModel CurrentPageViewModel { get; }
         void Configure<TViewModel, TViewPage>() 
             where TViewModel : BasePageViewModel
             where TViewPage : IViewPage<TViewModel>;

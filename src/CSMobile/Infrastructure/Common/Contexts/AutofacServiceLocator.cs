@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Autofac;
+using Autofac.Core;
 using CommonServiceLocator;
 
 namespace CSMobile.Infrastructure.Common.Contexts
 {
-    public class AutofacServiceLocator : IServiceLocator
+    public class AutofacServiceLocator : IServiceLocator, ISafeInjectionResolver
     {
         private readonly ApplicationContext _context;
 
@@ -71,6 +72,16 @@ namespace CSMobile.Infrastructure.Common.Contexts
             {
                 throw new ActivationException("ActivationException", ex);
             }
+        }
+
+        public TService ResolveService<TService>()
+        {
+            return GetInstance<TService>();
+        }
+
+        public TService ResolveService<TService>(params Parameter[] parameters)
+        {
+            return Container.Resolve<TService>(parameters);
         }
     }
 }
