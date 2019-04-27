@@ -11,10 +11,10 @@ namespace CSMobile.Domain.Services.Authentication
         {
             CreateMap<AuthenticationData, UserAuthenticationData>();
 
-            CreateMap<WebApiResponse<AuthenticationResult>, UserContextData>()
-                .ForMember(d => d.Login, o => o.MapFrom(s => s.Data.Account.Login))
-                .ForMember(d => d.Email, o => o.MapFrom(s => s.Data.Account.Email))
-                .ForMember(d => d.Token, o => o.MapFrom(s => s.Data.AuthToken));
+            CreateMap<AuthenticationResult, UserContextData>()
+                .ForMember(d => d.Login, o => o.MapFrom(s => s.Account.Login))
+                .ForMember(d => d.Email, o => o.MapFrom(s => s.Account.Email))
+                .ForMember(d => d.Token, o => o.MapFrom(s => s.AuthToken));
         }
     }
 }

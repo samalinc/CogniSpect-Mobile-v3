@@ -15,7 +15,7 @@
 
     <Grid StyleClass="container"
           VerticalOptions="FillAndExpand"
-          HorizontalOptions="FillAndExpand">
+          HorizontalOptions="FillAndExpand" >
 
         <Grid.RowDefinitions>
             <RowDefinition Height="13*" />
@@ -26,11 +26,13 @@
         <StackLayout
             Grid.Row="1">
             <ui:MaterialTextField
+                IsAutoCapitalizationEnabled="False"
                 InputType="Text"
                 Text="{Binding StudNumber, Mode=TwoWay}"
                 Placeholder="{viewExtensions:Locale Login}"
                 FloatingPlaceholderEnabled="False" />
             <ui:MaterialTextField
+                IsAutoCapitalizationEnabled="False"
                 InputType="Password"
                 Text="{Binding Password, Mode=TwoWay}"
                 Placeholder="{viewExtensions:Locale Password}"

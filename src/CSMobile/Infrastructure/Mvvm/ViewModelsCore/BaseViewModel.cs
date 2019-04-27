@@ -16,12 +16,7 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
         protected ICommand Command(Func<Task> action)
         {
             return new Command(async () => await ExceptionHandler(action));
-        }
-        
-        protected ICommand Command<TArg>(Func<TArg, Task> action)
-        {
-            return new Command<TArg>(async arg => await ExceptionHandler(() => action(arg)));
-        }
+        } 
         
         private async Task ExceptionHandler(Func<Task> action)
         {

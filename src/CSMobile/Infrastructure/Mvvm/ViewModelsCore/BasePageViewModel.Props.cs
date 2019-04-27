@@ -2,14 +2,12 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
 {
     public abstract partial class BasePageViewModel
     {
-        private bool _isThinking;
+        private bool _isBusy;
         
-        public bool IsThinking
+        public bool IsBusy
         {
-            get => _isThinking;
-            set => Set(nameof(IsThinking), ref _isThinking, value);
+            get => _isBusy;
+            set => Set(nameof(IsBusy), ref _isBusy, value);
         }
-
-        public virtual string Title { get; set; }
     }
 }

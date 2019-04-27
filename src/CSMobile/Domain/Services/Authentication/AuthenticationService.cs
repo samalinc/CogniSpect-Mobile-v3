@@ -24,18 +24,12 @@ namespace CSMobile.Domain.Services.Authentication
             _mapper = mapper;
         }
 
-        public async Task<bool> SignIn(AuthenticationData authenticationData)
+        public async Task<AuthenticationResult> SignIn(AuthenticationData authenticationData)
         {
             WebApiResponse<AuthenticationResult> result =
                 await _apiClient.Authenticate(_mapper.Map<UserAuthenticationData>(authenticationData));
 
-            if (!result.Succeeded)
-            {
-                return false;
-            }
-            
-            await _userContextService.BeginUserSession(_mapper.Map<UserContextData>(result));
-            return true;
+            return result.Data;
         }
 
         public async Task SignOut()

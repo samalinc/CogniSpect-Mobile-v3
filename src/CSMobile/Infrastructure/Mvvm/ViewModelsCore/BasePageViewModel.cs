@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 using CommonServiceLocator;
 using CSMobile.Infrastructure.Common.Extensions;
@@ -11,8 +12,7 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
     public abstract partial class BasePageViewModel : BaseViewModel
     {
         private readonly IAppExceptionHandler _appExceptionHandler;
-
-        public ILoading Loading { get; set; }
+        protected ILoading Loading { get; }
 
         protected BasePageViewModel()
         {
@@ -37,21 +37,22 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
 
         public void OnCommandStartedHandler(object source, EventArgs args)
         {
-            Loading.Start();
+            IsBusy = true;
         }
 
         public void OnCommandEndedHandler(object source, EventArgs args)
         {
-            Loading.End();
+            IsBusy = false;
         }
 
         public void OnCommandFinalHandler(object source, EventArgs args)
         {
-            Loading.End();
+            IsBusy = false;
         }
 
         public async void OnCommandExceptionHappenedFinalHandler(object source, Exception ex)
         {
+            await Loading.End();
             await _appExceptionHandler.HandleException(ex);
         }
 

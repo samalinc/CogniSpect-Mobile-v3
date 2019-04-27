@@ -9,8 +9,6 @@ namespace CSMobile.Presentation.ViewModels.Profile
     {
         private readonly IAuthenticationService _authenticationService;
 
-        public override string Title { get; set; } = "Profile";
-
         public ICommand SignOutCommand { get; }
 
         public ProfileViewModel(IAuthenticationService authenticationService)

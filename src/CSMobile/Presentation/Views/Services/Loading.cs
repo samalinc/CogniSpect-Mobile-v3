@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Mvvm.LoadingDialog;
 using XF.Material.Forms.UI.Dialogs;
 
@@ -6,7 +8,7 @@ namespace CSMobile.Presentation.Views.Services
 {
     public class Loading : ILoading
     {
-        public IMaterialModalPage MaterialModalPage { get; set; }
+        public DyingWrapper<IMaterialModalPage> MaterialModalPage { get; set; }
 
         public string Text { get; set; }
 
@@ -15,14 +17,18 @@ namespace CSMobile.Presentation.Views.Services
             Text = text;
         }
 
-        public async Task Start()
+        public async Task<IDisposable> Start()
         {
-            MaterialModalPage = await MaterialDialog.Instance.LoadingDialogAsync(Text);
+            MaterialModalPage =
+                new DyingWrapper<IMaterialModalPage>(await MaterialDialog.Instance.LoadingDialogAsync(Text));
+
+            return MaterialModalPage;
         }
 
-        public async Task End()
+        public Task End()
         {
-            await MaterialModalPage.DismissAsync();
+            MaterialModalPage?.Dispose();
+            return Task.CompletedTask;
         }
     }
 }

@@ -13,8 +13,8 @@ namespace CSMobile.Infrastructure.Services.WebClient
 {
     internal class WebApiClient : IWebApiClient
     {
-        private const string WebApiUrl = "http://10.0.2.2:8080/api";
-        //private const string WebApiUrl = "http://cognispect.herokuapp.com/api";
+//        private const string WebApiUrl = "http://10.0.2.2:8080/api";
+        private const string WebApiUrl = "http://cognispect.herokuapp.com/api";
         
         public async Task<WebApiResponse<TData>> GetRequest<TData>(string endPoint, WebApiSecurityOptions securityOptions) where TData: class
         {
