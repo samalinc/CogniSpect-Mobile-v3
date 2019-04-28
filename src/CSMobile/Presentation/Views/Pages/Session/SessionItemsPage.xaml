@@ -24,6 +24,7 @@
                   SeparatorVisibility="None"
                   VerticalOptions="FillAndExpand"
                   HorizontalOptions="FillAndExpand"
+                  SelectionMode="None"
                   ItemsSource="{Binding Sessions}"
                   IsPullToRefreshEnabled="True"
                   RefreshCommand="{Binding OnRefreshTestsCommand}"
@@ -43,10 +44,9 @@
                             <StackLayout Padding="5"
                                          VerticalOptions="FillAndExpand"
                                          HorizontalOptions="FillAndExpand">
-                                <ui:MaterialCard VerticalOptions="FillAndExpand"
+                                <ui:MaterialCard Style="{StaticResource Card}"
+                                                 VerticalOptions="FillAndExpand"
                                                  HorizontalOptions="FillAndExpand"
-                                                 HasShadow="True"
-                                                 CornerRadius="2"
                                                  IsClickable="True"
                                                  ClickCommand="{Binding OnTestStartedCommand}">
                                     <Grid>

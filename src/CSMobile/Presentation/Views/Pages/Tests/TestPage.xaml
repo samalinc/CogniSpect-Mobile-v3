@@ -7,6 +7,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:viewModel="clr-namespace:CSMobile.Presentation.ViewModels.Tests;assembly=CSMobile.Presentation.ViewModels"
+                    xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
                     d:DataContext="{d:DesignInstance viewModel:TestViewModel}"
                     mc:Ignorable="d"
                     x:Class="CSMobile.Presentation.Views.Pages.Tests.TestPage"
@@ -18,20 +19,22 @@
                 <RowDefinition Height="10*" />
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
-            <Label Text="{Binding Name}"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"
-                   Grid.Row="0" />
+            <ui:MaterialLabel Text="{Binding Name}"
+                              Grid.Row="0"
+                              VerticalOptions="CenterAndExpand"
+                              HorizontalOptions="CenterAndExpand"
+                              TypeScale="H6" />
             <Grid Grid.Row="1" BindingContext="{Binding CurrentQuestion}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Text="{Binding Text}" />
-                <ListView
-                    Grid.Row="1"
-                    ItemsSource="{Binding Answers}"
-                    HasUnevenRows="True">
+                <ui:MaterialLabel Grid.Row="0"
+                                  TypeScale="Body1"
+                                  Text="{Binding Text}" />
+                <ListView Grid.Row="1"
+                          ItemsSource="{Binding Answers}"
+                          SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -41,8 +44,12 @@
                                             <ColumnDefinition Width="9*" />
                                             <ColumnDefinition Width="3*" />
                                         </Grid.ColumnDefinitions>
-                                        <Label Text="{Binding Text}" Grid.Column="0" />
-                                        <Switch IsToggled="{Binding Value}" Grid.Column="1" />
+                                        <ui:MaterialLabel Grid.Column="0"
+                                                          TypeScale="Body2"
+                                                          Text="{Binding Text}" />
+                                        <ui:MaterialCheckbox Grid.Column="1"
+                                                             HorizontalOptions="End"
+                                                             IsSelected="{Binding Value}" />
                                     </Grid>
                                 </ViewCell.View>
                             </ViewCell>
@@ -50,13 +57,26 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-            <StackLayout Grid.Row="2">
-                <Button Text="{viewExtensions:Locale Previous}" Command="{Binding PreviousQuestionCommand}"
-                        IsVisible="{Binding IsPreviousButtonVisible}" />
-                <Button Text="{viewExtensions:Locale Next}" Command="{Binding NextQuestionCommand}" IsVisible="{Binding IsNextButtonVisible}" />
-                <Button Text="{viewExtensions:Locale Complete}" Command="{Binding CompleteTestCommand}"
-                        IsVisible="{Binding IsCompleteButtonVisible}" />
-            </StackLayout>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ui:MaterialButton Grid.Column="0"
+                                   Text="{viewExtensions:Locale Previous}"
+                                   Command="{Binding PreviousQuestionCommand}"
+                                   IsVisible="{Binding IsPreviousButtonVisible}" />
+                <ui:MaterialButton Grid.Column="1"
+                                   HorizontalOptions="FillAndExpand"
+                                   VerticalOptions="FillAndExpand"
+                                   Text="{viewExtensions:Locale Next}"
+                                   Command="{Binding NextQuestionCommand}"
+                                   IsVisible="{Binding IsNextButtonVisible}" />
+            </Grid>
+            <ui:MaterialButton Grid.Row="2"
+                               Text="{viewExtensions:Locale Complete}"
+                               Command="{Binding CompleteTestCommand}"
+                               IsVisible="{Binding IsCompleteButtonVisible}" />
         </Grid>
     </ContentPage.Content>
 </tests:TestPageBase>

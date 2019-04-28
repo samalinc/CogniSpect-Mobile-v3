@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:typography="clr-namespace:XF.Material.Forms.Resources.Typography;assembly=XF.Material.Forms"
              xmlns:resources="clr-namespace:XF.Material.Forms.Resources;assembly=XF.Material.Forms"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
              x:Class="CSMobile.Presentation.Views.App">
     <Application.Resources>
         <OnPlatform x:Key="FontFamily.RobotoRegular" x:TypeArguments="x:String">
@@ -35,22 +36,37 @@
                                               Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
 
         <resources:MaterialColorConfiguration x:Key="Material.Color"
-                                              Background="#B00020"
+                                              Background="#f2f2f2"
                                               Error="#B00020"
                                               OnBackground="#000000"
                                               OnError="#FFFFFF"
                                               OnPrimary="#FFFFFF"
                                               OnSecondary="#FFFFFF"
                                               OnSurface="#000000"
-                                              Primary="#011A27"
-                                              PrimaryVariant="#000000"
-                                              Secondary="#a81a7d"
-                                              SecondaryVariant="#001229"
-                                              Surface="#FFFFFF" />
+                                              Primary="#1a237e"
+                                              PrimaryVariant="#000051"
+                                              Secondary="#304ffe"
+                                              SecondaryVariant="#0026ca"
+                                              Surface="#ffffff" />
 
         <resources:MaterialConfiguration x:Key="Material.Configuration"
                                          ColorConfiguration="{StaticResource Material.Color}"
                                          FontConfiguration="{StaticResource Material.Font}" />
+        
+        <ResourceDictionary>
+            <Style x:Key="Input-Field" TargetType="ui:MaterialTextField">
+                <Setter Property="AlwaysShowUnderline" Value="False"/>
+                <Setter Property="FloatingPlaceholderEnabled" Value="False"/>
+                <Setter Property="ShouldAnimateUnderline" Value="False"/>
+                <Setter Property="IsAutoCapitalizationEnabled" Value="False"/>
+                <Setter Property="BackgroundColor" Value="#e6e6e6"/>
+            </Style>
+            
+            <Style x:Key="Card" TargetType="ui:MaterialCard">
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="CornerRadius" Value="2"/>
+            </Style>
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>

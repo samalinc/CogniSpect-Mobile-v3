@@ -24,26 +24,20 @@
         </Grid.RowDefinitions>
 
         <StackLayout Grid.Row="1">
-            <ui:MaterialTextField IsAutoCapitalizationEnabled="False"
-                                  AlwaysShowUnderline="False"
+            <ui:MaterialTextField Style="{StaticResource Input-Field}"
                                   InputType="Text"
                                   Text="{Binding Login, Mode=TwoWay}"
-                                  Placeholder="{viewExtensions:Locale Login}"
-                                  FloatingPlaceholderEnabled="False" />
-            <ui:MaterialTextField IsAutoCapitalizationEnabled="False"
-                                  AlwaysShowUnderline="False"
+                                  Placeholder="{viewExtensions:Locale Login}"/>
+            <ui:MaterialTextField Style="{StaticResource Input-Field}"
                                   InputType="Password"
                                   Text="{Binding Password, Mode=TwoWay}"
-                                  Placeholder="{viewExtensions:Locale Password}"
-                                  FloatingPlaceholderEnabled="False" />
+                                  Placeholder="{viewExtensions:Locale Password}"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <ui:MaterialButton Grid.Column="0"
-                                   ButtonType="Elevated"
-                                   Elevation="3"
                                    Text="{viewExtensions:Locale SignIn}"
                                    Command="{Binding AuthenticateCommand}"
                                    HorizontalOptions="Start"

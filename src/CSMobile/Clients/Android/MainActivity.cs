@@ -2,6 +2,7 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Android.Views;
 using CSMobile.Presentation.Views;
 using XF.Material.Droid;
 
@@ -20,6 +21,7 @@ namespace CSMobile.Presentation.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Material.Init(this, savedInstanceState);
+            Window.AddFlags(WindowManagerFlags.Fullscreen);
             LoadApplication(new App(new AndroidModule()));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)

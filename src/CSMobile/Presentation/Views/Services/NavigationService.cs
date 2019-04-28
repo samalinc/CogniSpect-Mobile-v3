@@ -6,6 +6,7 @@ using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using JetBrains.Annotations;
 using Xamarin.Forms;
+using XF.Material.Forms.UI;
 
 namespace CSMobile.Presentation.Views.Services
 {
@@ -46,7 +47,7 @@ namespace CSMobile.Presentation.Views.Services
         {
             Page rootPage = GetPage(typeof(TViewModel));
             _navigationPageStack.Clear();
-            var mainPage = new NavigationPage(rootPage);
+            NavigationPage mainPage = MakeNavigationPage(rootPage);
             _navigationPageStack.Push(mainPage);
             return mainPage;
         }
@@ -81,7 +82,8 @@ namespace CSMobile.Presentation.Views.Services
         {
             var page = GetPage(typeof(TViewModel));
             NavigationPage.SetHasNavigationBar(page, false);
-            var modalNavigationPage = new NavigationPage(page);
+            NavigationPage modalNavigationPage = MakeNavigationPage(page);
+            
             await CurrentNavigationPage.Navigation.PushModalAsync(modalNavigationPage, animated);
             _navigationPageStack.Push(modalNavigationPage);
         }
@@ -109,6 +111,11 @@ namespace CSMobile.Presentation.Views.Services
             }
 
             return (Page) _safeInjectionResolver.ResolveService(pageType);
+        }
+
+        private NavigationPage MakeNavigationPage(Page page)
+        {
+            return new MaterialNavigationPage(page);
         }
     }
 }
