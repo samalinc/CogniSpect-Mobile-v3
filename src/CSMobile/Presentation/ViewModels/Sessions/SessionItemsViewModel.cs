@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CSMobile.Domain.Services.Sessions;
@@ -26,14 +27,21 @@ namespace CSMobile.Presentation.ViewModels.Sessions
             OnRefreshTestsCommand = Command(OnRefreshTests, this, false);
         }
 
-        public override async Task OnAppearing()
+        public override Task OnAppearing()
         {
             if (!Sessions.IsNullOrEmpty())
             {
-                return;
+                return Task.CompletedTask;
             }
             
-            await OnRefreshTests();
+            OnRefreshTestsCommand.Execute(null);
+            return Task.CompletedTask;
+        }
+
+        public override async Task OnCommandExceptionHappenedHandler(Exception ex)
+        {
+            IsRefreshing = false;
+            await base.OnCommandExceptionHappenedHandler(ex);
         }
 
         private async Task OnRefreshTests()

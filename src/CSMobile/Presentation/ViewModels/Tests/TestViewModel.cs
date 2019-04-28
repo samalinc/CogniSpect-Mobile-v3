@@ -54,7 +54,7 @@ namespace CSMobile.Presentation.ViewModels.Tests
 
         private async Task NextQuestion()
         {
-            await _questionsService.SendQuestionAnswer(_mapper.Map<Question>(CurrentQuestion));
+            await _questionsService.SendQuestionAnswer(_mapper.Map<ChoosableQuestion>(CurrentQuestion));
             CurrentQuestion = Questions[++_questionNumber];
             UpdateButtonsVisibility();
         }

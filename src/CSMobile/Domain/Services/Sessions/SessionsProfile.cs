@@ -3,6 +3,8 @@ using AutoMapper;
 using CSMobile.Domain.Models.Sessions;
 using CSMobile.Domain.Services.Mfa;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos;
+using CSMobile.Domain.Services.WebApiIntegration.Dtos.Enums;
+using CSMobile.Domain.Services.WebApiIntegration.Dtos.Test;
 using CSMobile.Infrastructure.Common.Extensions;
 
 namespace CSMobile.Domain.Services.Sessions
@@ -21,8 +23,9 @@ namespace CSMobile.Domain.Services.Sessions
         {
             CreateMap<TestSessionDto, SessionListItem>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.Name, o => o.MapFrom(s => s.TestSessionName))
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
                 .ForMember(d => d.Status, o => o.MapFrom(s => _sessionStatuses[s.TestSessionStatus]))
+                .ForMember(d => d.SecurityPoints, o => o.MapFrom(s => s.Routers))
                 .IgnoreAllOther();
 
             CreateMap<SessionListItem, SecondFactorVerificationData>()

@@ -7,7 +7,7 @@ namespace CSMobile.Domain.Services.Tests
     [UsedImplicitly]
     internal class QuestionsService : IQuestionsService
     {
-        public Task SendQuestionAnswer(Question question)
+        public Task SendQuestionAnswer(ChoosableQuestion choosableQuestion)
         {
             //TODO: will be implemented on demand
             return Task.CompletedTask;

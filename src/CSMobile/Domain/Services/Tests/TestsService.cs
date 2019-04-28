@@ -1,7 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using CSMobile.Domain.Models.Tests;
+using CSMobile.Domain.Services.WebApiIntegration;
+using CSMobile.Domain.Services.WebApiIntegration.Dtos.Test;
+using CSMobile.Infrastructure.Interfaces.WebClient;
 using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Tests
@@ -9,73 +12,27 @@ namespace CSMobile.Domain.Services.Tests
     [UsedImplicitly]
     internal class TestsService : ITestsService
     {
+        private readonly ICsApiClient _csApiClient;
+        private readonly IMapper _mapper;
+
+        public TestsService(
+            ICsApiClient csApiClient,
+            IMapper mapper)
+        {
+            _csApiClient = csApiClient;
+            _mapper = mapper;
+        }
+
         public async Task<Test> GetSessionTest(Guid sessionId)
         {
-            return await Task.FromResult(GetDummyTest());
+            WebApiResponse<TestVariantDto> result = await _csApiClient.GetTestVariant(sessionId);
+
+            return _mapper.Map<Test>(result.Data);
         }
 
         public async Task EndTest(Test test)
         {
             await Task.CompletedTask;
-        }
-
-        private Test GetDummyTest()
-        {
-            var dummyData = new List<Question>
-            {
-                new Question
-                {
-                    Text = "Чему равен косинус алкена предельного метала сила протеводействия рвному массе ускорения алкадиенов в силе углеводородный свидени гравитоционых кенитических энергий 2х микробловых кенетики ДНК с 2 метохондревыми младшего разряда?",
-                    Variants = new []
-                    {
-                        new QuestionAnswerVariant
-                        {
-                            Text = "2."
-                        },
-                        new QuestionAnswerVariant
-                        {
-                            Text = "Нет, так как нельзя посчитать количество дыр."
-                        },
-                        new QuestionAnswerVariant
-                        {
-                            Text = "Добавление пирофосфатазы может увеличить выход ПЦР-реакции."
-                        },
-                        new QuestionAnswerVariant
-                        {
-                            Text = "Трём зелёным свисткам."
-                        },
-                    }
-                },
-                new Question
-                {
-                    Text = "Сколько ног у паука?",
-                    Variants = new []
-                    {
-                        new QuestionAnswerVariant
-                        {
-                            Text = "3."
-                        },
-                        new QuestionAnswerVariant
-                        {
-                            Text = "4."
-                        },
-                        new QuestionAnswerVariant
-                        {
-                            Text = "6."
-                        },
-                        new QuestionAnswerVariant
-                        {
-                            Text = "8."
-                        },
-                    }
-                },
-            };
-
-            return new Test
-            {
-                Name = "Test test fgertert",
-                Questions = dummyData
-            };
         }
     }
 }

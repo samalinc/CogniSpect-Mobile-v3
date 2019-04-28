@@ -4,8 +4,8 @@ namespace CSMobile.Domain.Models.Tests
 {
     public class Test : BaseModel
     {
-        public string Name { get; set; }
+        public TestStatus Status { get; set; }
 
-        public IList<Question> Questions { get; set; }
+        public IList<BaseQuestion> Questions { get; set; }
     }
 }

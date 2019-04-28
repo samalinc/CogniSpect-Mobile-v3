@@ -7,43 +7,40 @@ namespace CSMobile.Presentation.ViewModels.Tests
     {
         public TestViewModelsMappingProfile()
         {
-            CreateMap<QuestionAnswerVariant, AnswerViewModel>()
+            CreateMap<AnswerVariant, AnswerViewModel>()
                 .ConstructByDiContainer()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
                 .ForMember(d => d.Value, o => o.MapFrom(s => s.Value))
                 .IgnoreAllOther();
             
-            CreateMap<Question, QuestionViewModel>()
+            CreateMap<ChoosableQuestion, QuestionViewModel>()
                 .ConstructByDiContainer()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
-                .ForMember(d => d.Image, o => o.MapFrom(s => s.Image))
-                .ForMember(d => d.Answers, o => o.MapFrom(s => s.Variants))
+                .ForMember(d => d.Text, o => o.MapFrom(s => s.Description))
+                .ForMember(d => d.Answers, o => o.MapFrom(s => s.AnswerVariants))
                 .IgnoreAllOther();
             
             CreateMap<Test, TestViewModel>()
                 .ConstructByDiContainer()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Questions, o => o.MapFrom(s => s.Questions))
-                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
                 .IgnoreAllOther();
             
-            CreateMap<AnswerViewModel, QuestionAnswerVariant>()
+            CreateMap<AnswerViewModel, AnswerVariant>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
                 .ForMember(d => d.Value, o => o.MapFrom(s => s.Value))
                 .IgnoreAllOther();
 
-            CreateMap<QuestionViewModel, Question>()
+            CreateMap<QuestionViewModel, ChoosableQuestion>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
-                .ForMember(d => d.Variants, o => o.MapFrom(s => s.Answers))
+                .ForMember(d => d.Description, o => o.MapFrom(s => s.Text))
+                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.Answers))
                 .IgnoreAllOther();
             
             CreateMap<TestViewModel, Test>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name))
                 .ForMember(d => d.Questions, o => o.MapFrom(s => s.Questions))
                 .IgnoreAllOther();
         }

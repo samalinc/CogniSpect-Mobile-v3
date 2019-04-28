@@ -5,7 +5,6 @@ namespace CSMobile.Presentation.ViewModels.Tests
 {
     public partial class TestViewModel
     {
-        private string _name;
         private QuestionViewModel _currentQuestion;
         private bool _isPreviousButtonVisible;
         private bool _isNextButtonVisible;
@@ -14,12 +13,6 @@ namespace CSMobile.Presentation.ViewModels.Tests
         public IList<QuestionViewModel> Questions { get; set; }
         
         public Guid Id { get; set; }
-                
-        public string Name
-        {
-            get => _name;
-            set => Set(nameof(Name), ref _name, value);
-        }
         
         public QuestionViewModel CurrentQuestion
         {

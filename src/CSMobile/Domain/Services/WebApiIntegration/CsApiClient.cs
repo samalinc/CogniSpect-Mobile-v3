@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using CSMobile.Domain.Services.WebApiIntegration.Authentication;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos;
+using CSMobile.Domain.Services.WebApiIntegration.Dtos.Test;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Interfaces.WebClient;
 using JetBrains.Annotations;
@@ -16,7 +17,7 @@ namespace CSMobile.Domain.Services.WebApiIntegration
         private readonly IWebApiClient _webApiClient;
         private readonly IUserContextService _userContextService;
         
-        private const string ApiTokenName = "Bearer token";
+        private const string ApiTokenName = "Bearer";
         private const string UserTokenName = "Token";
 
         public CsApiClient(
@@ -42,7 +43,20 @@ namespace CSMobile.Domain.Services.WebApiIntegration
             WebApiResponse<IEnumerable<TestSessionDto>> result = await _webApiClient.GetRequest<IEnumerable<TestSessionDto>>(
                 ApiEndpoints.GetStudentSessions,
                 GetSecurityOptions());
-
+ 
+            return result;
+        }
+        
+        public async Task<WebApiResponse<TestVariantDto>> GetTestVariant(Guid sessionId)
+        {
+            WebApiResponse<TestVariantDto> result = await _webApiClient.Request<TestVariantDto>(
+                new WebApiRequestOptions
+                {
+                    Method = HttpMethod.Get,
+                    Endpoint = string.Format(ApiEndpoints.GetTestVariantTemplate, sessionId),
+                    SecurityToken = GetSecurityOptions()
+                });
+ 
             return result;
         }
 

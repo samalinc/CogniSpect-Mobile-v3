@@ -5,6 +5,7 @@ using CommonServiceLocator;
 using CSMobile.Domain.Services;
 using CSMobile.Domain.Services.Authentication;
 using CSMobile.Domain.Services.Sessions;
+using CSMobile.Domain.Services.Tests;
 using CSMobile.Infrastructure.Common.Contexts;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Interfaces.Localization;
@@ -78,6 +79,7 @@ namespace CSMobile.Presentation.Views
                 ConfigureContainer(builder => builder
                     .RegisterAutomapper(cfg => cfg
                         .RegisterProfile<TestViewModelsMappingProfile>()
+                        .RegisterProfile<TestsMappingProfile>()
                         .RegisterProfile<AuthenticationViewModelMappingProfile>()
                         .RegisterProfile<AuthenticationMappingProfile>()
                         .RegisterProfile<SessionsProfile>()
