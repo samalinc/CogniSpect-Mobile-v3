@@ -6,9 +6,11 @@ using CSMobile.Infrastructure.Interfaces.Exceptions;
 using CSMobile.Infrastructure.Interfaces.Localization;
 using CSMobile.Infrastructure.Mvvm;
 using CSMobile.Presentation.ViewModels.Services.Dialogs.Alerts;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.ViewModels.Services.ExceptionHandling
 {
+    [UsedImplicitly]
     internal class AppExceptionHandler : IAppExceptionHandler
     {
         private readonly IAlertService _alertService;

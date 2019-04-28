@@ -6,9 +6,11 @@ using CSMobile.Domain.Services.Tests;
 using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.ViewModels.Tests
 {
+    [UsedImplicitly]
     public partial class TestViewModel : BasePageViewModel<Test>
     {
         private readonly INavigationService _navigationService;

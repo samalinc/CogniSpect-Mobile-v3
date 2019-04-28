@@ -3,9 +3,11 @@ using System.Windows.Input;
 using AutoMapper;
 using CSMobile.Domain.Services.Authentication;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.ViewModels.Authentication
 {
+    [UsedImplicitly]
     public partial class AuthenticationViewModel : BasePageViewModel
     {
         private readonly IAuthenticationService _authenticationService;

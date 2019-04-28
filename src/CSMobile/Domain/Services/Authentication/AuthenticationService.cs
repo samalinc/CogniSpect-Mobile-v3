@@ -6,9 +6,11 @@ using CSMobile.Domain.Services.WebApiIntegration.Dtos;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Interfaces.SecureStorage;
 using CSMobile.Infrastructure.Interfaces.WebClient;
+using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Authentication
 {
+    [UsedImplicitly]
     internal class AuthenticationService : IAuthenticationService
     {
         private readonly IUserContextService _userContextService;
@@ -30,7 +32,7 @@ namespace CSMobile.Domain.Services.Authentication
 
         public async Task<bool> SignIn(AuthenticationData authenticationData)
         {
-            WebApiResponse<AuthenticationResult> result =
+            WebApiResponse<AuthenticationResultDto> result =
                 await _apiClient.Authenticate(_mapper.Map<UserAuthenticationData>(authenticationData));
             if (!result.Succeeded)
             {

@@ -5,9 +5,11 @@ using CSMobile.Infrastructure.Interfaces.SecureStorage;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Presentation.ViewModels.Authentication;
 using CSMobile.Presentation.ViewModels.Core;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.Views.Services
 {
+    [UsedImplicitly]
     internal class UserContextService : IUserContextService
     {
         private readonly INavigationService _navigationService;

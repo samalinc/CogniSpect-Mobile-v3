@@ -1,9 +1,11 @@
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Interfaces.SecureStorage;
+using JetBrains.Annotations;
 using XamarinSecureStorage = Xamarin.Essentials.SecureStorage;
 
 namespace CSMobile.Presentation.Views.Services
 {
+    [UsedImplicitly]
     internal class SecureStorage : ISecureStorage
     {
         public async Task InsertOrUpdate(string key, string value)

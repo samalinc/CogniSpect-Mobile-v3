@@ -9,7 +9,7 @@ namespace CSMobile.Domain.Services.WebApiIntegration
 {
     public interface ICsApiClient
     {
-        Task<WebApiResponse<AuthenticationResult>> Authenticate([NotNull] UserAuthenticationData data);
+        Task<WebApiResponse<AuthenticationResultDto>> Authenticate([NotNull] UserAuthenticationData data);
         Task<WebApiResponse<IEnumerable<TestSessionDto>>> GetTestSessionListItems();
     }
 }

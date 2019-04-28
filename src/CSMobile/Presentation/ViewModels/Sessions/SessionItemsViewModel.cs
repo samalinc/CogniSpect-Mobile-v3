@@ -4,9 +4,11 @@ using CSMobile.Domain.Services.Sessions;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Mvvm;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.ViewModels.Sessions
 {
+    [UsedImplicitly]
     public partial class SessionItemsViewModel : BasePageViewModel
     {
         private readonly IViewModelsFactory _viewModelsFactory;

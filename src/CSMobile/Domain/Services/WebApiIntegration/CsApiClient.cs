@@ -6,9 +6,11 @@ using CSMobile.Domain.Services.WebApiIntegration.Authentication;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Interfaces.WebClient;
+using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.WebApiIntegration
 {
+    [UsedImplicitly]
     internal class CsApiClient : ICsApiClient
     {
         private readonly IWebApiClient _webApiClient;
@@ -25,9 +27,9 @@ namespace CSMobile.Domain.Services.WebApiIntegration
             _userContextService = userContextService;
         }
 
-        public async Task<WebApiResponse<AuthenticationResult>> Authenticate(UserAuthenticationData data)
+        public async Task<WebApiResponse<AuthenticationResultDto>> Authenticate(UserAuthenticationData data)
         {
-            return await _webApiClient.Request<AuthenticationResult>(new WebApiRequestOptions
+            return await _webApiClient.Request<AuthenticationResultDto>(new WebApiRequestOptions
             {
                 Body = data,
                 Method = HttpMethod.Post,

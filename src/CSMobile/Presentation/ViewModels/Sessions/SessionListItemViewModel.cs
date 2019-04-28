@@ -7,9 +7,11 @@ using CSMobile.Domain.Services.Sessions;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using CSMobile.Presentation.ViewModels.Tests;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.ViewModels.Sessions
 {
+    [UsedImplicitly]
     public partial class SessionListItemViewModel : BaseViewModel
     {
         private readonly INavigationService _navigationService;

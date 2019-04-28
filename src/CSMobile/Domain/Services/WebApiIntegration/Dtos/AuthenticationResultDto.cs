@@ -1,6 +1,6 @@
 namespace CSMobile.Domain.Services.WebApiIntegration.Dtos
 {
-    public class AuthenticationResult
+    public class AuthenticationResultDto
     {
         public string AuthToken { get; set; }
 

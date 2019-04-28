@@ -10,9 +10,11 @@ using CSMobile.Domain.Services.Mfa;
 using CSMobile.Domain.Services.Tests;
 using CSMobile.Domain.Services.WebApiIntegration;
 using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
+using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Sessions
 {
+    [UsedImplicitly]
     internal class SessionService : ISessionService
     {
         private readonly ICsApiClient _csApiClient;

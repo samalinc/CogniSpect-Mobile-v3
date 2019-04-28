@@ -1,8 +1,10 @@
 using System;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.ViewModels.Tests
 {
+    [UsedImplicitly]
     public class AnswerViewModel : BaseViewModel
     {
         public Guid Id { get; set; }

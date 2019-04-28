@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Interfaces.Localization;
 using CSMobile.Presentation.ViewModels.Services.Dialogs.Alerts;
+using JetBrains.Annotations;
 using XF.Material.Forms.UI.Dialogs;
 
 namespace CSMobile.Presentation.Views.Services
 {
+    [UsedImplicitly]
     internal class AlertService : IAlertService
     {
         private readonly ILocalizer _localizer;

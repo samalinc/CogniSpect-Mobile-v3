@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CSMobile.Domain.Models.Tests;
+using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Tests
 {
+    [UsedImplicitly]
     internal class TestsService : ITestsService
     {
         public async Task<Test> GetSessionTest(Guid sessionId)
