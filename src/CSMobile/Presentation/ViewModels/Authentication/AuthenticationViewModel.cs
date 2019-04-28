@@ -2,8 +2,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using AutoMapper;
 using CSMobile.Domain.Services.Authentication;
-using CSMobile.Domain.Services.WebApiIntegration.Dtos;
-using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 
 namespace CSMobile.Presentation.ViewModels.Authentication
@@ -12,7 +10,6 @@ namespace CSMobile.Presentation.ViewModels.Authentication
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly IAuthenticationAlertsFactory _authenticationAlertsFactory;
-        private readonly IUserContextService _userContextService;
         private readonly IMapper _mapper;
 
         public ICommand AuthenticateCommand { get; }
@@ -20,12 +17,10 @@ namespace CSMobile.Presentation.ViewModels.Authentication
         public AuthenticationViewModel(
             IAuthenticationService authenticationService,
             IAuthenticationAlertsFactory authenticationAlertsFactory,
-            IUserContextService userContextService,
             IMapper mapper)
         {
             _authenticationService = authenticationService;
             _authenticationAlertsFactory = authenticationAlertsFactory;
-            _userContextService = userContextService;
             _mapper = mapper;
 
             AuthenticateCommand = Command(Authenticate, this);
@@ -33,23 +28,24 @@ namespace CSMobile.Presentation.ViewModels.Authentication
 
         public override async Task OnAppearing()
         {
-            StudNumber = null;
-            Password = null;
-            await Task.CompletedTask;
+            using (await Loading.Start())
+            {
+                await _authenticationService.ProcessRememberMe();
+            }
         }
 
         private async Task Authenticate()
         {
-            AuthenticationResult result =
-                await _authenticationService.SignIn(new AuthenticationData(StudNumber, Password));
+            AuthenticationData data = _mapper.Map<AuthenticationData>(this);
+            bool result = await _authenticationService.SignIn(data);
 
-            if (result == null)
+            if (!result)
             {
                 await _authenticationAlertsFactory.IncorrectLoginOrPassword();
                 return;
             }
 
-            await _userContextService.BeginUserSession(_mapper.Map<UserContextData>(result));
+            await _authenticationService.SafeDataForRememberMe(data, RememberMe);
         }
     }
 }

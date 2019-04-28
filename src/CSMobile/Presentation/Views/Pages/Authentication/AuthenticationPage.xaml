@@ -15,7 +15,7 @@
 
     <Grid StyleClass="container"
           VerticalOptions="FillAndExpand"
-          HorizontalOptions="FillAndExpand" >
+          HorizontalOptions="FillAndExpand">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="13*" />
@@ -23,28 +23,37 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
 
-        <StackLayout
-            Grid.Row="1">
-            <ui:MaterialTextField
-                IsAutoCapitalizationEnabled="False"
-                InputType="Text"
-                Text="{Binding StudNumber, Mode=TwoWay}"
-                Placeholder="{viewExtensions:Locale Login}"
-                FloatingPlaceholderEnabled="False" />
-            <ui:MaterialTextField
-                IsAutoCapitalizationEnabled="False"
-                InputType="Password"
-                Text="{Binding Password, Mode=TwoWay}"
-                Placeholder="{viewExtensions:Locale Password}"
-                FloatingPlaceholderEnabled="False" />
-
-            <ui:MaterialButton
-                ButtonType="Elevated"
-                Elevation="3"
-                Text="{viewExtensions:Locale SignIn}"
-                Command="{Binding AuthenticateCommand}"
-                HorizontalOptions="Start"
-                VerticalOptions="Start" />
+        <StackLayout Grid.Row="1">
+            <ui:MaterialTextField IsAutoCapitalizationEnabled="False"
+                                  AlwaysShowUnderline="False"
+                                  InputType="Text"
+                                  Text="{Binding Login, Mode=TwoWay}"
+                                  Placeholder="{viewExtensions:Locale Login}"
+                                  FloatingPlaceholderEnabled="False" />
+            <ui:MaterialTextField IsAutoCapitalizationEnabled="False"
+                                  AlwaysShowUnderline="False"
+                                  InputType="Password"
+                                  Text="{Binding Password, Mode=TwoWay}"
+                                  Placeholder="{viewExtensions:Locale Password}"
+                                  FloatingPlaceholderEnabled="False" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ui:MaterialButton Grid.Column="0"
+                                   ButtonType="Elevated"
+                                   Elevation="3"
+                                   Text="{viewExtensions:Locale SignIn}"
+                                   Command="{Binding AuthenticateCommand}"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Start" />
+                <ui:MaterialCheckbox Grid.Column="1"
+                                     VerticalOptions="Start"
+                                     HorizontalOptions="End"
+                                     Text="{viewExtensions:Locale RememberMe}"
+                                     IsSelected="{Binding RememberMe}"/>
+            </Grid>
 
         </StackLayout>
     </Grid>

@@ -78,6 +78,7 @@ namespace CSMobile.Presentation.Views
                 ConfigureContainer(builder => builder
                     .RegisterAutomapper(cfg => cfg
                         .RegisterProfile<TestViewModelsMappingProfile>()
+                        .RegisterProfile<AuthenticationViewModelMappingProfile>()
                         .RegisterProfile<AuthenticationMappingProfile>()
                         .RegisterProfile<SessionsProfile>()
                         .RegisterProfile<SessionViewModelsProfile>()
@@ -116,14 +117,14 @@ namespace CSMobile.Presentation.Views
         private void ConfigureNavigation()
         {
             var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
-            
+
             navigationService.Configure<AuthenticationViewModel, AuthenticationPage>();
             navigationService.Configure<ProfileViewModel, ProfilePage>();
             navigationService.Configure<SessionItemsViewModel, SessionItemsPage>();
             navigationService.Configure<TestViewModel, TestPage>();
             navigationService.Configure<StatisticsViewModel, StatisticsPage>();
             navigationService.Configure<TabbedLayoutViewModel, TabbedLayoutPage>();
-
+            
             MainPage = ((NavigationService) navigationService).SetRootPage<AuthenticationViewModel>();
         }
 

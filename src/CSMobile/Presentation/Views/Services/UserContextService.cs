@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Common.Contexts.UserSession;
+using CSMobile.Infrastructure.Interfaces.SecureStorage;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Presentation.ViewModels.Authentication;
 using CSMobile.Presentation.ViewModels.Core;
@@ -10,10 +11,14 @@ namespace CSMobile.Presentation.Views.Services
     internal class UserContextService : IUserContextService
     {
         private readonly INavigationService _navigationService;
+        private readonly ISecureStorage _secureStorage;
 
-        public UserContextService(INavigationService navigationService)
+        public UserContextService(
+            INavigationService navigationService,
+            ISecureStorage secureStorage)
         {
             _navigationService = navigationService;
+            _secureStorage = secureStorage;
         }
         
         public Task BeginUserSession(IHaveUserContextData data)
@@ -25,12 +30,11 @@ namespace CSMobile.Presentation.Views.Services
             return Task.CompletedTask;
         }
 
-        public Task EndUserSession()
+        public async Task EndUserSession()
         {
+            await _secureStorage.ClearStorage();
             App.Instance.Context.EndUserSession();
             App.Instance.MainPage = ((NavigationService) _navigationService).SetRootPage<AuthenticationViewModel>();
-
-            return Task.CompletedTask;
         }
         
         public Task<bool> IsAuthenticated()

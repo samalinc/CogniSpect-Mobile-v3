@@ -159,6 +159,10 @@
   <data name="Refresh" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me?</value>
+    <comment> </comment>
+  </data>
   <data name="Sessions" xml:space="preserve">
     <value>Sessions</value>
   </data>

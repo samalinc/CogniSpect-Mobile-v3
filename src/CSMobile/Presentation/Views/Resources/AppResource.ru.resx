@@ -159,6 +159,9 @@
   <data name="Refresh" xml:space="preserve">
     <value>Обновить</value>
   </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомнить меня?</value>
+  </data>
   <data name="Sessions" xml:space="preserve">
     <value>Сессии</value>
   </data>

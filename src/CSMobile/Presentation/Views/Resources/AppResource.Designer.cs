@@ -187,6 +187,15 @@ namespace CSMobile.Presentation.Views.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remember me?.
+        /// </summary>
+        public static string RememberMe {
+            get {
+                return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sessions.
         /// </summary>
         public static string Sessions {

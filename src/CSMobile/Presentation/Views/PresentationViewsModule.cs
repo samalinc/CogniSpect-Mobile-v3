@@ -30,7 +30,8 @@ namespace CSMobile.Presentation.Views
                 .RegisterSingleAsImplementedInterfaces<NavigationService>()
                 .RegisterSingleAsImplementedInterfaces<AlertService>()
                 .RegisterSingleAsImplementedInterfaces<Localizer>()
-                .RegisterSingleAsImplementedInterfaces<LoadingFactory>();
+                .RegisterSingleAsImplementedInterfaces<LoadingFactory>()
+                .RegisterSingleAsImplementedInterfaces<SecureStorage>();
         }
     }
 }
