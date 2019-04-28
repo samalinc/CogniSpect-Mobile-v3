@@ -68,14 +68,14 @@ namespace CSMobile.Domain.Services.Sessions
 
         public async Task<Test> BeginSession(SessionListItem listItem)
         {
-            bool result =
-                await _mfaService.IsSecondFactorPresented(_mapper.Map<SecondFactorVerificationData>(listItem));
-            if (!result)
-            {
-                throw new InvalidStudentLocation();
-            }
-            
-            await _webSocketSessionService.BeginSession();
+//            bool result =
+//                await _mfaService.IsSecondFactorPresented(_mapper.Map<SecondFactorVerificationData>(listItem));
+//            if (!result)
+//            {
+//                throw new InvalidStudentLocation();
+//            }
+//            
+//            await _webSocketSessionService.BeginSession();
             Test test = await _testsService.GetSessionTest(listItem.Id);
             return test;
         }

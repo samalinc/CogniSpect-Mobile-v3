@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using CSMobile.Infrastructure.Interfaces.Exceptions;
+using CSMobile.Infrastructure.Interfaces.Json;
 using CSMobile.Infrastructure.Interfaces.WebClient;
 using Newtonsoft.Json;
 
@@ -11,6 +12,13 @@ namespace CSMobile.Infrastructure.Services.WebClient
 {
     internal class WebApiClient : IWebApiClient
     {
+        private readonly IJsonConverter _jsonConverter;
+
+        public WebApiClient(IJsonConverter jsonConverter)
+        {
+            _jsonConverter = jsonConverter;
+        }
+
 //        private const string WebApiUrl = "http://10.0.2.2:8080/api";
         private const string WebApiUrl = "http://cognispect.herokuapp.com/api";
         
@@ -76,13 +84,13 @@ namespace CSMobile.Infrastructure.Services.WebClient
             // TODO: add support of other complex types (e.g. multipart, files and etc)
             string json = await result.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<TData>(json);
+            return _jsonConverter.Deserialize<TData>(json);
         }
 
         private HttpRequestMessage FormRequest(WebApiRequestOptions requestOptions)
         {
             StringContent content = new StringContent(
-                JsonConvert.SerializeObject(requestOptions.Body),
+                _jsonConverter.Serialize(requestOptions.Body),
                 Encoding.UTF8,
                 "application/json");
             

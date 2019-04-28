@@ -6,11 +6,10 @@ using CSMobile.Domain.Services.Tests;
 using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace CSMobile.Presentation.ViewModels.Tests
 {
-    public partial class TestViewModel : BasePageViewModel
+    public partial class TestViewModel : BasePageViewModel<Test>
     {
         private readonly INavigationService _navigationService;
         private readonly ITestsService _testsService;
@@ -40,16 +39,15 @@ namespace CSMobile.Presentation.ViewModels.Tests
             NextQuestionCommand = Command(NextQuestion, this, false);
             PreviousQuestionCommand = Command(PreviousQuestion, this, false);
             CompleteTestCommand = Command(CompleteTest, this);
-            
-            MessengerInstance.Register<NotificationMessage<Test>>(this, ReceiveTest);
         }
-
-        private void ReceiveTest(NotificationMessage<Test> message)
+        
+        public override Task RetrieveArgument(Test argument)
         {
-            _mapper.Map(message.Content, this);
+            _mapper.Map(argument, this);
             _questionNumber = 0;
             CurrentQuestion = Questions[_questionNumber];
             UpdateButtonsVisibility();
+            return Task.CompletedTask;
         }
 
         private async Task NextQuestion()

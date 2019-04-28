@@ -7,7 +7,6 @@ using CSMobile.Domain.Services.Sessions;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using CSMobile.Presentation.ViewModels.Tests;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace CSMobile.Presentation.ViewModels.Sessions
 {
@@ -35,8 +34,7 @@ namespace CSMobile.Presentation.ViewModels.Sessions
         private async Task OnTestStarted()
         {
             Test test = await _sessionService.BeginSession(_mapper.Map<SessionListItem>(this));
-            await _navigationService.NavigateAsync<TestViewModel>();
-            MessengerInstance.Send(new NotificationMessage<Test>(test, string.Empty));
+            await _navigationService.Navigate<TestViewModel, Test>(test);
         }
     }
 }
