@@ -15,7 +15,6 @@ namespace CSMobile.Presentation.ViewModels.Authentication
         private readonly IMapper _mapper;
 
         public ICommand AuthenticateCommand { get; }
-        public ICommand RememberMeCommand { get; }
 
         public AuthenticationViewModel(
             IAuthenticationService authenticationService,
@@ -27,13 +26,19 @@ namespace CSMobile.Presentation.ViewModels.Authentication
             _mapper = mapper;
 
             AuthenticateCommand = Command(Authenticate, this);
-            RememberMeCommand = Command(_authenticationService.ProcessRememberMe, this);
         }
 
-        public override Task OnAppearing()
+        public override async Task OnAppearing()
         {
-            RememberMeCommand.Execute(null);
-            return Task.CompletedTask;
+            AuthenticationData data = await _authenticationService.GetStoredAuthenticationData();
+            if (data == null)
+            {
+                return;
+            }
+
+            Login = data.Login;
+            Password = data.Password;
+            AuthenticateCommand.Execute(null);
         }
 
         private async Task Authenticate()

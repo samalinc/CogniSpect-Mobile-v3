@@ -60,23 +60,20 @@ namespace CSMobile.Domain.Services.Authentication
             await _secureStorage.InsertOrUpdate(AuthenticationSecureStorageKeys.Password, authenticationData.Password);
         }
 
-        public async Task<bool> ProcessRememberMe()
+        public async Task<AuthenticationData> GetStoredAuthenticationData()
         {
             var login = await _secureStorage.Get(AuthenticationSecureStorageKeys.Login);
-
-            if (string.IsNullOrEmpty(login))
+            if (login == null)
             {
-                return false;
+                return null;
             }
 
             var password = await _secureStorage.Get(AuthenticationSecureStorageKeys.Password);
-            await SignIn(new AuthenticationData
+            return new AuthenticationData
             {
                 Login = login,
                 Password = password
-            });
-            
-            return true;
+            };
         }
     }
 }

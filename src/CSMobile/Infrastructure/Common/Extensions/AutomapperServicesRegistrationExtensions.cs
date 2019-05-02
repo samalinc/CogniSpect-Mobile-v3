@@ -13,7 +13,9 @@ namespace CSMobile.Infrastructure.Common.Extensions
             action(cfg);
             
             var mapperConfiguration = new MapperConfiguration(cfg);
+#if DEBUG
             mapperConfiguration.AssertConfigurationIsValid();
+#endif
             
             // TODO: Need to think about less tricky solution
             builder.Register(c => mapperConfiguration.CreateMapper())

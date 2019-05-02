@@ -9,6 +9,7 @@ namespace CSMobile.Domain.Services.Authentication
         Task<bool> SignIn([NotNull] AuthenticationData authenticationData);
         Task SignOut();
         Task SafeDataForRememberMe([NotNull] AuthenticationData authenticationData, bool isShouldBeSaved);
-        Task<bool> ProcessRememberMe();
+        [ItemCanBeNull]
+        Task<AuthenticationData> GetStoredAuthenticationData();
     }
 }
