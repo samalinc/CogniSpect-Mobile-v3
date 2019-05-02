@@ -18,12 +18,11 @@
           HorizontalOptions="FillAndExpand">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="13*" />
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackLayout Grid.Row="1">
+        <StackLayout Grid.Row="1" VerticalOptions="End">
             <ui:MaterialTextField Style="{StaticResource Input-Field}"
                                   InputType="Text"
                                   Text="{Binding Login, Mode=TwoWay}"
