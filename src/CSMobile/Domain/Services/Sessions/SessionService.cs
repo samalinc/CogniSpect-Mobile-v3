@@ -36,7 +36,7 @@ namespace CSMobile.Domain.Services.Sessions
             _webSocketSessionService = webSocketSessionService;
             _testsService = testsService;
         }
-        
+
         public async Task<IEnumerable<SessionListItem>> GetSessionListItems()
         {
             WebApiResponse<IEnumerable<TestSessionDto>> result = await _csApiClient.GetTestSessionListItems();
@@ -47,12 +47,21 @@ namespace CSMobile.Domain.Services.Sessions
         public async Task<Test> BeginSession(SessionListItem listItem)
         {
             bool result =
-                await _mfaService.IsSecondFactorPresented(_mapper.Map<SecondFactorVerificationData>(listItem));
+//                await _mfaService.IsSecondFactorPresented(_mapper.Map<SecondFactorVerificationData>(listItem));
+                await _mfaService.IsSecondFactorPresented(new SecondFactorVerificationData
+                {
+                    SecurityPoints = new[]
+                    {
+                        "3GWiFi_564E1O",
+                        "3GWiFi_5648CC",
+                        "3GWiFi_564720",
+                    }
+                });
             if (!result)
             {
                 throw new InvalidStudentLocation();
             }
-            
+
             await _webSocketSessionService.BeginSession();
             Test test = await _testsService.GetSessionTest(listItem.Id);
             return test;
