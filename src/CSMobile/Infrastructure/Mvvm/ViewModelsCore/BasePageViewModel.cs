@@ -6,7 +6,7 @@ using CSMobile.Infrastructure.Mvvm.LoadingDialog;
 namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
 {
     /// <summary>
-    /// For creating commands int nested viewModels,
+    /// For creating commands in nested viewModels,
     /// use constructor argument with type <see cref="BasePageViewModel"/>
     /// and construct theirs by specified method of <see cref="IViewModelsFactory"/>
     /// </summary>

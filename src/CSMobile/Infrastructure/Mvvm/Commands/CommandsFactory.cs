@@ -15,7 +15,7 @@ namespace CSMobile.Infrastructure.Mvvm.Commands
             action = WrapWithExceptionHandling(action, configs);
             action = WrapWithIsBusy(action, configs);
 
-            return new Command(async () => await action());
+            return new Command(async () => await Task.Run(action));
         }
 
         private Func<Task> WrapWithGlobalLoading(Func<Task> action, CommandConfigs configs)

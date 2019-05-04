@@ -6,10 +6,6 @@ namespace CSMobile.Infrastructure.Security
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder
-                .RegisterAssemblyTypes(ThisAssembly)
-                .AsImplementedInterfaces()
-                .SingleInstance();
         }
     }
 }

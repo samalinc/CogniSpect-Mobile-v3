@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CommonServiceLocator;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using Xamarin.Forms;
@@ -20,7 +21,7 @@ namespace CSMobile.Presentation.Views.Pages
                 return;
             }
             
-            await _viewModel.OnAppearing();
+            await Task.Run(_viewModel.OnAppearing);
         }
 
         protected override async void OnDisappearing()
@@ -30,7 +31,7 @@ namespace CSMobile.Presentation.Views.Pages
                 return;
             }
             
-            await _viewModel.OnDisappearing();
+            await Task.Run(_viewModel.OnDisappearing);
         }
 
         public void SetViewModel()
