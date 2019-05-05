@@ -23,12 +23,13 @@ namespace CSMobile.Presentation.Droid
             // Get a handle to the WifiPositionImpl
             _wifi = (WifiManager) _context.GetSystemService(Context.WifiService);
             IList<ScanResult> wifiNetworks = _wifi.ScanResults;
-            
-            if (wifiNetworks.Count >= MIN_POINTS && wifiNetworks.Count <= MAX_POINTS)
+            var currentNethworks = from el in wifiNetworks where wifis.Contains(el.VenueName.ToString()) select el;
+
+
+            if (currentNethworks.Count() >= MIN_POINTS && currentNethworks.Count() <= MAX_POINTS)
             {
-                return wifiNetworks
-                    .Where(wifinetwork => wifis.Contains(wifinetwork.VenueName.ToString()))
-                    .All(wifinetwork => IsSignalGood(wifinetwork.Level));
+                return currentNethworks
+                    .All(el => IsSignalGood(el.Level));
             }
 
             return false;
