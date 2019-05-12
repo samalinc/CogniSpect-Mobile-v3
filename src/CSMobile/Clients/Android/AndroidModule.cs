@@ -1,5 +1,7 @@
+using Android.Content;
 using Autofac;
 using CSMobile.Infrastructure.Common.Extensions;
+using CSMobile.Presentation.Droid.PlatformDependentServices.Wifi;
 
 namespace CSMobile.Presentation.Droid
 {
@@ -8,7 +10,12 @@ namespace CSMobile.Presentation.Droid
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterSingleAsImplementedInterfaces<AndroidWifiPositionsService>()
+                .RegisterInstance(Android.App.Application.Context)
+                .As<Context>()
+                .SingleInstance();
+            
+            builder
+                .RegisterSingleAsImplementedInterfaces<AndroidWifiManager>()
                 .RegisterSingleAsImplementedInterfaces<AndroidCultureResolver>();
         }
     }

@@ -84,8 +84,9 @@
   <ItemGroup>
     <Compile Include="AndroidCultureResolver.cs" />
     <Compile Include="AndroidModule.cs" />
-    <Compile Include="AndroidWifiPositionsService.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="PlatformDependentServices\Wifi\AndroidWifiManager.cs" />
+    <Compile Include="PlatformDependentServices\Wifi\AndroidWifiReceiver.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

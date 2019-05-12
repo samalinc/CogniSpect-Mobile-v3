@@ -27,6 +27,7 @@ using CSMobile.Presentation.Views.Pages.Authentication;
 using CSMobile.Presentation.Views.Pages.Layouts;
 using CSMobile.Presentation.Views.Pages.Profiles;
 using CSMobile.Presentation.Views.Pages.Session;
+using CSMobile.Presentation.Views.Pages.Startup;
 using CSMobile.Presentation.Views.Pages.Statistics;
 using CSMobile.Presentation.Views.Pages.Tests;
 using CSMobile.Presentation.Views.Services;
@@ -34,6 +35,8 @@ using JetBrains.Annotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using CSMobile.Presentation.Views.Resources;
+using Plugin.Permissions;
+using Plugin.Permissions.Abstractions;
 using XF.Material.Forms;
 
 namespace CSMobile.Presentation.Views
@@ -126,8 +129,9 @@ namespace CSMobile.Presentation.Views
             navigationService.Configure<TestViewModel, TestPage>();
             navigationService.Configure<StatisticsViewModel, StatisticsPage>();
             navigationService.Configure<TabbedLayoutViewModel, TabbedLayoutPage>();
-            
-            MainPage = ((NavigationService) navigationService).SetRootPage<AuthenticationViewModel>();
+
+            MainPage = new StartupPage();
+//            MainPage = ((NavigationService) navigationService).SetRootPage<AuthenticationViewModel>();
         }
 
         private void ConfigureJsonSerializing()

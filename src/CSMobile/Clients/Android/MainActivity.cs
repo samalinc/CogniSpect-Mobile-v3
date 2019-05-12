@@ -22,6 +22,8 @@ namespace CSMobile.Presentation.Droid
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Material.Init(this, savedInstanceState);
             Window.AddFlags(WindowManagerFlags.Fullscreen);
+            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            
             LoadApplication(new App(new AndroidModule()));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)

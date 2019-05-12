@@ -1,4 +1,5 @@
 using Autofac;
+using CSMobile.Infrastructure.Common.Extensions;
 
 namespace CSMobile.Infrastructure.Security
 {
@@ -6,6 +7,8 @@ namespace CSMobile.Infrastructure.Security
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder
+                .RegisterSingleAsImplementedInterfaces<WifiPositionsService>();
         }
     }
 }

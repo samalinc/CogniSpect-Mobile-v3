@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CSMobile.Infrastructure.Security
 {
     public interface IWifiPositionsService
     {
-        bool IsPositionOk(IEnumerable<string> wifis);
+        Task<bool> IsPositionOk(IEnumerable<string> wifis);
     } 
 }

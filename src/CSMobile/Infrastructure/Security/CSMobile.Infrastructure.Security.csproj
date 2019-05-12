@@ -6,6 +6,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Common\CSMobile.Infrastructure.Common.csproj" />
+      <ProjectReference Include="..\Interfaces\CSMobile.Infrastructure.Interfaces.csproj" />
     </ItemGroup>
 
 </Project>

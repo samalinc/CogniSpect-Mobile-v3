@@ -14,9 +14,9 @@ namespace CSMobile.Domain.Services.Mfa
             _wifiPositionsService = wifiPositionsService;
         }
 
-        public Task<bool> IsSecondFactorPresented(SecondFactorVerificationData verificationData)
+        public async Task<bool> IsSecondFactorPresented(SecondFactorVerificationData verificationData)
         {
-            return Task.FromResult(_wifiPositionsService.IsPositionOk(verificationData.SecurityPoints));
+            return await _wifiPositionsService.IsPositionOk(verificationData.SecurityPoints);
         }
     }
 }
