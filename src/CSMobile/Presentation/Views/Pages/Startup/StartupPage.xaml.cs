@@ -26,7 +26,11 @@ namespace CSMobile.Presentation.Views.Pages.Startup
         {
             App.Instance.MainPage = ((NavigationService) ServiceLocator.Current.GetInstance<INavigationService>())
                 .SetRootPage<AuthenticationViewModel>();
-            
+            await RequestPermissionsIfNeeded();
+        }
+
+        private async Task RequestPermissionsIfNeeded()
+        {
             if (await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location) !=
                 PermissionStatus.Granted)
             {

@@ -52,7 +52,7 @@ namespace CSMobile.Domain.Services.Sessions
                 {
                     SecurityPoints = new[]
                     {
-                        "3GWiFi_564E1O",
+                        "3GWiFi_564E10",
                         "3GWiFi_5648CC",
                         "3GWiFi_564720",
                     }
