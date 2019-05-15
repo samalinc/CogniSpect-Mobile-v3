@@ -15,6 +15,8 @@ namespace CSMobile.Presentation.Droid.PlatformDependentServices.Wifi
         private Timer _tmr;
         private const int TimeoutMillis = 10000;
 
+        public bool IsErrorHappened { get; set; }
+
         public AndroidWifiReceiver(WifiManager wifi)
         {
             _wifi = wifi;
@@ -27,6 +29,11 @@ namespace CSMobile.Presentation.Droid.PlatformDependentServices.Wifi
             _tmr = new Timer(Timeout, null, TimeoutMillis, System.Threading.Timeout.Infinite);
             _wifi.StartScan();
             _receiverAre.WaitOne();
+            if (IsErrorHappened)
+            {
+                throw new TimeoutException();
+            }
+
             return _wifiNetworks;
         }
 
@@ -38,7 +45,8 @@ namespace CSMobile.Presentation.Droid.PlatformDependentServices.Wifi
 
         private void Timeout(object sender)
         {
-            throw new TimeoutException();
+            IsErrorHappened = true;
+            _receiverAre.Set();
         }
 
         protected override void Dispose(bool disposing)
@@ -49,7 +57,7 @@ namespace CSMobile.Presentation.Droid.PlatformDependentServices.Wifi
                 _wifi.Dispose();
                 _receiverAre.Dispose();
             }
-            
+
             base.Dispose(disposing);
         }
     }

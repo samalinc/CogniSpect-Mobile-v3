@@ -24,14 +24,15 @@ namespace CSMobile.Presentation.Droid.PlatformDependentServices.Wifi
             IEnumerable<ScanResult> availableNetworks = null;
             using (var wifiReceiver = new AndroidWifiReceiver(wifi))
             {
+                _context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
                 await Task.Run(() =>
                 {
                     // Start a scan and register the Broadcast receiver to get the list of Wifi Networks
-                    _context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
                     availableNetworks = wifiReceiver.Scan();
                 });
+                _context.UnregisterReceiver(wifiReceiver);
             }
-
+            
             return availableNetworks.Select(s => new WifiNetwork
             {
                 Ssid = s.Ssid,

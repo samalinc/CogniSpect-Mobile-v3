@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Threading.Tasks;
 using CommonServiceLocator;
 using CSMobile.Infrastructure.Mvvm.Navigation;
@@ -24,15 +25,16 @@ namespace CSMobile.Presentation.Views.Pages.Startup
 
         private async Task Initialize()
         {
+            await RequestPermissionsIfNeeded();
             App.Instance.MainPage = ((NavigationService) ServiceLocator.Current.GetInstance<INavigationService>())
                 .SetRootPage<AuthenticationViewModel>();
-            await RequestPermissionsIfNeeded();
+            Debug.WriteLine("test");
         }
 
         private async Task RequestPermissionsIfNeeded()
         {
-            if (await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location) !=
-                PermissionStatus.Granted)
+            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
+            if (status !=PermissionStatus.Granted)
             {
                 await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
             }
