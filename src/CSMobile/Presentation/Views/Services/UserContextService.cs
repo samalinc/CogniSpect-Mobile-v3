@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Common.Contexts.UserSession;
 using CSMobile.Infrastructure.Interfaces.SecureStorage;
-using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Presentation.ViewModels.Authentication;
 using CSMobile.Presentation.ViewModels.Core;
 using JetBrains.Annotations;
@@ -12,41 +11,35 @@ namespace CSMobile.Presentation.Views.Services
     [UsedImplicitly]
     internal class UserContextService : IUserContextService
     {
-        private readonly INavigationService _navigationService;
         private readonly ISecureStorage _secureStorage;
 
-        public UserContextService(
-            INavigationService navigationService,
-            ISecureStorage secureStorage)
+        public UserContextService(ISecureStorage secureStorage)
         {
-            _navigationService = navigationService;
             _secureStorage = secureStorage;
         }
         
-        public Task BeginUserSession(IHaveUserContextData data)
+        public async Task BeginUserSession(IHaveUserContextData data)
         {
-            App.Instance.Context.EndUserSession();
-            App.Instance.Context.BeginNewUserSession(data.ToData());
-            App.Instance.MainPage = ((NavigationService) _navigationService).SetRootPage<TabbedLayoutViewModel>();
-            
-            return Task.CompletedTask;
+            ApplicationContext.Instance.EndUserSession();
+            ApplicationContext.Instance.BeginNewUserSession(data.ToData());
+            await ApplicationContext.Instance.ChangeRootPage<TabbedLayoutViewModel>();
         }
 
         public async Task EndUserSession()
         {
             await _secureStorage.ClearStorage();
-            App.Instance.Context.EndUserSession();
-            App.Instance.MainPage = ((NavigationService) _navigationService).SetRootPage<AuthenticationViewModel>();
+            ApplicationContext.Instance.EndUserSession();
+            await ApplicationContext.Instance.ChangeRootPage<AuthenticationViewModel>();
         }
         
         public Task<bool> IsAuthenticated()
         {
-            return Task.FromResult(App.Instance.Context.IsUserAuthenticated);
+            return Task.FromResult(ApplicationContext.Instance.IsUserAuthenticated);
         }
 
         public object GetUserSessionData(string key)
         {
-            return App.Instance.Context.UserContext.GetUserData(key);
+            return ApplicationContext.Instance.UserContext.GetUserData(key);
         }
     }
 }

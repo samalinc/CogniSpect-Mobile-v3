@@ -9,19 +9,19 @@ namespace CSMobile.Presentation.Views.Services
     {
         public Task BeginSession()
         {
-            App.Instance.Context.BeginWebSocketSession();
+            ApplicationContext.Instance.BeginWebSocketSession();
             return Task.CompletedTask;
         }
 
         public Task EndSession()
         {
-            App.Instance.Context.EndWebSocketSession();
+            ApplicationContext.Instance.EndWebSocketSession();
             return Task.CompletedTask;
         }
 
         public async Task SendMessage(string action, object message)
         {
-            await App.Instance.Context.WebSocketContext.SendMessage(action, message);
+            await ApplicationContext.Instance.WebSocketContext.SendMessage(action, message);
         }
     }
 }

@@ -5,7 +5,7 @@
              x:Class="CSMobile.Presentation.Views.Pages.Startup.StartupPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hello, world!"
+            <Label Text="StartupPage"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand" />
         </StackLayout>

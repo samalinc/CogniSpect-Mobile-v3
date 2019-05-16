@@ -8,11 +8,11 @@ namespace CSMobile.Infrastructure.Common.Contexts
 {
     public class AutofacServiceLocator : IServiceLocator, ISafeInjectionResolver
     {
-        private readonly ApplicationContext _context;
+        private readonly IContext _context;
 
-        private ILifetimeScope Container => _context.UserContext?.Scope ?? _context.Container;
+        private ILifetimeScope Container => _context.CurrentScope;
 
-        public AutofacServiceLocator(ApplicationContext context)
+        public AutofacServiceLocator(IContext context)
         {
             _context = context;
         }
