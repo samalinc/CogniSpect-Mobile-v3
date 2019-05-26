@@ -21,15 +21,11 @@ namespace CSMobile.Presentation.Droid.PlatformDependentServices.Wifi
         public async Task<IEnumerable<WifiNetwork>> GetAvailableNetworks()
         {
             var wifi = (WifiManager) _context.GetSystemService(Context.WifiService);
-            IEnumerable<ScanResult> availableNetworks = null;
+            IEnumerable<ScanResult> availableNetworks;
             using (var wifiReceiver = new AndroidWifiReceiver(wifi))
             {
                 _context.RegisterReceiver(wifiReceiver, new IntentFilter(WifiManager.ScanResultsAvailableAction));
-                await Task.Run(() =>
-                {
-                    // Start a scan and register the Broadcast receiver to get the list of Wifi Networks
-                    availableNetworks = wifiReceiver.Scan();
-                });
+                availableNetworks = await wifiReceiver.Scan();
                 _context.UnregisterReceiver(wifiReceiver);
             }
             

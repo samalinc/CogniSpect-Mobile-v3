@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Android.Content;
 using Android.Net.Wifi;
 using TimeoutException = CSMobile.Infrastructure.Interfaces.Exceptions.TimeoutException;
@@ -10,55 +11,60 @@ namespace CSMobile.Presentation.Droid.PlatformDependentServices.Wifi
     internal class AndroidWifiReceiver : BroadcastReceiver
     {
         private readonly WifiManager _wifi;
-        private IList<ScanResult> _wifiNetworks;
-        private readonly AutoResetEvent _receiverAre;
-        private Timer _tmr;
+        private readonly TaskCompletionSource<IEnumerable<ScanResult>> _completionSource;
+        private readonly object _lockObject = new object();
+        private Timer _timer;
         private const int TimeoutMillis = 10000;
-
-        public bool IsErrorHappened { get; set; }
 
         public AndroidWifiReceiver(WifiManager wifi)
         {
             _wifi = wifi;
-            _wifiNetworks = new List<ScanResult>();
-            _receiverAre = new AutoResetEvent(false);
+            _completionSource = new TaskCompletionSource<IEnumerable<ScanResult>>();
         }
 
-        public IEnumerable<ScanResult> Scan()
+        public Task<IEnumerable<ScanResult>> Scan()
         {
-            _tmr = new Timer(Timeout, null, TimeoutMillis, System.Threading.Timeout.Infinite);
+            _timer = new Timer(Timeout, null, TimeoutMillis, System.Threading.Timeout.Infinite);
+#pragma warning disable 618
             _wifi.StartScan();
-            _receiverAre.WaitOne();
-            if (IsErrorHappened)
-            {
-                throw new TimeoutException();
-            }
+#pragma warning restore 618
 
-            return _wifiNetworks;
+            return _completionSource.Task;
         }
 
         public override void OnReceive(Context context, Intent intent)
         {
-            _wifiNetworks = _wifi.ScanResults.ToArray();
-            _receiverAre.Set();
+            _completionSource.TrySetResult(_wifi.ScanResults.ToArray());
         }
 
         private void Timeout(object sender)
         {
-            IsErrorHappened = true;
-            _receiverAre.Set();
+            if (_completionSource.TrySetException(new TimeoutException()))
+            {
+                return;
+            }
+            
+            DisposeTimer();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                _tmr.Dispose();
+                DisposeTimer();
                 _wifi.Dispose();
-                _receiverAre.Dispose();
             }
 
             base.Dispose(disposing);
+        }
+
+        private void DisposeTimer()
+        {
+            lock (_lockObject)
+            {
+                _timer?.Dispose();
+                _timer = null;
+            }
         }
     }
 }

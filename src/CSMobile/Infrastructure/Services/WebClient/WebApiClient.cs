@@ -102,7 +102,8 @@ namespace CSMobile.Infrastructure.Services.WebClient
                 RequestUri = new Uri($"{WebApiUrl}/{requestOptions.Endpoint}")
             };
             SetContentIfNeeded(message, requestOptions);
-            message.Headers.Add("Accept", "application/json");
+            message.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            message.Headers.AcceptCharset.Add(new StringWithQualityHeaderValue("UTF-8"));
 
             return message;
         }
