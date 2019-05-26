@@ -46,4 +46,11 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\icon.png">
+      <SubType>Designer</SubType>
+      <Generator></Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
