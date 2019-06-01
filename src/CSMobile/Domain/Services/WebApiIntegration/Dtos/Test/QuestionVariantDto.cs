@@ -12,9 +12,7 @@ namespace CSMobile.Domain.Services.WebApiIntegration.Dtos.Test
 
         public QuestionVariantType Type { get; set; }
 
-        public bool Answered { get; set; }
-
-        public IEnumerable<AnswerVariantDto> Answers { get; set; }
+        public IEnumerable<ChooseAnswerVariantDto> ChooseAnswers { get; set; }
 
         public IEnumerable<MatchAnswerVariantDto> MatchAnswers { get; set; }
         

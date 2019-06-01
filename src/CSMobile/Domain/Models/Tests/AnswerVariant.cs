@@ -1,6 +1,6 @@
 namespace CSMobile.Domain.Models.Tests
 {
-    public class AnswerVariant : BaseModel
+    public class ChooseAnswerVariant : BaseModel
     {
         public int Position { get; set; }
         

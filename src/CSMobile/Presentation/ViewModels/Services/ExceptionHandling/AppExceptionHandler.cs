@@ -26,12 +26,12 @@ namespace CSMobile.Presentation.ViewModels.Services.ExceptionHandling
 
         public async Task HandleException(Exception ex)
         {
-            Debug.WriteLine(ex.ToString());
             await _alertService.ErrorAlert(ResolveExceptionMessage(ex));
         }
 
         private string ResolveExceptionMessage(Exception ex)
         {
+            Debug.WriteLine(ex.ToString());
             switch (ex)
             {
                 case WebSocketConnectionException _:

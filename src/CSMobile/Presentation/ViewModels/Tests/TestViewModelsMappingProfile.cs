@@ -7,7 +7,7 @@ namespace CSMobile.Presentation.ViewModels.Tests
     {
         public TestViewModelsMappingProfile()
         {
-            CreateMap<AnswerVariant, AnswerViewModel>()
+            CreateMap<ChooseAnswerVariant, AnswerViewModel>()
                 .ConstructByDiContainer()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
@@ -24,10 +24,10 @@ namespace CSMobile.Presentation.ViewModels.Tests
             CreateMap<Test, TestViewModel>()
                 .ConstructByDiContainer()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.Questions, o => o.MapFrom(s => s.Questions))
+                .ForMember(d => d.Questions, o => o.MapFrom<BaseQuestionToQuestionViewModelValueResolver>())
                 .IgnoreAllOther();
             
-            CreateMap<AnswerViewModel, AnswerVariant>()
+            CreateMap<AnswerViewModel, ChooseAnswerVariant>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
                 .ForMember(d => d.Value, o => o.MapFrom(s => s.Value))

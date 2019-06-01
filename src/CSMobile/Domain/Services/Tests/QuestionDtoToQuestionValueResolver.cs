@@ -6,9 +6,11 @@ using CommonServiceLocator;
 using CSMobile.Domain.Models.Tests;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos.Enums;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos.Test;
+using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Tests
 {
+    [UsedImplicitly]
     internal class QuestionDtoToQuestionValueResolver : IValueResolver<TestVariantDto, Test, IList<BaseQuestion>>
     {
         private readonly IMapper _mapper;

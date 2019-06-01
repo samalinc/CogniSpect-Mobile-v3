@@ -8,10 +8,6 @@ namespace CSMobile.Domain.Services.WebApiIntegration.Dtos.Test
 
         public int ListPosition { get; set; }
 
-        public int RightPosition { get; set; }
-
-        public int StudentPosition { get; set; }
-
         public string Text { get; set; }
     }
 }

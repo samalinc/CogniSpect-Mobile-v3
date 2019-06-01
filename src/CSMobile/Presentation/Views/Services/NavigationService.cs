@@ -99,7 +99,7 @@ namespace CSMobile.Presentation.Views.Services
         {
             var page = GetPage(typeof(TViewModel));
             await ((BasePageViewModel<TArgument>) page.BindingContext).RetrieveArgument(argument);
-            await CurrentNavigationPage.Navigation.PushAsync(page, animated);
+            RunOnUiThread(async () => await CurrentNavigationPage.Navigation.PushAsync(page, animated));
         }
 
         private Page GetPage(Type viewModelType)
@@ -116,6 +116,11 @@ namespace CSMobile.Presentation.Views.Services
         private NavigationPage MakeNavigationPage(Page page)
         {
             return new MaterialNavigationPage(page);
+        }
+
+        private void RunOnUiThread(Action action)
+        {
+            Device.BeginInvokeOnMainThread(action);
         }
     }
 }

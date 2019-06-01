@@ -31,8 +31,7 @@ namespace CSMobile.Domain.Services.Tests
             CreateMap<TestVariantDto, Test>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Questions, o => o.MapFrom<QuestionDtoToQuestionValueResolver>())
-                .ForMember(d => d.Status, o => o.MapFrom(s => _testStatuses[s.TestVariantStatus]))
-                .IgnoreAllOther();
+                .ForMember(d => d.Status, o => o.MapFrom(s => _testStatuses[s.TestVariantStatus]));
 
             CreateMap<QuestionVariantDto, BaseQuestion>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
@@ -41,32 +40,27 @@ namespace CSMobile.Domain.Services.Tests
             
             CreateMap<QuestionVariantDto, ChoosableQuestion>()
                 .IncludeBase<QuestionVariantDto, BaseQuestion>()
-                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.Answers))
-                .IgnoreAllOther();
+                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.ChooseAnswers));
             
             CreateMap<QuestionVariantDto, MatchQuestion>()
                 .IncludeBase<QuestionVariantDto, BaseQuestion>()
-                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.Answers))
-                .IgnoreAllOther();
+                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.ChooseAnswers));
             
             CreateMap<QuestionVariantDto, SortQuestion>()
                 .IncludeBase<QuestionVariantDto, BaseQuestion>()
-                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.Answers))
-                .IgnoreAllOther();
+                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.ChooseAnswers));
 
-            CreateMap<AnswerVariantDto, AnswerVariant>()
+            CreateMap<ChooseAnswerVariantDto, ChooseAnswerVariant>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
-                .ForMember(d => d.Position, o => o.MapFrom(s => s.Position))
-                .IgnoreAllOther();
+                .ForMember(d => d.Value, o => o.Ignore())
+                .ForMember(d => d.Position, o => o.MapFrom(s => s.Position));
             
             CreateMap<SortAnswerVariantDto, SortAnswerVariant>()
-                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .IgnoreAllOther();
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id));
             
             CreateMap<MatchAnswerVariantDto, MatchAnswerVariant>()
-                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .IgnoreAllOther();
+                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id));
         }
     }
 }

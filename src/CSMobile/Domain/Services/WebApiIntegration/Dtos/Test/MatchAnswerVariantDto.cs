@@ -10,10 +10,6 @@ namespace CSMobile.Domain.Services.WebApiIntegration.Dtos.Test
 
         public int KeyPosition { get; set; }
 
-        public string StudentKey { get; set; }
-
-        public string StudentValue { get; set; }
-
         public string Value { get; set; }
 
         public int ValuePosition { get; set; }
