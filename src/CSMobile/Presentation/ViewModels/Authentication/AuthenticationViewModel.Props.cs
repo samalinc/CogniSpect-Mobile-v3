@@ -2,6 +2,8 @@ namespace CSMobile.Presentation.ViewModels.Authentication
 {
     public partial class AuthenticationViewModel
     {
+        public bool IsFirstStart { get; set; } = true;
+        
         private string _login;
         private string _password;
         private bool _rememberMe;

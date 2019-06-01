@@ -62,7 +62,7 @@ namespace CSMobile.Domain.Services.Sessions
                 throw new InvalidStudentLocation();
             }
 
-            await _webSocketSessionService.BeginSession();
+//            await _webSocketSessionService.BeginSession();
             Test test = await _testsService.GetSessionTest(listItem.Id);
             return test;
         }

@@ -8,36 +8,23 @@ namespace CSMobile.Infrastructure.Security
     internal class WifiPositionsService : IWifiPositionsService
     {
         private readonly IWifiManager _wifiManager;
+        
+        private const int MaxPoints = 4;
+        private const int MinPoints = 3;
 
         public WifiPositionsService(IWifiManager wifiManager)
         {
             _wifiManager = wifiManager;
         }
 
-        private const int _maxPoints = 4;
-        private const int _minPoints = 3;
-
         public async Task<bool> IsPositionOk(IEnumerable<string> wifis)
         {
-//            var status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-//            if (status != PermissionStatus.Granted)
-//            {
-////                if(await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location))
-////                {
-////                    await DisplayAlert("Need location", "Gunna need that location", "OK");
-////                }
-//
-//                var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Location);
-//                //Best practice to always check that the key exists
-//                if(results.ContainsKey(Permission.Location))
-//                    status = results[Permission.Location];
-//            }
             IEnumerable<WifiNetwork> wifiNetworks = await _wifiManager.GetAvailableNetworks();
             var currentNetworks = wifiNetworks
                 .Where(r => wifis.Contains(r.Ssid))
                 .ToArray();
 
-            if (currentNetworks.Length >= _minPoints && currentNetworks.Length <= _maxPoints)
+            if (currentNetworks.Length >= MinPoints && currentNetworks.Length <= MaxPoints)
             {
                 return currentNetworks.All(el => IsSignalGood(el.Level));
             }

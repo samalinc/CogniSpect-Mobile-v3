@@ -30,6 +30,15 @@ namespace CSMobile.Presentation.ViewModels.Authentication
 
         public override async Task OnAppearing()
         {
+            if (IsFirstStart)
+            {
+                await AutoLogin();
+            }
+        }
+
+        private async Task AutoLogin()
+        {
+            IsFirstStart = false;
             AuthenticationData data = await _authenticationService.GetStoredAuthenticationData();
             if (data == null)
             {

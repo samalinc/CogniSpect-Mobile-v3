@@ -3,9 +3,9 @@ using CSMobile.Infrastructure.Common.Extensions;
 
 namespace CSMobile.Presentation.ViewModels.Sessions
 {
-    public class SessionViewModelsProfile : AutoMapper.Profile
+    public class SessionViewModelsMapperProfile : AutoMapper.Profile
     {
-        public SessionViewModelsProfile()
+        public SessionViewModelsMapperProfile()
         {
             CreateMap<SessionListItem, SessionListItemViewModel>()
                 .ConstructByDiContainer()

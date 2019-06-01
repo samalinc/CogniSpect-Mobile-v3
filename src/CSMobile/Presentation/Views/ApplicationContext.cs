@@ -104,7 +104,7 @@ namespace CSMobile.Presentation.Views
                         .RegisterProfile<AuthenticationViewModelMappingProfile>()
                         .RegisterProfile<AuthenticationMappingProfile>()
                         .RegisterProfile<SessionsProfile>()
-                        .RegisterProfile<SessionViewModelsProfile>()
+                        .RegisterProfile<SessionViewModelsMapperProfile>()
                     )
                     .RegisterResponseHandlerResolver(cfg => cfg
                         .RegisterRecorder<WebSocketsHandlersRecorder>()
