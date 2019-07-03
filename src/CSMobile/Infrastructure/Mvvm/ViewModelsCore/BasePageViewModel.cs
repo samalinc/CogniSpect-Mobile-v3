@@ -12,6 +12,8 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
     /// </summary>
     public abstract partial class BasePageViewModel : BaseViewModel
     {
+        private bool _isFirstAppearingHappened = false;
+        
         private readonly IAppExceptionHandler _appExceptionHandler;
         public ILoading Loading { get; }
 
@@ -21,9 +23,18 @@ namespace CSMobile.Infrastructure.Mvvm.ViewModelsCore
             Loading = ServiceLocator.Current.GetInstance<ILoadingFactory>().Create();
         }
 
-        public virtual Task OnAppearing()
+        protected virtual Task OnFirstAppearing()
         {
+            _isFirstAppearingHappened = true;
             return Task.CompletedTask;
+        }
+
+        public virtual async Task OnAppearing()
+        {
+            if (!_isFirstAppearingHappened)
+            {
+                await OnFirstAppearing();
+            }
         }
 
         public virtual Task OnDisappearing()

@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CSMobile.Domain.Services.Sessions;
-using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Mvvm;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using JetBrains.Annotations;
@@ -27,15 +26,10 @@ namespace CSMobile.Presentation.ViewModels.Sessions
             OnRefreshTestsCommand = Command(OnRefreshTests, this, false);
         }
 
-        public override Task OnAppearing()
+        protected override Task OnFirstAppearing()
         {
-            if (!Sessions.IsNullOrEmpty())
-            {
-                return Task.CompletedTask;
-            }
-            
             OnRefreshTestsCommand.Execute(null);
-            return Task.CompletedTask;
+            return base.OnFirstAppearing();
         }
 
         public override async Task OnCommandExceptionHappenedHandler(Exception ex)
