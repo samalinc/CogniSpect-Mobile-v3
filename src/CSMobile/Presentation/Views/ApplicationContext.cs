@@ -4,27 +4,17 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
 using CommonServiceLocator;
-using CSMobile.Domain.Services;
-using CSMobile.Domain.Services.Authentication;
-using CSMobile.Domain.Services.Sessions;
-using CSMobile.Domain.Services.Tests;
 using CSMobile.Infrastructure.Common.Contexts;
 using CSMobile.Infrastructure.Common.Contexts.UserSession;
 using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Interfaces.Localization;
-using CSMobile.Infrastructure.Mvvm;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
-using CSMobile.Infrastructure.Security;
 using CSMobile.Infrastructure.Services;
-using CSMobile.Infrastructure.WebSockets;
-using CSMobile.Infrastructure.WebSockets.Extensions;
-using CSMobile.Presentation.ViewModels;
 using CSMobile.Presentation.ViewModels.Authentication;
 using CSMobile.Presentation.ViewModels.Core;
 using CSMobile.Presentation.ViewModels.Profile;
-using CSMobile.Presentation.ViewModels.Services;
 using CSMobile.Presentation.ViewModels.Sessions;
 using CSMobile.Presentation.ViewModels.Statistics;
 using CSMobile.Presentation.ViewModels.Tests;
@@ -48,17 +38,17 @@ namespace CSMobile.Presentation.Views
         private readonly App _app;
 
         public static ApplicationContext Instance { get; private set; }
-        
+
         public UserContext UserContext { get; private set; }
         public IWebSocketContext WebSocketContext { get; private set; }
         public ILifetimeScope CurrentScope => UserContext?.Scope ?? _container;
 
         public bool IsUserAuthenticated => UserContext != null;
-        
-        public static async Task BuildAsync(App app, IModule module)
+
+        public static async Task BuildAsync(App app)
         {
             Instance = new ApplicationContext(app);
-            await Task.Run(async () => await Instance.RegisterServices(module));
+            await Task.Run(async () => await Instance.RegisterServices());
         }
 
         private ApplicationContext(App app)
@@ -70,7 +60,7 @@ namespace CSMobile.Presentation.Views
         {
             await Task.Run(() => _app.MainPage = _navigationService.SetRootPage<TViewModel>());
         }
-        
+
         public void BeginNewUserSession(IDictionary<string, object> data)
         {
             UserContext = UserContext.InitNewSession(_container.BeginLifetimeScope(), data);
@@ -94,30 +84,24 @@ namespace CSMobile.Presentation.Views
             WebSocketContext = null;
         }
 
-        private async Task RegisterServices(IModule module)
+        private async Task RegisterServices()
         {
             _container =
-                ConfigureContainer(builder => builder
-                    .RegisterAutomapper(cfg => cfg
-                        .RegisterProfile<TestViewModelsMappingProfile>()
-                        .RegisterProfile<TestsMappingProfile>()
-                        .RegisterProfile<AuthenticationViewModelMappingProfile>()
-                        .RegisterProfile<AuthenticationMappingProfile>()
-                        .RegisterProfile<SessionsProfile>()
-                        .RegisterProfile<SessionViewModelsMapperProfile>()
-                    )
-                    .RegisterResponseHandlerResolver(cfg => cfg
-                        .RegisterRecorder<WebSocketsHandlersRecorder>()
-                    )
-                    .RegisterModule(module)
-                    .RegisterModule<PresentationViewsModule>()
-                    .RegisterModule<MvvmModule>()
-                    .RegisterModule<WebSocketsModule>()
-                    .RegisterModule<PresentationViewModelsModule>()
-                    .RegisterModule<DomainServicesModule>()
-                    .RegisterModule<InfrastructureServicesModule>()
-                    .RegisterModule<InfrastructureSecurityModule>()
-                );
+                ConfigureContainer(builder =>
+                {
+                    builder
+                        .ToAssembliesRegistrator()
+                        .AddCurrentDomainAssemblies(nameof(CSMobile))
+                        .AddAssembly<InfrastructureServicesModule>()
+                        .RegisterAssembliesModules()
+                        .RegisterAutoMapper()
+                        .ToContainerBuilder();
+
+#if DEBUG
+                    builder
+                        .AddAutoMapperBuildCallback();
+#endif
+                });
 
             ServiceLocator.SetLocatorProvider(() =>
                 _container.Resolve<IServiceLocator>(new TypedParameter(typeof(IContext), this)));
@@ -137,7 +121,7 @@ namespace CSMobile.Presentation.Views
 
         private void ConfigureNavigation()
         {
-            _navigationService = (NavigationService)ServiceLocator.Current.GetInstance<INavigationService>();
+            _navigationService = (NavigationService) ServiceLocator.Current.GetInstance<INavigationService>();
 
             _navigationService.Configure<AuthenticationViewModel, AuthenticationPage>();
             _navigationService.Configure<ProfileViewModel, ProfilePage>();

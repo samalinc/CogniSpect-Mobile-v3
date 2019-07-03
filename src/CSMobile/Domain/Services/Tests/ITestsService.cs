@@ -8,6 +8,6 @@ namespace CSMobile.Domain.Services.Tests
     public interface ITestsService
     {
         [ItemNotNull] Task<Test> GetSessionTest(Guid sessionId);
-        Task EndTest([NotNull] Test test);
+        Task EndTest(Guid testId);
     }
 }

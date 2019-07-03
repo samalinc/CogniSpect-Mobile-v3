@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
+using CSMobile.Presentation.ViewModels.Tests.Questions;
 
 namespace CSMobile.Presentation.ViewModels.Tests
 {
     public partial class TestViewModel
     {
         private QuestionViewModel _currentQuestion;
-        private bool _isPreviousButtonVisible;
-        private bool _isNextButtonVisible;
+        private bool _isAnswerButtonVisible;
         private bool _isCompleteButtonVisible;
         
         public IList<QuestionViewModel> Questions { get; set; }
@@ -20,16 +20,10 @@ namespace CSMobile.Presentation.ViewModels.Tests
             set => Set(nameof(CurrentQuestion), ref _currentQuestion, value);
         }
         
-        public bool IsPreviousButtonVisible
+        public bool IsAnswerButtonVisible
         {
-            get => _isPreviousButtonVisible;
-            set => Set(nameof(IsPreviousButtonVisible), ref _isPreviousButtonVisible, value);
-        }
-        
-        public bool IsNextButtonVisible
-        {
-            get => _isNextButtonVisible;
-            set => Set(nameof(IsNextButtonVisible), ref _isNextButtonVisible, value);
+            get => _isAnswerButtonVisible;
+            set => Set(nameof(IsAnswerButtonVisible), ref _isAnswerButtonVisible, value);
         }
         
         public bool IsCompleteButtonVisible

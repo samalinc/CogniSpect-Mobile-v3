@@ -24,7 +24,7 @@ namespace CSMobile.Presentation.Droid
             Window.AddFlags(WindowManagerFlags.Fullscreen);
             Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
             
-            LoadApplication(new App(new AndroidModule()));
+            LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {

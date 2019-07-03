@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CSMobile.Domain.Models.Tests.Questions;
 
 namespace CSMobile.Domain.Models.Tests
 {
@@ -6,6 +7,6 @@ namespace CSMobile.Domain.Models.Tests
     {
         public TestStatus Status { get; set; }
 
-        public IList<BaseQuestion> Questions { get; set; }
+        public IList<Question> Questions { get; set; }
     }
 }

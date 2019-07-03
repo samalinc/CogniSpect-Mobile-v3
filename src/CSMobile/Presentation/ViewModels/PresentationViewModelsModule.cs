@@ -8,6 +8,8 @@ using CSMobile.Presentation.ViewModels.Services.ExceptionHandling;
 using CSMobile.Presentation.ViewModels.Sessions;
 using CSMobile.Presentation.ViewModels.Statistics;
 using CSMobile.Presentation.ViewModels.Tests;
+using CSMobile.Presentation.ViewModels.Tests.Questions;
+using CSMobile.Presentation.ViewModels.Tests.Questions.Answers;
 
 namespace CSMobile.Presentation.ViewModels
 {
@@ -16,20 +18,20 @@ namespace CSMobile.Presentation.ViewModels
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterScopedAsSelf<AuthenticationViewModel>()
-                .RegisterScopedAsSelf<ProfileViewModel>()
-                .RegisterScopedAsSelf<SessionItemsViewModel>()
-                .RegisterScopedAsSelf<TestViewModel>()
-                .RegisterScopedAsSelf<StatisticsViewModel>()
-                .RegisterScopedAsSelf<TabbedLayoutViewModel>()
-                .RegisterPerDependencyAsSelf<SessionListItemViewModel>()
-                .RegisterPerDependencyAsSelf<QuestionViewModel>()
-                .RegisterPerDependencyAsSelf<AnswerViewModel>();
+                .ScopedAsSelf<AuthenticationViewModel>()
+                .ScopedAsSelf<ProfileViewModel>()
+                .ScopedAsSelf<SessionItemsViewModel>()
+                .ScopedAsSelf<TestViewModel>()
+                .ScopedAsSelf<StatisticsViewModel>()
+                .ScopedAsSelf<TabbedLayoutViewModel>()
+                .PerDependencyAsSelf<SessionListItemViewModel>()
+                .PerDependencyAsSelf<QuestionViewModel>()
+                .PerDependencyAsSelf<AnswerViewModel>();
 
             builder
-                .RegisterSingleAsSelf<WebSocketsHandlersRecorder>()
-                .RegisterSingleAsImplementedInterfaces<AppExceptionHandler>()
-                .RegisterSingleAsImplementedInterfaces<AuthenticationAlertsFactory>();
+                .SingleAsSelf<WebSocketsHandlersRecorder>()
+                .SingleAsImplementedInterfaces<AppExceptionHandler>()
+                .SingleAsImplementedInterfaces<AuthenticationAlertsFactory>();
         }
     }
 }

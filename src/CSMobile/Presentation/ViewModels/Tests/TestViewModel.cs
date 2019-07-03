@@ -3,7 +3,6 @@ using System.Windows.Input;
 using AutoMapper;
 using CSMobile.Domain.Models.Tests;
 using CSMobile.Domain.Services.Tests;
-using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
 using CSMobile.Infrastructure.Mvvm.Navigation;
 using CSMobile.Infrastructure.Mvvm.ViewModelsCore;
 using JetBrains.Annotations;
@@ -17,29 +16,24 @@ namespace CSMobile.Presentation.ViewModels.Tests
         private readonly ITestsService _testsService;
         private readonly IMapper _mapper;
         private readonly IQuestionsService _questionsService;
-        private readonly IWebSocketSessionService _webSocketSessionService;
 
         private int _questionNumber;
         
-        public ICommand NextQuestionCommand { get; }
-        public ICommand PreviousQuestionCommand { get; }
+        public ICommand AnswerTheQuestionCommand { get; }
         public ICommand CompleteTestCommand { get; }
 
         public TestViewModel(
             INavigationService navigationService,
             ITestsService testsService,
             IMapper mapper,
-            IQuestionsService questionsService,
-            IWebSocketSessionService webSocketSessionService)
+            IQuestionsService questionsService)
         {
             _navigationService = navigationService;
             _testsService = testsService;
             _mapper = mapper;
             _questionsService = questionsService;
-            _webSocketSessionService = webSocketSessionService;
 
-            NextQuestionCommand = Command(NextQuestion, this, false);
-            PreviousQuestionCommand = Command(PreviousQuestion, this, false);
+            AnswerTheQuestionCommand = Command(AnswerTheQuestion, this, false);
             CompleteTestCommand = Command(CompleteTest, this);
         }
         
@@ -52,34 +46,23 @@ namespace CSMobile.Presentation.ViewModels.Tests
             return Task.CompletedTask;
         }
 
-        private async Task NextQuestion()
+        private async Task AnswerTheQuestion()
         {
-            await _questionsService.SendQuestionAnswer(_mapper.Map<ChoosableQuestion>(CurrentQuestion));
+//            await _questionsService.SendQuestionAnswer(_mapper.Map<ChoosableQuestion>(CurrentQuestion));
             CurrentQuestion = Questions[++_questionNumber];
             UpdateButtonsVisibility();
-        }
-        
-        private Task PreviousQuestion()
-        {
-            CurrentQuestion = Questions[--_questionNumber];
-            UpdateButtonsVisibility();
-            
-            return Task.CompletedTask;
         }
 
         private void UpdateButtonsVisibility()
         {
-            // TODO: Logic will be added on demand
-            IsPreviousButtonVisible = false;
-            IsNextButtonVisible = _questionNumber != Questions.Count - 1;
-            IsCompleteButtonVisible = !IsNextButtonVisible;
+            IsAnswerButtonVisible = _questionNumber != Questions.Count - 1;
+            IsCompleteButtonVisible = !IsAnswerButtonVisible;
         }
 
         private async Task CompleteTest()
         {
-            await _testsService.EndTest(_mapper.Map<Test>(this));
+            await _testsService.EndTest(Id);
             await _navigationService.GoToRoot();
-            await _webSocketSessionService.EndSession();
         }
     }
 }

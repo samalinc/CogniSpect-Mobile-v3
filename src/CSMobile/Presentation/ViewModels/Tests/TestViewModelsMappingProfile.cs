@@ -1,47 +1,41 @@
 using CSMobile.Domain.Models.Tests;
+using CSMobile.Domain.Models.Tests.Questions;
 using CSMobile.Infrastructure.Common.Extensions;
+using CSMobile.Presentation.ViewModels.Tests.Questions;
+using CSMobile.Presentation.ViewModels.Tests.Questions.Answers;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.ViewModels.Tests
 {
-    public class TestViewModelsMappingProfile : AutoMapper.Profile
+    [UsedImplicitly]
+    internal class TestViewModelsMappingProfile : AutoMapper.Profile
     {
         public TestViewModelsMappingProfile()
         {
-            CreateMap<ChooseAnswerVariant, AnswerViewModel>()
+            CreateMap<ChooseAnswerVariant, ChooseAnswerViewModel>()
                 .ConstructByDiContainer()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
                 .ForMember(d => d.Value, o => o.MapFrom(s => s.Value))
                 .IgnoreAllOther();
             
-            CreateMap<ChoosableQuestion, QuestionViewModel>()
+            CreateMap<Question, QuestionViewModel>()
                 .ConstructByDiContainer()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Description))
-                .ForMember(d => d.Answers, o => o.MapFrom(s => s.AnswerVariants))
+                .ForMember(d => d.ChooseAnswers, o => o.MapFrom(s => s.ChooseAnswers))
                 .IgnoreAllOther();
             
             CreateMap<Test, TestViewModel>()
                 .ConstructByDiContainer()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.Questions, o => o.MapFrom<BaseQuestionToQuestionViewModelValueResolver>())
+                .ForMember(d => d.Questions, o => o.MapFrom(s => s.Questions))
                 .IgnoreAllOther();
             
             CreateMap<AnswerViewModel, ChooseAnswerVariant>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Text, o => o.MapFrom(s => s.Text))
                 .ForMember(d => d.Value, o => o.MapFrom(s => s.Value))
-                .IgnoreAllOther();
-
-            CreateMap<QuestionViewModel, ChoosableQuestion>()
-                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.Description, o => o.MapFrom(s => s.Text))
-                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.Answers))
-                .IgnoreAllOther();
-            
-            CreateMap<TestViewModel, Test>()
-                .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.Questions, o => o.MapFrom(s => s.Questions))
                 .IgnoreAllOther();
         }
     }

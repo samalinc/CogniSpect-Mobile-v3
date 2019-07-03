@@ -16,22 +16,22 @@ namespace CSMobile.Presentation.Views
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterScopedAsSelf<AuthenticationPage>()
-                .RegisterScopedAsSelf<ProfilePage>()
-                .RegisterScopedAsSelf<SessionItemsPage>()
-                .RegisterScopedAsSelf<TestPage>()
-                .RegisterScopedAsSelf<StatisticsPage>()
-                .RegisterScopedAsSelf<TabbedLayoutPage>();
+                .ScopedAsSelf<AuthenticationPage>()
+                .ScopedAsSelf<ProfilePage>()
+                .ScopedAsSelf<SessionItemsPage>()
+                .ScopedAsSelf<TestPage>()
+                .ScopedAsSelf<StatisticsPage>()
+                .ScopedAsSelf<TabbedLayoutPage>();
             
             builder
-                .RegisterSingleAsImplementedInterfaces<AutofacServiceLocator>()
-                .RegisterSingleAsImplementedInterfaces<UserContextService>()
-                .RegisterSingleAsImplementedInterfaces<WebSocketSessionService>()
-                .RegisterSingleAsImplementedInterfaces<NavigationService>()
-                .RegisterSingleAsImplementedInterfaces<AlertService>()
-                .RegisterSingleAsImplementedInterfaces<Localizer>()
-                .RegisterSingleAsImplementedInterfaces<LoadingFactory>()
-                .RegisterSingleAsImplementedInterfaces<SecureStorage>();
+                .SingleAsImplementedInterfaces<AutofacServiceLocator>()
+                .SingleAsImplementedInterfaces<UserContextService>()
+                .SingleAsImplementedInterfaces<WebSocketSessionService>()
+                .SingleAsImplementedInterfaces<NavigationService>()
+                .SingleAsImplementedInterfaces<AlertService>()
+                .SingleAsImplementedInterfaces<Localizer>()
+                .SingleAsImplementedInterfaces<LoadingFactory>()
+                .SingleAsImplementedInterfaces<SecureStorage>();
         }
     }
 }

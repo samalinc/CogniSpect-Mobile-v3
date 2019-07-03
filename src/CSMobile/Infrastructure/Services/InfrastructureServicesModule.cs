@@ -12,8 +12,8 @@ namespace CSMobile.Infrastructure.Services
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterSingleAsImplementedInterfaces<WebApiClient>()
-                .RegisterSingleAsImplementedInterfaces<JsonConverter>();
+                .SingleAsImplementedInterfaces<WebApiClient>()
+                .SingleAsImplementedInterfaces<JsonConverter>();
 
             builder
                 .RegisterType<DefaultWebSocketClient>()

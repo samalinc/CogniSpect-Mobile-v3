@@ -1,8 +1,10 @@
 using CSMobile.Domain.Services.Authentication;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.ViewModels.Authentication
 {
-    public class AuthenticationViewModelMappingProfile : AutoMapper.Profile
+    [UsedImplicitly]
+    internal class AuthenticationViewModelMappingProfile : AutoMapper.Profile
     {
         public AuthenticationViewModelMappingProfile()
         {

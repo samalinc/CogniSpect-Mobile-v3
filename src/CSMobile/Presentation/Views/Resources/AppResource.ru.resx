@@ -120,6 +120,9 @@
   <data name="AvailableTests" xml:space="preserve">
     <value>Доступные тесты</value>
   </data>
+  <data name="Answer" xml:space="preserve">
+    <value>Ответить</value>
+  </data>
   <data name="Complete" xml:space="preserve">
     <value>Закончить</value>
   </data>

@@ -9,7 +9,7 @@ namespace CSMobile.Infrastructure.WebSockets
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterSingleAsImplementedInterfaces<ResponseHandlerExecutor>();
+                .SingleAsImplementedInterfaces<ResponseHandlerExecutor>();
 
             builder
                 .RegisterType<WebSocketSession>()

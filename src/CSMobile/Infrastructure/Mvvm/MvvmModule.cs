@@ -9,8 +9,8 @@ namespace CSMobile.Infrastructure.Mvvm
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterSingleAsImplementedInterfaces<ViewModelsFactory>()
-                .RegisterSingleAsImplementedInterfaces<CommandsFactory>();
+                .SingleAsImplementedInterfaces<ViewModelsFactory>()
+                .SingleAsImplementedInterfaces<CommandsFactory>();
         }
     }
 }

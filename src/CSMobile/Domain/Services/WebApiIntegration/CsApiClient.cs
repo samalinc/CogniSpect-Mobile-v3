@@ -59,6 +59,19 @@ namespace CSMobile.Domain.Services.WebApiIntegration
  
             return result;
         }
+        
+        public async Task<WebApiResponse> FinishTestVariant(Guid testId)
+        {
+            WebApiResponse<TestVariantDto> result = await _webApiClient.Request<TestVariantDto>(
+                new WebApiRequestOptions
+                {
+                    Method = HttpMethod.Put,
+                    Endpoint = string.Format(ApiEndpoints.GetTestVariantTemplate, testId),
+                    SecurityToken = GetSecurityOptions()
+                });
+ 
+            return result;
+        }
 
         private WebApiSecurityOptions GetSecurityOptions()
         {

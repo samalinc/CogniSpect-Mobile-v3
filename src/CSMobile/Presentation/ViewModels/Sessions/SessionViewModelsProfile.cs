@@ -1,9 +1,11 @@
 using CSMobile.Domain.Models.Sessions;
 using CSMobile.Infrastructure.Common.Extensions;
+using JetBrains.Annotations;
 
 namespace CSMobile.Presentation.ViewModels.Sessions
 {
-    public class SessionViewModelsMapperProfile : AutoMapper.Profile
+    [UsedImplicitly]
+    internal class SessionViewModelsMapperProfile : AutoMapper.Profile
     {
         public SessionViewModelsMapperProfile()
         {

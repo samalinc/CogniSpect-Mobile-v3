@@ -14,5 +14,6 @@ namespace CSMobile.Domain.Services.WebApiIntegration
         Task<WebApiResponse<AuthenticationResultDto>> Authenticate([NotNull] UserAuthenticationData data);
         Task<WebApiResponse<IEnumerable<TestSessionDto>>> GetTestSessionListItems();
         Task<WebApiResponse<TestVariantDto>> GetTestVariant(Guid sessionId);
+        Task<WebApiResponse> FinishTestVariant(Guid testId);
     }
 }

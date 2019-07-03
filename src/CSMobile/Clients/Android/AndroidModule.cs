@@ -15,8 +15,8 @@ namespace CSMobile.Presentation.Droid
                 .SingleInstance();
             
             builder
-                .RegisterSingleAsImplementedInterfaces<AndroidWifiManager>()
-                .RegisterSingleAsImplementedInterfaces<AndroidCultureResolver>();
+                .SingleAsImplementedInterfaces<AndroidWifiManager>()
+                .SingleAsImplementedInterfaces<AndroidCultureResolver>();
         }
     }
 }

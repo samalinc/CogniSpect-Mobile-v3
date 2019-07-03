@@ -120,6 +120,9 @@
   <data name="AvailableTests" xml:space="preserve">
     <value>Available tests</value>
   </data>
+  <data name="Answer" xml:space="preserve">
+    <value>Answer</value>
+  </data>
   <data name="Complete" xml:space="preserve">
     <value>Complete</value>
   </data>

@@ -1,22 +1,25 @@
 using System.Collections.Generic;
 using AutoMapper;
 using CSMobile.Domain.Models.Tests;
+using CSMobile.Domain.Models.Tests.Questions;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos.Enums;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos.Test;
 using CSMobile.Infrastructure.Common.Extensions;
+using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Tests
 {
-    public class TestsMappingProfile : Profile
+    [UsedImplicitly]
+    internal class TestsMappingProfile : Profile
     {
-        private readonly IDictionary<TestVariantStatus, TestStatus> _testStatuses =
+        private readonly IReadOnlyDictionary<TestVariantStatus, TestStatus> _testStatuses =
             new Dictionary<TestVariantStatus, TestStatus>
             {
                 {TestVariantStatus.STARTED, TestStatus.Started},
                 {TestVariantStatus.FINISHED, TestStatus.Finished},
             };
         
-        private readonly IDictionary<QuestionVariantType, QuestionType> _questionTypes =
+        private readonly IReadOnlyDictionary<QuestionVariantType, QuestionType> _questionTypes =
             new Dictionary<QuestionVariantType, QuestionType>
             {
                 {QuestionVariantType.SORT, QuestionType.Sort},
@@ -30,25 +33,16 @@ namespace CSMobile.Domain.Services.Tests
         {
             CreateMap<TestVariantDto, Test>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
-                .ForMember(d => d.Questions, o => o.MapFrom<QuestionDtoToQuestionValueResolver>())
+                .ForMember(d => d.Questions, o => o.MapFrom(s => s.QuestionVariants))
                 .ForMember(d => d.Status, o => o.MapFrom(s => _testStatuses[s.TestVariantStatus]));
 
-            CreateMap<QuestionVariantDto, BaseQuestion>()
+            CreateMap<QuestionVariantDto, Question>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))
                 .ForMember(d => d.Type, o => o.MapFrom(s => _questionTypes[s.Type]))
-                .ForMember(d => d.Description, o => o.MapFrom(s => s.Description));
-            
-            CreateMap<QuestionVariantDto, ChoosableQuestion>()
-                .IncludeBase<QuestionVariantDto, BaseQuestion>()
-                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.ChooseAnswers));
-            
-            CreateMap<QuestionVariantDto, MatchQuestion>()
-                .IncludeBase<QuestionVariantDto, BaseQuestion>()
-                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.ChooseAnswers));
-            
-            CreateMap<QuestionVariantDto, SortQuestion>()
-                .IncludeBase<QuestionVariantDto, BaseQuestion>()
-                .ForMember(d => d.AnswerVariants, o => o.MapFrom(s => s.ChooseAnswers));
+                .ForMember(d => d.Description, o => o.MapFrom(s => s.Description))
+                .ForMember(d => d.ChooseAnswers, o => o.MapFrom(s => s.ChooseAnswers))
+                .ForMember(d => d.MatchAnswers, o => o.MapFrom(s => s.MatchAnswers))
+                .ForMember(d => d.SortAnswers, o => o.MapFrom(s => s.SortAnswers));
 
             CreateMap<ChooseAnswerVariantDto, ChooseAnswerVariant>()
                 .ForMember(d => d.Id, o => o.MapFrom(s => s.Id))

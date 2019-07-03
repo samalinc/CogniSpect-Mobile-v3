@@ -13,12 +13,12 @@ namespace CSMobile.Domain.Services
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterSingleAsImplementedInterfaces<TestsService>()
-                .RegisterSingleAsImplementedInterfaces<AuthenticationService>()
-                .RegisterSingleAsImplementedInterfaces<QuestionsService>()
-                .RegisterSingleAsImplementedInterfaces<CsApiClient>()
-                .RegisterSingleAsImplementedInterfaces<SessionService>()
-                .RegisterSingleAsImplementedInterfaces<MfaService>();
+                .SingleAsImplementedInterfaces<TestsService>()
+                .SingleAsImplementedInterfaces<AuthenticationService>()
+                .SingleAsImplementedInterfaces<QuestionsService>()
+                .SingleAsImplementedInterfaces<CsApiClient>()
+                .SingleAsImplementedInterfaces<SessionService>()
+                .SingleAsImplementedInterfaces<MfaService>();
         }
     }
 }

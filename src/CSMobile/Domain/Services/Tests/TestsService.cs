@@ -30,9 +30,9 @@ namespace CSMobile.Domain.Services.Tests
             return _mapper.Map<Test>(result.Data);
         }
 
-        public async Task EndTest(Test test)
+        public async Task EndTest(Guid testId)
         {
-            await Task.CompletedTask;
+            await _csApiClient.FinishTestVariant(testId);
         }
     }
 }

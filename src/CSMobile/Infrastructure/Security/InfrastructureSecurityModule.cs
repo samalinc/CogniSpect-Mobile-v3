@@ -8,7 +8,7 @@ namespace CSMobile.Infrastructure.Security
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .RegisterSingleAsImplementedInterfaces<WifiPositionsService>();
+                .SingleAsImplementedInterfaces<WifiPositionsService>();
         }
     }
 }

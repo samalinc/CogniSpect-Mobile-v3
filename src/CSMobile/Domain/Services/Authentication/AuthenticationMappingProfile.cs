@@ -1,10 +1,12 @@
 using AutoMapper;
 using CSMobile.Domain.Services.WebApiIntegration.Authentication;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos;
+using JetBrains.Annotations;
 
 namespace CSMobile.Domain.Services.Authentication
 {
-    public class AuthenticationMappingProfile : Profile
+    [UsedImplicitly]
+    internal class AuthenticationMappingProfile : Profile
     {
         public AuthenticationMappingProfile()
         {
