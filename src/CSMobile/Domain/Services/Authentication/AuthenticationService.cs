@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using CSMobile.Domain.Services.WebApiIntegration;
-using CSMobile.Domain.Services.WebApiIntegration.Authentication;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos;
 using CSMobile.Infrastructure.Common;
 using CSMobile.Infrastructure.Interfaces.SecureStorage;
@@ -33,7 +32,7 @@ namespace CSMobile.Domain.Services.Authentication
         public async Task<bool> SignIn(AuthenticationData authenticationData)
         {
             WebApiResponse<AuthenticationResultDto> result =
-                await _apiClient.Authenticate(_mapper.Map<UserAuthenticationData>(authenticationData));
+                await _apiClient.Authenticate(_mapper.Map<LoginModelDto>(authenticationData));
             if (!result.Succeeded)
             {
                 return false;

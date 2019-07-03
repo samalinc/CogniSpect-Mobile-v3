@@ -1,5 +1,4 @@
 using AutoMapper;
-using CSMobile.Domain.Services.WebApiIntegration.Authentication;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos;
 using JetBrains.Annotations;
 
@@ -10,12 +9,12 @@ namespace CSMobile.Domain.Services.Authentication
     {
         public AuthenticationMappingProfile()
         {
-            CreateMap<AuthenticationData, UserAuthenticationData>();
-
             CreateMap<AuthenticationResultDto, UserContextData>()
                 .ForMember(d => d.Login, o => o.MapFrom(s => s.Account.Login))
                 .ForMember(d => d.Email, o => o.MapFrom(s => s.Account.Email))
                 .ForMember(d => d.Token, o => o.MapFrom(s => s.AuthToken));
+            
+            CreateMap<AuthenticationData, LoginModelDto>();
         }
     }
 }

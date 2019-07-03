@@ -7,9 +7,12 @@ namespace CSMobile.Infrastructure.Common
     public interface IUserContextService
     {
         Task BeginUserSession([NotNull] IHaveUserContextData data);
+
         Task EndUserSession();
+
         Task<bool> IsAuthenticated();
+
         [CanBeNull]
-        object GetUserSessionData(string key);
+        TData GetUserSessionData<TData>(string key);
     }
 }

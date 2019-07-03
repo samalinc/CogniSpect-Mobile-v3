@@ -8,7 +8,6 @@ using CSMobile.Domain.Services.Mfa;
 using CSMobile.Domain.Services.Tests;
 using CSMobile.Domain.Services.WebApiIntegration;
 using CSMobile.Domain.Services.WebApiIntegration.Dtos.Test;
-using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
 using CSMobile.Infrastructure.Interfaces.WebClient;
 using JetBrains.Annotations;
 
@@ -20,20 +19,17 @@ namespace CSMobile.Domain.Services.Sessions
         private readonly ICsApiClient _csApiClient;
         private readonly IMapper _mapper;
         private readonly IMfaService _mfaService;
-        private readonly IWebSocketSessionService _webSocketSessionService;
         private readonly ITestsService _testsService;
 
         public SessionService(
             ICsApiClient csApiClient,
             IMapper mapper,
             IMfaService mfaService,
-            IWebSocketSessionService webSocketSessionService,
             ITestsService testsService)
         {
             _csApiClient = csApiClient;
             _mapper = mapper;
             _mfaService = mfaService;
-            _webSocketSessionService = webSocketSessionService;
             _testsService = testsService;
         }
 
@@ -48,12 +44,11 @@ namespace CSMobile.Domain.Services.Sessions
         {
             bool result =
                 await _mfaService.IsSecondFactorPresented(_mapper.Map<SecondFactorVerificationData>(listItem));
-//            if (!result)
-//            {
-//                throw new InvalidStudentLocation();
-//            }
+            if (!result)
+            {
+                throw new InvalidStudentLocation();
+            }
 
-//            await _webSocketSessionService.BeginSession();
             Test test = await _testsService.GetSessionTest(listItem.Id);
             return test;
         }

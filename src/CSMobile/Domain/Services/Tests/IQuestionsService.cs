@@ -7,6 +7,6 @@ namespace CSMobile.Domain.Services.Tests
 {
     public interface IQuestionsService
     {
-        Task SendQuestionAnswer([NotNull] BaseModel choosableQuestion);
+        Task SubmitQuestionAnswer([NotNull] BaseModel choosableQuestion);
     }
 }
