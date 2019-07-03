@@ -4,6 +4,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using CSMobile.Presentation.Views;
+using Plugin.CurrentActivity;
+using Plugin.Permissions;
 using XF.Material.Droid;
 
 namespace CSMobile.Presentation.Droid
@@ -22,13 +24,13 @@ namespace CSMobile.Presentation.Droid
             Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Material.Init(this, savedInstanceState);
             Window.AddFlags(WindowManagerFlags.Fullscreen);
-            Plugin.CurrentActivity.CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
             
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }

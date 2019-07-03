@@ -10,8 +10,6 @@ using XF.Material.Forms.UI;
 
 namespace CSMobile.Presentation.Views.Services
 {
-    /// <inheritdoc />
-    [UsedImplicitly]
     internal class NavigationService : INavigationService
     {
         private readonly ISafeInjectionResolver _safeInjectionResolver;
@@ -78,14 +76,17 @@ namespace CSMobile.Presentation.Views.Services
             await CurrentNavigationPage.PopAsync();
         }
 
-        public async Task NavigateModal<TViewModel>(bool animated = false) where TViewModel : BasePageViewModel
+        public Task NavigateModal<TViewModel>(bool animated = false) where TViewModel : BasePageViewModel
         {
             var page = GetPage(typeof(TViewModel));
             NavigationPage.SetHasNavigationBar(page, false);
             NavigationPage modalNavigationPage = MakeNavigationPage(page);
-            
-            await CurrentNavigationPage.Navigation.PushModalAsync(modalNavigationPage, animated);
+
+            RunOnUiThread(async () =>
+                await CurrentNavigationPage.Navigation.PushModalAsync(modalNavigationPage, animated));
             _navigationPageStack.Push(modalNavigationPage);
+            
+            return Task.CompletedTask;
         }
 
         public async Task Navigate<TViewModel>(bool animated = false) where TViewModel : BasePageViewModel

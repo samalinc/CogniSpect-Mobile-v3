@@ -30,6 +30,7 @@ namespace CSMobile.Presentation.Views
                 .SingleAsImplementedInterfaces<AlertService>()
                 .SingleAsImplementedInterfaces<Localizer>()
                 .SingleAsImplementedInterfaces<LoadingFactory>()
+                .SingleAsImplementedInterfaces<PermissionService>()
                 .SingleAsImplementedInterfaces<SecureStorage>();
         }
     }

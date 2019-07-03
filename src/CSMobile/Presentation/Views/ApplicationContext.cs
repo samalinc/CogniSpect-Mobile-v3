@@ -128,7 +128,7 @@ namespace CSMobile.Presentation.Views
         private void ConfigureLocalization()
         {
             ICultureResolver cultureResolver = ServiceLocator.Current.GetInstance<ICultureResolver>();
-            // TODO: think why it doesn't work. Currently we can't change culture in this way
+            // TODO: think why it doesn't work. Currently we can't change culture by this way
             AppResource.Culture = cultureResolver.GetCurrentCultureInfo();
         }
     }
