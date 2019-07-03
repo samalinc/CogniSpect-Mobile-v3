@@ -26,7 +26,6 @@ namespace CSMobile.Presentation.Views
             builder
                 .SingleAsImplementedInterfaces<AutofacServiceLocator>()
                 .SingleAsImplementedInterfaces<UserContextService>()
-                .SingleAsImplementedInterfaces<WebSocketSessionService>()
                 .SingleAsImplementedInterfaces<NavigationService>()
                 .SingleAsImplementedInterfaces<AlertService>()
                 .SingleAsImplementedInterfaces<Localizer>()

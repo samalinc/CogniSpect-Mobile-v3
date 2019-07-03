@@ -34,7 +34,6 @@ namespace CSMobile.Presentation.ViewModels.Services.ExceptionHandling
             Debug.WriteLine(ex.ToString());
             switch (ex)
             {
-                case WebSocketConnectionException _:
                 case HttpConnectionException _:
                     return _localizer["ConnectionErrorMessage"];
                 case InvalidStudentLocation _:

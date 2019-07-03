@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Autofac;
-using Autofac.Core;
 using CommonServiceLocator;
 using CSMobile.Infrastructure.Common.Contexts;
 using CSMobile.Infrastructure.Common.Contexts.UserSession;
-using CSMobile.Infrastructure.Common.Contexts.WebSocketSession;
 using CSMobile.Infrastructure.Common.Extensions;
 using CSMobile.Infrastructure.Interfaces.Localization;
 using CSMobile.Infrastructure.Mvvm.Navigation;
@@ -40,7 +38,6 @@ namespace CSMobile.Presentation.Views
         public static ApplicationContext Instance { get; private set; }
 
         public UserContext UserContext { get; private set; }
-        public IWebSocketContext WebSocketContext { get; private set; }
         public ILifetimeScope CurrentScope => UserContext?.Scope ?? _container;
 
         public bool IsUserAuthenticated => UserContext != null;
@@ -48,7 +45,7 @@ namespace CSMobile.Presentation.Views
         public static async Task BuildAsync(App app)
         {
             Instance = new ApplicationContext(app);
-            await Task.Run(async () => await Instance.RegisterServices());
+            await Instance.RegisterServices();
         }
 
         private ApplicationContext(App app)
@@ -70,18 +67,6 @@ namespace CSMobile.Presentation.Views
         {
             UserContext?.Dispose();
             UserContext = null;
-        }
-
-        public void BeginWebSocketSession()
-        {
-            WebSocketContext = ServiceLocator.Current.GetInstance<IWebSocketContext>();
-            WebSocketContext.BeginSession();
-        }
-
-        public void EndWebSocketSession()
-        {
-            WebSocketContext?.Dispose();
-            WebSocketContext = null;
         }
 
         private async Task RegisterServices()
@@ -106,9 +91,10 @@ namespace CSMobile.Presentation.Views
             ServiceLocator.SetLocatorProvider(() =>
                 _container.Resolve<IServiceLocator>(new TypedParameter(typeof(IContext), this)));
 
-            await Task.Run(ConfigureNavigation);
-            await Task.Run(ConfigureJsonSerializing);
-            await Task.Run(ConfigureLocalization);
+            await Task.WhenAll(
+                Task.Run(ConfigureNavigation),
+                Task.Run(ConfigureJsonSerializing),
+                Task.Run(ConfigureLocalization));
         }
 
         private IContainer ConfigureContainer(Action<ContainerBuilder> action)

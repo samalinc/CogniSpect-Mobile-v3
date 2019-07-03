@@ -29,7 +29,6 @@ namespace CSMobile.Presentation.ViewModels
                 .PerDependencyAsSelf<AnswerViewModel>();
 
             builder
-                .SingleAsSelf<WebSocketsHandlersRecorder>()
                 .SingleAsImplementedInterfaces<AppExceptionHandler>()
                 .SingleAsImplementedInterfaces<AuthenticationAlertsFactory>();
         }
